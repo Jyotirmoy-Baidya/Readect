@@ -1,51 +1,60 @@
 const Reader = require("../models/readerModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("../utils/appError");
-
-exports.uploadPoem = catchAsync(async (req, res) => {
-  const poem = await Reader.updateOne(
-    { _id: req.reader._id },
-    { $push: { poems: req.body } },
-    { runValidators: true }
-  );
-
-  res.status(200).json({
-    message: "success",
-    data: { poem },
-  });
-});
+const mongoose = require("mongoose");
+const Review = require("../models/reviewModel");
 
 exports.getAllPoems = catchAsync(async (req, res) => {
-  try {
-    const poems = await Reader.aggregate([
-      { $unwind: "$poems" },
-      { $sort: { ratingsAverage: 1 } },
-      { $project: { poems: 1, name: 1, email: 1, _id: 0 } },
-    ]);
-    console.log(poems);
-
-    res.status(200).json({
-      status: "success",
-      data: { poems },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
-  }
-});
-
-exports.deletePoem = catchAsync(async (req, res) => {
-  const poem = await Reader.updateOne(
-    { _id: req.reader._id },
-    { $pull: { poems: { _id: { $eq: req.params.poemId } } } }
-  );
+  const poems = await Reader.aggregate([
+    { $unwind: "$poems" },
+    { $sort: { ratingsAverage: 1 } },
+    { $project: { poems: 1, name: 1, email: 1, _id: 0 } },
+  ]);
+  //console.log(poems);
 
   res.status(200).json({
-    message: "success",
-    data: { poem },
+    status: "success",
+    data: { poems },
   });
+});
+
+exports.getPoem = catchAsync(async (req, res, next) => {
+  const id = new mongoose.Types.ObjectId(req.params.poemId);
+  const poem = await Reader.aggregate([
+    { $unwind: "$poems" },
+    { $match: { "poems._id": id } },
+    { $project: { poems: 1, _id: 0 } },
+  ]);
+
+  const temp = await Reader.populate(poem, {
+    path: "comments",
+    select: "comments",
+  });
+
+  res.status(200).json({
+    status: "success",
+    temp,
+  });
+});
+
+exports.uploadPoem = catchAsync(async (req, res, next) => {
+  const updatedReader = await Reader.findOneAndUpdate(
+    { _id: req.reader._id },
+    { $push: { poems: req.body } },
+    { runValidators: true, returnDocument: "after", projection: { poems: 1 } }
+  );
+
+  const temp = updatedReader.poems.slice(-1);
+  // console.log(temp[0]._id);
+  req.updatedPoemId = temp[0]._id;
+
+  // const newReview = await Review.create(req.body);
+
+  // res.status(200).json({
+  //   message: "success",
+  //   data: { updatedReader },
+  // });
+  next();
 });
 
 exports.updatePoem = catchAsync(async (req, res) => {
@@ -59,10 +68,6 @@ exports.updatePoem = catchAsync(async (req, res) => {
         poems = req.reader.poems;
       } else if (req.params.fieldName === "content") {
         el.content = req.body.content;
-        result = el;
-        poems = req.reader.poems;
-      } else if (req.params.fieldName === "comment") {
-        el.comment.push(req.body.comment);
         result = el;
         poems = req.reader.poems;
       } else if (req.params.fieldName === "ratings") {
@@ -89,5 +94,17 @@ exports.updatePoem = catchAsync(async (req, res) => {
   res.status(200).json({
     status: "success",
     data: { result },
+  });
+});
+
+exports.deletePoem = catchAsync(async (req, res) => {
+  const poem = await Reader.updateOne(
+    { _id: req.reader._id },
+    { $pull: { poems: { _id: { $eq: req.params.poemId } } } }
+  );
+
+  res.status(200).json({
+    message: "success",
+    data: { poem },
   });
 });

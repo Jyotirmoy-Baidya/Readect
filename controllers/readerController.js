@@ -12,6 +12,7 @@ exports.createReader = catchAsync(async (req, res) => {
 
 exports.getReaders = catchAsync(async (req, res) => {
   const readers = await Reader.find();
+  console.log(process.env.dbUserName);
   res.status(200).json({
     status: "success",
     results: readers.length,

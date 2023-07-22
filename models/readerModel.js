@@ -18,8 +18,14 @@ const readerSchema = new Schema({
     type: [psaSchema],
     default: [],
   },
-  shortStories: [psaSchema],
-  articles: [psaSchema],
+  shortStories: {
+    type: [psaSchema],
+    default: [],
+  },
+  articles: {
+    type: [psaSchema],
+    default: [],
+  },
   books: {
     type: Schema.Types.Mixed,
     default: ["No books uploaded yet"],
@@ -54,7 +60,6 @@ readerSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.confirmPassword = undefined;
-  console.log("hello");
   next();
 });
 
@@ -64,5 +69,22 @@ readerSchema.methods.ifCorrectPassword = function (
 ) {
   return bcrypt.compare(enteredPassword, actualPassword);
 };
+// readerSchema.post("save", function (doc, next) {
+//   console.log("hey there💥", doc);
+//   next();
+// });
+
+// readerSchema.pre(/^update/, function (next) {
+//   console.log("Updating");
+//   next();
+// });
+// readerSchema.post(/^findOneAndUpdate/, function (doc, next) {
+//   console.log("Updating post", doc);
+//   next();
+// });
+
+// readerSchema.post("save", function (doc) {
+//   console.log("%s has been saved", doc._id);
+// });
 const Reader = mongoose.model("Reader", readerSchema);
 module.exports = Reader;

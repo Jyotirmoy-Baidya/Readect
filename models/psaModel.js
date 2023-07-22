@@ -22,14 +22,21 @@ const psaSchema = new Schema(
     tags: {
       type: [String],
     },
-    comment: {
-      type: [String],
-    },
     coverImage: {
       type: String,
     },
   },
-  { timestamps: true }
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+    timestamps: true,
+  }
 );
+
+psaSchema.virtual("comments", {
+  ref: "Review",
+  foreignField: "genreIdentifier",
+  localField: "_id",
+});
 
 module.exports = psaSchema;
