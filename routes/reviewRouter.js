@@ -5,6 +5,7 @@ const {
   deleteComment,
   getAllReviews,
   updateComment,
+  deleteReview,
 } = require("./../controllers/reviewController");
 const { protect } = require("./../controllers/authController");
 
@@ -15,5 +16,7 @@ router.route("/").post(protect, postComment).delete(protect, deleteComment);
 router.route("/:commentId").patch(protect, updateComment);
 
 router.route("/:poemId").get(getAllReviews);
+
+router.route("/deleteReview/:poemId").delete(deleteReview);
 
 module.exports = router;

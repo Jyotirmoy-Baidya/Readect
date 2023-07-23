@@ -4,20 +4,21 @@ const validator = require("validator");
 
 const psaSchema = new Schema(
   {
+    userId: {
+      type: Schema.ObjectId,
+      required: [true, "Please provide the user Id"],
+    },
+    name: {
+      type: String,
+      required: [true, "Please provide the userName"],
+    },
     title: {
       type: String,
-      //required: [true, "A reader must have a name"],
+      required: [true, "This post must have a title"],
     },
     content: {
       type: String,
-    },
-    ratings: {
-      type: [Number],
-      default: [0],
-    },
-    ratingsAverage: {
-      type: Number,
-      default: 0,
+      required: [true, "This post must have some content"],
     },
     tags: {
       type: [String],
@@ -25,11 +26,21 @@ const psaSchema = new Schema(
     coverImage: {
       type: String,
     },
+    uploadDate: {
+      type: String,
+      default: new Date().toLocaleDateString(),
+    },
+    firstUploadTime: {
+      type: String,
+      default: new Date().toLocaleTimeString(),
+    },
+    updateTime: {
+      type: String,
+    },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-    timestamps: true,
   }
 );
 
@@ -39,4 +50,6 @@ psaSchema.virtual("comments", {
   localField: "_id",
 });
 
-module.exports = psaSchema;
+exports.Poem = mongoose.model("Poem", psaSchema);
+exports.ShortStory = mongoose.model("ShortStory", psaSchema);
+exports.Article = mongoose.model("Article", psaSchema);

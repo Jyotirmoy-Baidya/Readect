@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const {
-  createReader,
   getReaders,
   getReader,
   deleteReader,
@@ -12,7 +11,7 @@ const { signup, login, protect } = require("../controllers/authController");
 router.route("/signup").post(signup);
 router.route("/login").post(login);
 
-router.route("/").get(getReaders).post(createReader);
-router.route("/getReader").get(protect, getReader).delete(deleteReader);
+router.route("/getAllReaders").get(getReaders);
+router.route("/").get(protect, getReader).delete(protect, deleteReader);
 
 module.exports = router;

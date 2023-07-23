@@ -67,6 +67,19 @@ exports.updateComment = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.updateReviewGenreName = catchAsync(async (req, res) => {
+  const updatedReview = await Review.findOneAndUpdate(
+    { genreIdentifier: req.params.poemId },
+    { genreName: req.body.title },
+    { runValidators: true, returnDocument: "after" }
+  );
+
+  res.status(200).json({
+    message: "success",
+    data: { updatedReview },
+  });
+});
+
 exports.deleteComment = catchAsync(async (req, res) => {
   const result = await Review.findOneAndUpdate(
     { genreIdentifier: req.params.poemId },
@@ -77,5 +90,17 @@ exports.deleteComment = catchAsync(async (req, res) => {
   res.status(200).json({
     message: "success",
     data: { result },
+  });
+});
+
+//deleteReview is hit ONLY when a poem is deleted
+exports.deleteReview = catchAsync(async (req, res) => {
+  await Review.findOneAndDelete({
+    genreIdentifier: req.params.poemId,
+  });
+
+  res.status(204).json({
+    status: "success",
+    data: null,
   });
 });

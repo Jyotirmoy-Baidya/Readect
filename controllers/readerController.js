@@ -2,17 +2,8 @@ const Reader = require("../models/readerModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("../utils/appError");
 
-exports.createReader = catchAsync(async (req, res) => {
-  const newReader = await Reader.create(req.body);
-  res.status(201).json({
-    status: "success",
-    reader: { newReader },
-  });
-});
-
 exports.getReaders = catchAsync(async (req, res) => {
   const readers = await Reader.find();
-  console.log(process.env.dbUserName);
   res.status(200).json({
     status: "success",
     results: readers.length,
@@ -21,7 +12,20 @@ exports.getReaders = catchAsync(async (req, res) => {
 });
 
 exports.getReader = catchAsync(async (req, res) => {
-  const currentReader = await Reader.findById(req.reader._id);
+  const currentReader = await Reader.findById(req.reader._id)
+    .select("-__v -id")
+    .populate({
+      path: "likedPoems",
+      select: "-userId",
+    })
+    .populate({
+      path: "likedShortStories",
+      select: "-userId",
+    })
+    .populate({
+      path: "poems",
+      select: "name title content tags uploadDate -userId",
+    });
   res.status(200).json({
     status: "success",
     data: { currentReader },
@@ -29,7 +33,7 @@ exports.getReader = catchAsync(async (req, res) => {
 });
 
 exports.deleteReader = catchAsync(async (req, res) => {
-  const readers = await Reader.findByIdAndDelete(req.params.id);
+  const readers = await Reader.findByIdAndDelete(req.reader._id);
   res.status(200).json({
     status: "success",
     data: { readers },
