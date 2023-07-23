@@ -27,9 +27,14 @@ exports.getAllReviews = catchAsync(async (req, res) => {
 });
 
 exports.postComment = catchAsync(async (req, res, next) => {
+  const commentObj = {
+    name: req.reader.name,
+    email: req.reader.email,
+    comment: req.body.comment,
+  };
   const Comments = await Review.findOneAndUpdate(
     { genreIdentifier: req.params.poemId },
-    { $push: { comments: req.body } },
+    { $push: { comments: commentObj } },
     { runValidators: true, returnDocument: "after" }
   );
 
@@ -41,16 +46,24 @@ exports.postComment = catchAsync(async (req, res, next) => {
 
 exports.updateComment = catchAsync(async (req, res, next) => {
   const doc = await Review.find({ genreIdentifier: req.params.poemId });
+  let comments;
+  doc[0].comments.forEach((comment) => {
+    if (comment.email === req.reader.email) {
+      comment.comment = req.body.comment;
+      comment.updateTime = new Date().toLocaleTimeString();
+      comments = doc[0].comments;
+    }
+  });
 
-  // const updatedComments = await Review.findOneAndUpdate(
-  //   { genreIdentifier: req.params.poemId },
-  //   { $push: { comments: req.body } },
-  //   { runValidators: true, returnDocument: "after" }
-  // );
+  const updatedComments = await Review.findOneAndUpdate(
+    { genreIdentifier: req.params.poemId },
+    { comments },
+    { runValidators: true, returnDocument: "after" }
+  );
 
   res.status(200).json({
     status: "success",
-    data: doc,
+    data: updatedComments,
   });
 });
 

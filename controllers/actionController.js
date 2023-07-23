@@ -45,15 +45,8 @@ exports.uploadPoem = catchAsync(async (req, res, next) => {
   );
 
   const temp = updatedReader.poems.slice(-1);
-  // console.log(temp[0]._id);
   req.updatedPoemId = temp[0]._id;
 
-  // const newReview = await Review.create(req.body);
-
-  // res.status(200).json({
-  //   message: "success",
-  //   data: { updatedReader },
-  // });
   next();
 });
 
