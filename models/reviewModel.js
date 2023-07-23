@@ -32,9 +32,12 @@ const reviewSchema = new Schema({
         type: String,
         default: new Date().toLocaleDateString(),
       },
-      uploadTime: {
+      firstUploadTime: {
         type: String,
         default: new Date().toLocaleTimeString(),
+      },
+      updateTime: {
+        type: String,
       },
     },
   ],
