@@ -42,15 +42,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   createAndSendToken(newReader, 201, res);
-  // const token = createToken(newReader._id);
-
-  // res.status(200).json({
-  //   status: "success",
-  //   token,
-  //   data: {
-  //     reader: newReader,
-  //   },
-  // });
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -63,12 +54,6 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Incorrect email or password", 400));
 
   createAndSendToken(reader, 201, res);
-
-  // const token = createToken(reader._id);
-  // res.status(200).json({
-  //   status: "success",
-  //   token,
-  // });
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
