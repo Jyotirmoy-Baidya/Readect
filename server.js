@@ -14,7 +14,6 @@ mongoose
   });
 
 const port = process.env.PORT;
-console.log(typeof process.env.PORT);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
