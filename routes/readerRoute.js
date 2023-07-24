@@ -4,6 +4,9 @@ const {
   getReaders,
   getReader,
   deleteReader,
+  follow,
+  getFollowers,
+  getFollowings,
 } = require("../controllers/readerController");
 
 const { signup, login, protect } = require("../controllers/authController");
@@ -13,5 +16,9 @@ router.route("/login").post(login);
 
 router.route("/getAllReaders").get(getReaders);
 router.route("/").get(protect, getReader).delete(protect, deleteReader);
+
+router.route("/follow/:followId").post(protect, follow);
+router.route("/followers").get(protect, getFollowers);
+router.route("/followings").get(protect, getFollowings);
 
 module.exports = router;

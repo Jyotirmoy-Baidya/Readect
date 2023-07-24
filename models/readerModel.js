@@ -33,6 +33,24 @@ const readerSchema = new Schema(
       type: [String],
       default: [],
     },
+    followerCount: {
+      type: Number,
+      default: 0,
+    },
+    followers: {
+      type: [Schema.ObjectId],
+      ref: "Reader",
+      default: [],
+    },
+    followingCount: {
+      type: Number,
+      default: 0,
+    },
+    followings: {
+      type: [Schema.ObjectId],
+      ref: "Reader",
+      default: [],
+    },
     password: {
       type: String,
       required: [true, "Please enter a password"],

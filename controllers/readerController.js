@@ -39,3 +39,64 @@ exports.deleteReader = catchAsync(async (req, res) => {
     data: { readers },
   });
 });
+
+exports.follow = catchAsync(async (req, res, next) => {
+  //Update followings
+  const result = await Reader.findByIdAndUpdate(
+    req.reader._id,
+    {
+      $inc: { followingCount: 1 },
+      $push: { followings: req.params.followId },
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  //Update followers
+  await Reader.findByIdAndUpdate(
+    req.params.followId,
+    {
+      $inc: { followerCount: 1 },
+      $push: { followers: req.reader._id },
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({
+    message: "success",
+    data: { result },
+  });
+});
+
+exports.getFollowers = catchAsync(async (req, res, next) => {
+  const result = await Reader.findById(req.reader._id)
+    .select("followers followerCount")
+    .populate({
+      path: "followers",
+      select: "name followingCount followerCount",
+    });
+
+  res.status(200).json({
+    message: "success",
+    data: { result },
+  });
+});
+
+exports.getFollowings = catchAsync(async (req, res, next) => {
+  const result = await Reader.findById(req.reader._id)
+    .select("followings followingCount")
+    .populate({
+      path: "followings",
+      select: "name followingCount followerCount",
+    });
+
+  res.status(200).json({
+    message: "success",
+    data: { result },
+  });
+});
