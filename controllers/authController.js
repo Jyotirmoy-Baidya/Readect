@@ -3,34 +3,10 @@ const jwt = require("jsonwebtoken");
 const Reader = require("./../models/readerModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("../utils/appError");
-
-const createToken = (id) => {
-  return jwt.sign({ id: id }, "my-super-secret-string-is-superb", {
-    expiresIn: "1d",
-  });
-};
-
-const createAndSendToken = (newReader, statusCode, res) => {
-  const token = createToken(newReader._id);
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  };
-
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
-
-  res.cookie("jwt", token, cookieOptions);
-
-  res.status(statusCode).json({
-    status: "success",
-    token,
-    data: {
-      reader: newReader,
-    },
-  });
-};
+const {
+  createAndSendToken,
+  createAndSendLogoutToken,
+} = require("../utils/tokenGenerator");
 
 exports.signup = catchAsync(async (req, res, next) => {
   const newReader = await Reader.create({
@@ -86,4 +62,8 @@ exports.protect = catchAsync(async (req, res, next) => {
   //GRANT ACCESS
   req.reader = freshUser;
   next();
+});
+
+exports.logout = catchAsync((req, res, next) => {
+  createAndSendLogoutToken(req.reader, 200, res);
 });

@@ -26,6 +26,14 @@ const psaSchema = new Schema(
     coverImage: {
       type: String,
     },
+    likes: {
+      type: Number,
+      default: 0,
+    },
+    dislikes: {
+      type: Number,
+      default: 0,
+    },
     uploadDate: {
       type: String,
       default: new Date().toLocaleDateString(),

@@ -9,10 +9,16 @@ const {
   getFollowings,
 } = require("../controllers/readerController");
 
-const { signup, login, protect } = require("../controllers/authController");
+const {
+  signup,
+  login,
+  protect,
+  logout,
+} = require("../controllers/authController");
 
 router.route("/signup").post(signup);
 router.route("/login").post(login);
+router.route("/logout").post(protect, logout);
 
 router.route("/getAllReaders").get(getReaders);
 router.route("/").get(protect, getReader).delete(protect, deleteReader);

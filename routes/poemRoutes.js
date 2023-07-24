@@ -6,6 +6,9 @@ const {
   getPoem,
   updatePoem,
   likePoem,
+  unlikePoem,
+  dislikePoem,
+  getLikedPoems,
   deletePoem,
   testController,
 } = require("../controllers/actionController");
@@ -24,11 +27,15 @@ router.use("/getPoem/:poemId/reviews", reviewRouter);
 
 router.route("/").post(protect, uploadPoem, createReview);
 
-router.route("/:poemId").patch(protect, updatePoem, updateReviewGenreName);
+router
+  .route("/:poemId")
+  .patch(protect, updatePoem, updateReviewGenreName)
+  .delete(protect, deletePoem, deleteReview);
 
-router.route("/:poemId").delete(protect, deletePoem, deleteReview);
-
-router.route("/likePoem").post(protect, likePoem);
+router.route("/:poemId/like").post(protect, likePoem);
+router.route("/:poemId/unlike").post(protect, unlikePoem);
+router.route("/:poemId/dislike").post(protect, dislikePoem);
+router.route("/likedPoems").get(protect, getLikedPoems);
 
 router.route("/testRoute/:poemId").get(protect, testController);
 
