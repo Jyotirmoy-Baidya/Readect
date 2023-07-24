@@ -9,6 +9,9 @@ const {
   unlikePoem,
   dislikePoem,
   getLikedPoems,
+  getReadLaterPoem,
+  readLaterPoem,
+  removefromReadLaterPoem,
   deletePoem,
   testController,
 } = require("../controllers/actionController");
@@ -36,6 +39,12 @@ router.route("/:poemId/like").post(protect, likePoem);
 router.route("/:poemId/unlike").post(protect, unlikePoem);
 router.route("/:poemId/dislike").post(protect, dislikePoem);
 router.route("/likedPoems").get(protect, getLikedPoems);
+
+router.route("/getReadLater").get(protect, getReadLaterPoem);
+router.route("/:poemId/readLater").post(protect, readLaterPoem);
+router
+  .route("/:poemId/removefromReadLater")
+  .post(protect, removefromReadLaterPoem);
 
 router.route("/testRoute/:poemId").get(protect, testController);
 

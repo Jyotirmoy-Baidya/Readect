@@ -51,6 +51,23 @@ const readerSchema = new Schema(
       ref: "Reader",
       default: [],
     },
+    readLater: {
+      poems: {
+        type: [Schema.ObjectId],
+        ref: "Poem",
+        default: [],
+      },
+      shortStories: {
+        type: [Schema.ObjectId],
+        ref: "ShortStory",
+        default: [],
+      },
+      articles: {
+        type: [Schema.ObjectId],
+        ref: "Article",
+        default: [],
+      },
+    },
     password: {
       type: String,
       required: [true, "Please enter a password"],

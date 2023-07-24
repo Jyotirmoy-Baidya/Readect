@@ -108,7 +108,7 @@ exports.unlikePoem = catchAsync(async (req, res, next) => {
   );
   res.status(200).json({
     message: "success",
-    data: { likedPoems },
+    likedPoems,
   });
 });
 
@@ -124,7 +124,7 @@ exports.dislikePoem = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     message: "success",
-    data: { result },
+    result,
   });
 });
 
@@ -133,6 +133,48 @@ exports.getLikedPoems = catchAsync(async (req, res, next) => {
     .select("likedPoems")
     .populate("likedPoems");
 
+  res.status(200).json({
+    message: "success",
+    result,
+  });
+});
+
+exports.getReadLaterPoem = catchAsync(async (req, res, next) => {
+  const result = await Reader.findById(req.reader._id)
+    .select("readLater.poems")
+    .populate("readLater.poems");
+
+  res.status(200).json({
+    message: "success",
+    result,
+  });
+});
+
+exports.readLaterPoem = catchAsync(async (req, res, next) => {
+  const result = await Reader.findOneAndUpdate(
+    { _id: req.reader._id },
+    { $push: { "readLater.poems": req.params.poemId } },
+    {
+      runValidators: true,
+      returnDocument: "after",
+    }
+  );
+
+  res.status(200).json({
+    message: "success",
+    data: { result },
+  });
+});
+
+exports.removefromReadLaterPoem = catchAsync(async (req, res, next) => {
+  const result = await Reader.findOneAndUpdate(
+    { _id: req.reader._id },
+    { $pull: { "readLater.poems": req.params.poemId } },
+    {
+      runValidators: true,
+      returnDocument: "after",
+    }
+  );
   res.status(200).json({
     message: "success",
     data: { result },
