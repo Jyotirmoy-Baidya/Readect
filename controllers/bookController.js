@@ -72,39 +72,41 @@ exports.updateBook = catchAsync(async (req, res, next) => {
 });
 
 exports.likeBook = catchAsync(async (req, res, next) => {
-  const likedBooks = await Reader.findOneAndUpdate(
+  await Reader.findOneAndUpdate(
     { _id: req.reader._id },
     { $push: { likedBooks: req.params.bookId } },
     {
       runValidators: true,
-      returnDocument: "after",
-      projection: { likedBooks: 1 },
     }
   );
 
-  await Book.findOneAndUpdate(
+  const result = await Book.findOneAndUpdate(
     { _id: req.params.bookId },
     { $inc: { likes: 1 } },
     {
       runValidators: true,
+      returnDocument: "after",
+      projection: { likes: 1, dislikes: 1 },
     }
   );
 
   res.status(200).json({
     status: "success",
-    likedBooks,
+    result,
   });
 });
 
 exports.unlikeBook = catchAsync(async (req, res, next) => {
-  await Book.findOneAndUpdate(
+  const result = await Book.findOneAndUpdate(
     { _id: req.params.bookId },
     { $inc: { likes: -1 } },
     {
       runValidators: true,
+      returnDocument: "after",
+      projection: { likes: 1, dislikes: 1 },
     }
   );
-  const likedBooks = await Reader.findOneAndUpdate(
+  await Reader.findOneAndUpdate(
     { _id: req.reader._id },
     { $pull: { likedBooks: req.params.bookId } },
     {
@@ -115,7 +117,7 @@ exports.unlikeBook = catchAsync(async (req, res, next) => {
   );
   res.status(200).json({
     message: "success",
-    likedBooks,
+    result,
   });
 });
 
@@ -126,7 +128,7 @@ exports.dislikeBook = catchAsync(async (req, res, next) => {
     {
       runValidators: true,
       returnDocument: "after",
-      projection: { dislikes: 1 },
+      projection: { likes: 1, dislikes: 1 },
     }
   );
 
@@ -166,11 +168,11 @@ exports.readLaterBook = catchAsync(async (req, res, next) => {
       runValidators: true,
       returnDocument: "after",
     }
-  );
+  ).select("readLater.books");
 
   res.status(200).json({
     message: "success",
-    data: { result },
+    result,
   });
 });
 
@@ -182,7 +184,7 @@ exports.removefromReadLaterBook = catchAsync(async (req, res, next) => {
       runValidators: true,
       returnDocument: "after",
     }
-  );
+  ).select("readLater.books");
   res.status(200).json({
     message: "success",
     result,

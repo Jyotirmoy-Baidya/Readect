@@ -49,9 +49,11 @@ exports.updateShortStory = catchAsync(async (req, res, next) => {
   if (req.reader._id.toString() !== shortStoryObj.userId.toString())
     return forcedLogout(req, res, next);
 
+  let updateTime = new Date().toLocaleTimeString();
+  const updateObj = { updateTime, ...req.body };
   const updatedReader = await ShortStory.findByIdAndUpdate(
     req.params.genreId,
-    req.body,
+    updateObj,
     {
       new: true,
       runValidators: true,
@@ -69,50 +71,50 @@ exports.updateShortStory = catchAsync(async (req, res, next) => {
 });
 
 exports.likeShortStory = catchAsync(async (req, res, next) => {
-  const likedShortStories = await Reader.findOneAndUpdate(
+  await Reader.findOneAndUpdate(
     { _id: req.reader._id },
     { $push: { likedShortStories: req.params.shortStoryId } },
     {
       runValidators: true,
-      returnDocument: "after",
-      projection: { likedShortStories: 1 },
     }
   );
 
-  await ShortStory.findOneAndUpdate(
+  const result = await ShortStory.findOneAndUpdate(
     { _id: req.params.shortStoryId },
     { $inc: { likes: 1 } },
     {
       runValidators: true,
+      returnDocument: "after",
+      projection: { likes: 1, dislikes: 1 },
     }
   );
 
   res.status(200).json({
     status: "success",
-    likedShortStories,
+    result,
   });
 });
 
 exports.unlikeShortStory = catchAsync(async (req, res, next) => {
-  await ShortStory.findOneAndUpdate(
+  const result = await ShortStory.findOneAndUpdate(
     { _id: req.params.shortStoryId },
     { $inc: { likes: -1 } },
     {
       runValidators: true,
+      returnDocument: "after",
+      projection: { likes: 1, dislikes: 1 },
     }
   );
-  const likedShortStories = await Reader.findOneAndUpdate(
+  await Reader.findOneAndUpdate(
     { _id: req.reader._id },
     { $pull: { likedShortStories: req.params.shortStoryId } },
     {
       runValidators: true,
-      returnDocument: "after",
-      projection: { likedShortStories: 1 },
     }
   );
   res.status(200).json({
     message: "success",
-    likedShortStories,
+    result,
   });
 });
 
@@ -123,7 +125,7 @@ exports.dislikeShortStory = catchAsync(async (req, res, next) => {
     {
       runValidators: true,
       returnDocument: "after",
-      projection: { dislikes: 1 },
+      projection: { likes: 1, dislikes: 1 },
     }
   );
 
@@ -166,11 +168,11 @@ exports.readLaterShortStory = catchAsync(async (req, res, next) => {
       runValidators: true,
       returnDocument: "after",
     }
-  );
+  ).select("readLater.shortStories");
 
   res.status(200).json({
     message: "success",
-    data: { result },
+    result,
   });
 });
 
@@ -182,7 +184,7 @@ exports.removefromReadLaterShortStory = catchAsync(async (req, res, next) => {
       runValidators: true,
       returnDocument: "after",
     }
-  );
+  ).select("readLater.shortStories");
   res.status(200).json({
     message: "success",
     result,

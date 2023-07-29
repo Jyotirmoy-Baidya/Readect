@@ -18,7 +18,7 @@ exports.createReview = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllReviews = catchAsync(async (req, res) => {
-  const reviews = await Review.find({ genreIdentifier: req.params.poemId });
+  const reviews = await Review.find({ genreIdentifier: req.params.genreId });
   res.status(200).json({
     status: "success",
     results: reviews.length,
@@ -38,8 +38,6 @@ exports.postComment = catchAsync(async (req, res, next) => {
     { runValidators: true, returnDocument: "after" }
   );
 
-  console.log(Comments);
-
   res.status(200).json({
     status: "success",
     data: Comments,
@@ -47,7 +45,7 @@ exports.postComment = catchAsync(async (req, res, next) => {
 });
 
 exports.updateComment = catchAsync(async (req, res, next) => {
-  const doc = await Review.find({ genreIdentifier: req.params.poemId });
+  const doc = await Review.find({ genreIdentifier: req.params.genreId });
   let comments;
   doc[0].comments.forEach((comment) => {
     if (comment.email === req.reader.email) {
@@ -58,7 +56,7 @@ exports.updateComment = catchAsync(async (req, res, next) => {
   });
 
   const updatedComments = await Review.findOneAndUpdate(
-    { genreIdentifier: req.params.poemId },
+    { genreIdentifier: req.params.genreId },
     { comments },
     { runValidators: true, returnDocument: "after" }
   );
@@ -71,7 +69,7 @@ exports.updateComment = catchAsync(async (req, res, next) => {
 
 exports.updateReviewGenreName = catchAsync(async (req, res) => {
   const updatedReview = await Review.findOneAndUpdate(
-    { genreIdentifier: req.params.poemId },
+    { genreIdentifier: req.params.genreId },
     { genreName: req.body.title },
     { runValidators: true, returnDocument: "after" }
   );
@@ -84,7 +82,7 @@ exports.updateReviewGenreName = catchAsync(async (req, res) => {
 
 exports.deleteComment = catchAsync(async (req, res) => {
   const result = await Review.findOneAndUpdate(
-    { genreIdentifier: req.params.poemId },
+    { genreIdentifier: req.params.genreId },
     { $pull: { comments: { _id: { $eq: req.params.commentId } } } },
     { runValidators: true, returnDocument: "after" }
   );

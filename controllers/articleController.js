@@ -1,55 +1,55 @@
 const Reader = require("../models/readerModel");
-const { Poem, ShortStory, Article } = require("../models/psaModel");
+const { Article } = require("../models/psaModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const mongoose = require("mongoose");
 const Review = require("../models/reviewModel");
 const { forcedLogout } = require("../utils/forcedLogout");
 
-exports.getAllPoems = catchAsync(async (req, res) => {
-  const poems = await Poem.find().select(
+exports.getAllArticles = catchAsync(async (req, res) => {
+  const articles = await Article.find().select(
     "-content -updateTime -firstUploadTime"
   );
 
   res.status(200).json({
     status: "success",
-    results: poems.length,
-    data: { poems },
+    results: articles.length,
+    articles,
   });
 });
 
-exports.getPoem = catchAsync(async (req, res, next) => {
-  const poem = await Poem.findById(req.params.poemId).populate({
+exports.getArticle = catchAsync(async (req, res, next) => {
+  const article = await Article.findById(req.params.articleId).populate({
     path: "comments",
     select: "comments -genreIdentifier -_id",
   });
 
   res.status(200).json({
     status: "success",
-    poem,
+    article,
   });
 });
 
-exports.uploadPoem = catchAsync(async (req, res, next) => {
-  const poemObj = {
+exports.uploadArticle = catchAsync(async (req, res, next) => {
+  const ArticleObj = {
     userId: req.reader._id,
     name: req.reader.name,
     ...req.body,
   };
-  const poem = await Poem.create(poemObj);
-  req.updatedGenreId = poem._id;
+  const article = await Article.create(ArticleObj);
+  req.updatedGenreId = article._id;
 
   next();
 });
 
-exports.updatePoem = catchAsync(async (req, res, next) => {
-  const poemDoc = await Poem.findById(req.params.genreId);
-  if (req.reader._id.toString() !== poemDoc.userId.toString())
+exports.updateArticle = catchAsync(async (req, res, next) => {
+  const articleDoc = await Article.findById(req.params.genreId);
+  if (req.reader._id.toString() !== articleDoc.userId.toString())
     return forcedLogout(req, res, next);
 
   let updateTime = new Date().toLocaleTimeString();
   const updateObj = { updateTime, ...req.body };
-  const updatedReader = await Poem.findByIdAndUpdate(
+  const updatedReader = await Article.findByIdAndUpdate(
     req.params.genreId,
     updateObj,
     {
@@ -64,21 +64,21 @@ exports.updatePoem = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    data: { updatedReader },
+    updatedReader,
   });
 });
 
-exports.likePoem = catchAsync(async (req, res, next) => {
+exports.likeArticle = catchAsync(async (req, res, next) => {
   await Reader.findOneAndUpdate(
     { _id: req.reader._id },
-    { $push: { likedPoems: req.params.poemId } },
+    { $push: { likedArticles: req.params.articleId } },
     {
       runValidators: true,
     }
   );
 
-  const result = await Poem.findOneAndUpdate(
-    { _id: req.params.poemId },
+  const result = await Article.findOneAndUpdate(
+    { _id: req.params.articleId },
     { $inc: { likes: 1 } },
     {
       runValidators: true,
@@ -93,9 +93,9 @@ exports.likePoem = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.unlikePoem = catchAsync(async (req, res, next) => {
-  const result = await Poem.findOneAndUpdate(
-    { _id: req.params.poemId },
+exports.unlikeArticle = catchAsync(async (req, res, next) => {
+  const result = await Article.findOneAndUpdate(
+    { _id: req.params.articleId },
     { $inc: { likes: -1 } },
     {
       runValidators: true,
@@ -105,7 +105,7 @@ exports.unlikePoem = catchAsync(async (req, res, next) => {
   );
   await Reader.findOneAndUpdate(
     { _id: req.reader._id },
-    { $pull: { likedPoems: req.params.poemId } },
+    { $pull: { likedArticles: req.params.articleId } },
     {
       runValidators: true,
     }
@@ -116,14 +116,14 @@ exports.unlikePoem = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.dislikePoem = catchAsync(async (req, res, next) => {
-  const result = await Poem.findOneAndUpdate(
-    { _id: req.params.poemId },
-    { $inc: { dislikes: 1 } },
+exports.dislikeArticle = catchAsync(async (req, res, next) => {
+  const result = await Article.findOneAndUpdate(
+    { _id: req.params.articleId },
+    { $inc: { dislikes: 1, likes: 1 } },
     {
       runValidators: true,
       returnDocument: "after",
-      projection: { likes: 1, dislikes: 1 },
+      projection: { dislikes: 1 },
     }
   );
 
@@ -133,10 +133,10 @@ exports.dislikePoem = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getLikedPoems = catchAsync(async (req, res, next) => {
+exports.getLikedArticles = catchAsync(async (req, res, next) => {
   const result = await Reader.findById(req.reader._id)
-    .select("likedPoems")
-    .populate("likedPoems");
+    .select("likedArticles")
+    .populate("likedArticles");
 
   res.status(200).json({
     message: "success",
@@ -144,28 +144,29 @@ exports.getLikedPoems = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getReadLaterPoem = catchAsync(async (req, res, next) => {
+exports.getReadLaterArticle = catchAsync(async (req, res, next) => {
   const result = await Reader.findById(req.reader._id)
-    .select("readLater.poems")
+    .select("readLater.articles")
     .populate({
-      path: "readLater.poems",
+      path: "readLater.articles",
       select: "userId name title likes dislikes uploadDate",
     });
+
   res.status(200).json({
     message: "success",
     result,
   });
 });
 
-exports.readLaterPoem = catchAsync(async (req, res, next) => {
+exports.readLaterArticle = catchAsync(async (req, res, next) => {
   const result = await Reader.findOneAndUpdate(
     { _id: req.reader._id },
-    { $push: { "readLater.poems": req.params.poemId } },
+    { $push: { "readLater.articles": req.params.articleId } },
     {
       runValidators: true,
       returnDocument: "after",
     }
-  ).select("readLater.poems");
+  ).select("readLater.articles");
 
   res.status(200).json({
     message: "success",
@@ -173,32 +174,22 @@ exports.readLaterPoem = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.removefromReadLaterPoem = catchAsync(async (req, res, next) => {
+exports.removefromReadLaterArticle = catchAsync(async (req, res, next) => {
   const result = await Reader.findOneAndUpdate(
     { _id: req.reader._id },
-    { $pull: { "readLater.poems": req.params.poemId } },
+    { $pull: { "readLater.Articles": req.params.articleId } },
     {
       runValidators: true,
       returnDocument: "after",
     }
-  ).select("readLater.poems");
+  ).select("readLater.articles");
   res.status(200).json({
     message: "success",
     result,
   });
 });
 
-exports.deletePoem = catchAsync(async (req, res, next) => {
-  await Poem.findByIdAndDelete(req.params.genreId);
+exports.deleteArticle = catchAsync(async (req, res, next) => {
+  await Article.findByIdAndDelete(req.params.genreId);
   next();
-});
-
-exports.testController = catchAsync(async (req, res, next) => {
-  // const result = await req.reader.poems.findById(req.params.poemId);
-  const result = await Reader.findById(req.params.poemId);
-
-  res.status(200).json({
-    message: "success",
-    data: { result },
-  });
 });
