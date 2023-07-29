@@ -5,7 +5,7 @@ const Review = require("../models/reviewModel");
 
 exports.createReview = catchAsync(async (req, res, next) => {
   const reviewObject = {
-    genreIdentifier: req.updatedPoemId,
+    genreIdentifier: req.updatedGenreId,
     genreName: req.body.title,
     comments: [],
   };
@@ -33,10 +33,12 @@ exports.postComment = catchAsync(async (req, res, next) => {
     comment: req.body.comment,
   };
   const Comments = await Review.findOneAndUpdate(
-    { genreIdentifier: req.params.poemId },
+    { genreIdentifier: req.params.genreId },
     { $push: { comments: commentObj } },
     { runValidators: true, returnDocument: "after" }
   );
+
+  console.log(Comments);
 
   res.status(200).json({
     status: "success",
@@ -96,7 +98,7 @@ exports.deleteComment = catchAsync(async (req, res) => {
 //deleteReview is hit ONLY when a poem is deleted
 exports.deleteReview = catchAsync(async (req, res) => {
   await Review.findOneAndDelete({
-    genreIdentifier: req.params.poemId,
+    genreIdentifier: req.params.genreId,
   });
 
   res.status(204).json({

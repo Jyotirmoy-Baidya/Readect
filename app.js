@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const readerRoute = require("./routes/readerRoute");
 const poemRoutes = require("./routes/poemRoutes");
+const bookRoutes = require("./routes/bookRoutes");
 const reviewRoute = require("./routes/reviewRouter");
 const globalErrorHandler = require("./controllers/errorController");
 const AppError = require("./utils/appError");
@@ -27,6 +28,7 @@ app.use(express.json());
 
 app.use("/api/v1/reader", readerRoute);
 app.use("/api/v1/reader/poem", poemRoutes);
+app.use("/api/v1/reader/book", bookRoutes);
 app.use("/api/v1/reader/reviews", reviewRoute);
 
 app.all("*", (req, res, next) => {

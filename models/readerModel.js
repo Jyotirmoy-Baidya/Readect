@@ -28,6 +28,7 @@ const readerSchema = new Schema(
     },
     likedBooks: {
       type: [Schema.ObjectId],
+      ref: "Book",
     },
     preferenceTags: {
       type: [String],
@@ -65,6 +66,11 @@ const readerSchema = new Schema(
       articles: {
         type: [Schema.ObjectId],
         ref: "Article",
+        default: [],
+      },
+      books: {
+        type: [Schema.ObjectId],
+        ref: "Book",
         default: [],
       },
     },

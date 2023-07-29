@@ -7,7 +7,9 @@ const Review = require("../models/reviewModel");
 const { forcedLogout } = require("../utils/forcedLogout");
 
 exports.getAllPoems = catchAsync(async (req, res) => {
-  const poems = await Poem.find();
+  const poems = await Poem.find().select(
+    "-content -updateTime -firstUploadTime"
+  );
 
   res.status(200).json({
     status: "success",
@@ -35,18 +37,18 @@ exports.uploadPoem = catchAsync(async (req, res, next) => {
     ...req.body,
   };
   const poem = await Poem.create(poemObj);
-  req.updatedPoemId = poem._id;
+  req.updatedGenreId = poem._id;
 
   next();
 });
 
 exports.updatePoem = catchAsync(async (req, res, next) => {
-  const poemDoc = await Poem.findById(req.params.poemId);
+  const poemDoc = await Poem.findById(req.params.genreId);
   if (req.reader._id.toString() !== poemDoc.userId.toString())
     return forcedLogout(req, res, next);
 
   const updatedReader = await Poem.findByIdAndUpdate(
-    req.params.poemId,
+    req.params.genreId,
     req.body,
     {
       new: true,
@@ -119,6 +121,7 @@ exports.dislikePoem = catchAsync(async (req, res, next) => {
     {
       runValidators: true,
       returnDocument: "after",
+      projection: { dislikes: 1 },
     }
   );
 
@@ -177,12 +180,12 @@ exports.removefromReadLaterPoem = catchAsync(async (req, res, next) => {
   );
   res.status(200).json({
     message: "success",
-    data: { result },
+    result,
   });
 });
 
 exports.deletePoem = catchAsync(async (req, res, next) => {
-  await Poem.findByIdAndDelete(req.params.poemId);
+  await Poem.findByIdAndDelete(req.params.genreId);
   next();
 });
 

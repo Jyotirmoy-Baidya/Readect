@@ -14,7 +14,7 @@ const {
   removefromReadLaterPoem,
   deletePoem,
   testController,
-} = require("../controllers/actionController");
+} = require("../controllers/poemController");
 const { protect } = require("../controllers/authController");
 const {
   createReview,
@@ -24,14 +24,14 @@ const {
 
 const reviewRouter = require("./reviewRouter");
 
-router.route("/").get(getAllPoems);
+router.route("/").get(getAllPoems).post(protect, uploadPoem, createReview);
 router.route("/getPoem/:poemId").get(protect, getPoem);
-router.use("/getPoem/:poemId/reviews", reviewRouter);
+router.use("/getPoem/:genreId/reviews", reviewRouter);
 
-router.route("/").post(protect, uploadPoem, createReview);
-
+// router.route("/").post(protect, uploadPoem, createReview);
+//genreId
 router
-  .route("/:poemId")
+  .route("/:genreId")
   .patch(protect, updatePoem, updateReviewGenreName)
   .delete(protect, deletePoem, deleteReview);
 
