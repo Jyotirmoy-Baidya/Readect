@@ -1,0 +1,86 @@
+:root {
+    --main-bg: #962fbf;
+    --bg-pink: #d62976;
+    --bg-blue: #4f5bd5;
+    --main-color: #feda75;
+    --main-orange: #fa7e1e;
+}
+
+.login-page,
+.regis-page {
+    width: 100vw;
+    background-image: linear-gradient(180deg,
+            hsl(284deg 65% 76%) 0%,
+            hsl(312deg 69% 77%) 11%,
+            hsl(331deg 100% 81%) 22%,
+            hsl(342deg 100% 83%) 33%,
+            hsl(355deg 100% 85%) 44%,
+            hsl(10deg 100% 84%) 56%,
+            hsl(21deg 100% 84%) 67%,
+            hsl(29deg 100% 84%) 78%,
+            hsl(37deg 100% 85%) 89%,
+            hsl(44deg 100% 87%) 100%);
+}
+
+/* login form   */
+.login-cont {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange));
+    border-radius: 12px;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    width: 25rem;
+    /* margin-top: 10vh; */
+}
+
+.login-submit-btn {
+    box-shadow: 1px 2px 5px #000000;
+    background-image: linear-gradient(to bottom left, var(--bg-blue), var(--main-bg));
+    border: none;
+    height: 2.5rem
+}
+
+.form-floating {
+    /* background-color: transparent; */
+}
+
+.form-control {
+    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.login-forgetpass a {
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.signup {
+    text-decoration: none;
+}
+
+
+.registration-cont {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration-form {
+    background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange));
+    border-radius: 12px;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    width: 25rem;
+    /* margin-top: 10vh; */
+}
+
+.registration-submit-btn {
+    box-shadow: 1px 2px 5px #000000;
+    background-image: linear-gradient(to bottom left, var(--bg-blue), var(--main-bg));
+    border: none;
+    height: 2.5rem
+}

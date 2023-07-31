@@ -1,0 +1,145 @@
+:root {
+    --main-bg: #962fbf;
+    --bg-pink: #d62976;
+    --bg-blue: #4f5bd5;
+    --main-color: #feda75;
+    --main-orange: #fa7e1e;
+}
+
+.single-poem-area {
+    background-color: var(--main-bg);
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.poem-area {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100vw;
+}
+
+.poem-image-area {
+    margin-top: 1.2rem;
+    background-image: linear-gradient(180deg,
+            hsl(283deg 61% 47%) 0%,
+            hsl(308deg 68% 45%) 10%,
+            hsl(323deg 76% 52%) 18%,
+            hsl(336deg 93% 61%) 26%,
+            hsl(349deg 100% 67%) 34%,
+            hsl(4deg 100% 71%) 42%,
+            hsl(17deg 100% 69%) 52%,
+            hsl(28deg 100% 69%) 64%,
+            hsl(36deg 100% 70%) 78%,
+            hsl(44deg 99% 73%) 100%);
+    height: 20rem;
+}
+
+
+
+.poem-content-area {
+    background-color: var(--main-color);
+    min-height: 45vh;
+}
+
+.poem-name {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+.authorname {
+    margin-left: 4rem;
+    font-size: 0.8rem;
+    color: rgba(71, 70, 70, 0.728);
+}
+
+.content {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffd04f;
+    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    /* width: auto; */
+}
+
+.single-poem-content {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* comment area  */
+.poem-comment-area {
+    background-color: var(--main-color);
+}
+
+.comment-area {
+    display: flex;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    background-image: linear-gradient(270deg,
+            hsl(44deg 99% 73%) 0%,
+            hsl(44deg 100% 76%) 10%,
+            hsl(44deg 100% 79%) 22%,
+            hsl(44deg 100% 82%) 35%,
+            hsl(43deg 100% 85%) 48%,
+            hsl(43deg 100% 88%) 61%,
+            hsl(43deg 100% 91%) 72%,
+            hsl(43deg 100% 94%) 83%,
+            hsl(43deg 100% 97%) 92%,
+            hsl(0deg 0% 100%) 100%);
+    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.comment-area input {
+    background-color: #210c5900;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+}
+
+.comment-area button {
+    background-color: rgba(236, 111, 8, 0.511);
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 2rem;
+}
+
+.all-comments {
+    display: flex;
+    flex-direction: column;
+    max-height: 30vh;
+    min-height: 10vh;
+    background-color: #ffffff89;
+    border-radius: 1rem;
+    overflow: scroll;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+.all-comments::-webkit-scrollbar {
+    display: none;
+}
+
+.single-comment-area {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.505);
+    padding-bottom: 0.5rem;
+}
+
+.single-comment-text {
+    width: 100%;
+    text-align: left;
+}
+
+.comment-name {
+    font-weight: 600;
+}
+
+.single-comment-time {
+    font-size: 0.6rem;
+}

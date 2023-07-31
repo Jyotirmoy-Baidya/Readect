@@ -1,0 +1,145 @@
+body {
+    background-color: white;
+}
+
+.profile-img {
+    background-color: var(--main-bg);
+    height: 8rem;
+    position: relative;
+}
+
+
+.profile-img figure img {
+    height: 10rem;
+    width: 10rem;
+    border: 2px solid black;
+    border-radius: 100%;
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.profile-data {}
+
+
+.profile-card {
+    width: 20rem;
+    border-radius: 0.2rem;
+    margin-top: 5rem;
+    background-image: linear-gradient(180deg,
+            hsl(161deg 100% 42%) 0%,
+            hsl(153deg 73% 51%) 20%,
+            hsl(145deg 73% 56%) 30%,
+            hsl(135deg 74% 61%) 40%,
+            hsl(124deg 75% 65%) 50%,
+            hsl(110deg 79% 65%) 60%,
+            hsl(99deg 84% 63%) 70%,
+            hsl(90deg 88% 60%) 80%,
+            hsl(82deg 91% 56%) 90%,
+            hsl(74deg 100% 48%) 100%);
+}
+
+.myUploads {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.myUploads div p:first-child {
+    margin-bottom: 0;
+}
+
+.myUploads div p:last-child {
+    letter-spacing: 0.1rem;
+}
+
+.myAll {
+    background-color: var(--bg-pink);
+    width: 100%;
+    height: 3rem;
+    outline: none;
+    border: none;
+    border-top: 2px solid var(--bg-pink);
+}
+
+.myAll:first-child {
+    border-radius: 1rem 0 0 0;
+    border-top: 2px solid var(--bg-pink);
+}
+
+.myAll:last-child {
+    border-radius: 0 1rem 0 0;
+    border-right: 2px solid var(--bg-pink);
+}
+
+.myAllActive {
+    background-image: linear-gradient(90deg,
+            hsl(333deg 68% 50%) 0%,
+            hsl(33deg 100% 69%) 20%,
+            hsl(44deg 99% 73%) 40%,
+            hsl(44deg 99% 73%) 60%,
+            hsl(33deg 100% 69%) 80%,
+            hsl(333deg 68% 50%) 100%);
+}
+
+.myAllButtons {
+    display: flex;
+}
+
+.myAllPoems {
+    max-height: 50vh;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-color);
+    overflow: scroll;
+}
+
+.eachPoem {
+    display: flex;
+    border-bottom: 1px solid #f55b2a;
+    padding: 1rem;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 1rem;
+}
+
+.eachPoem p {
+    margin-bottom: 0;
+}
+
+.title {
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+.poem-options {
+    text-decoration: none;
+    color: black;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 2rem;
+    height: 1.7rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poem-options:nth-child(3) {
+    background-color: rgba(144, 244, 29, 0.653);
+}
+
+.poem-options:nth-child(3):hover {
+    background-color: rgba(13, 255, 0, 0.653)
+}
+
+.poem-options:nth-child(4) {
+    background-color: rgba(244, 104, 29, 0.653);
+}
+
+.poem-options:nth-child(4):hover {
+    background-color: rgba(255, 0, 0, 0.653)
+}

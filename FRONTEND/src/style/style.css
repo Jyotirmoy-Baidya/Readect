@@ -1,0 +1,499 @@
+:root {
+    --main-bg: #962fbf;
+    --bg-pink: #d62976;
+    --bg-blue: #4f5bd5;
+    --main-color: #feda75;
+    --main-orange: #fa7e1e;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.all-poems {}
+
+/* navbar  */
+.navbar {
+    background-color: var(--main-bg);
+}
+
+.navbar-nav {
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.dropdown-menu {
+    background-color: var(--bg-pink);
+}
+
+.dropdown-menu a:hover {
+    background-color: #7f1947;
+    color: white;
+}
+
+.profile a svg {
+    font-size: 2rem;
+}
+
+
+
+/* heropage  */
+.main-part {
+    background-image: linear-gradient(180deg,
+            hsl(283deg 61% 47%) 0%,
+            hsl(292deg 63% 44%) 11%,
+            hsl(300deg 66% 41%) 22%,
+            hsl(307deg 71% 42%) 33%,
+            hsl(312deg 75% 43%) 44%,
+            hsl(317deg 77% 44%) 56%,
+            hsl(321deg 77% 45%) 67%,
+            hsl(325deg 75% 47%) 78%,
+            hsl(329deg 72% 48%) 89%,
+            hsl(333deg 68% 50%) 100%);
+    height: 70vh;
+    justify-content: center;
+
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto;
+}
+
+.hero-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img img {
+    height: 20rem;
+}
+
+.mobile-hero {
+    display: none;
+}
+
+.laptop-hero {
+    display: inline-block;
+}
+
+
+
+/* diffcategories */
+.diffcategories {
+    height: 100vh;
+    /* background-image: linear-gradient(0deg,
+            hsl(44deg 99% 73%) 0%,
+            hsl(38deg 100% 70%) 11%,
+            hsl(32deg 100% 69%) 22%,
+            hsl(26deg 100% 68%) 33%,
+            hsl(19deg 100% 68%) 44%,
+            hsl(11deg 98% 68%) 56%,
+            hsl(2deg 91% 67%) 67%,
+            hsl(352deg 83% 63%) 78%,
+            hsl(342deg 76% 57%) 89%,
+            hsl(333deg 68% 50%) 100%); */
+    background-image: linear-gradient(0deg,
+            hsl(44deg 99% 73%) 0%,
+            hsl(38deg 100% 70%) 34%,
+            hsl(32deg 100% 69%) 49%,
+            hsl(26deg 100% 68%) 59%,
+            hsl(19deg 100% 68%) 67%,
+            hsl(11deg 98% 68%) 73%,
+            hsl(2deg 91% 67%) 79%,
+            hsl(352deg 83% 63%) 85%,
+            hsl(342deg 76% 57%) 91%,
+            hsl(333deg 68% 50%) 100%);
+}
+
+.categories-box a {
+    text-decoration: none;
+    color: black
+}
+
+.category-style {
+    margin-bottom: 10rem;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.our-category {
+    margin-top: 75px;
+    padding-bottom: 30px;
+    padding: 0 30px;
+    min-height: 198px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 0 25px 0 rgba(20, 27, 202, 0.17);
+}
+
+.our-category .icon {
+    margin-bottom: -21px;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.our-category h4 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.our-category:hover h4,
+.our-category:hover p {
+    color: #fff;
+}
+
+.poems:hover {
+    box-shadow: 0 0 25px 0 rgba(33, 39, 221, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #f33474 0%, #f55b2a 50%);
+}
+
+.articles:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+}
+
+/* .shortstories:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #5035ec 0%, #44a2f6 50%);
+} */
+
+.books:hover,
+.shortstories:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #fd7f30 0%, #fdb642 50%);
+}
+
+.our-category .icon {
+    background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+    border-radius: 54% 46% 33% 67% / 64% 66% 34% 36%;
+    height: 3rem;
+    width: 3rem;
+    color: white;
+}
+
+.articles .icon {
+    background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+}
+
+.poems .icon {
+    background-image: linear-gradient(-45deg, #f33474 0%, #f55b2a 50%);
+}
+
+.shortstories .icon {
+    background-image: linear-gradient(-45deg, #5035ec 0%, #44a2f6 50%);
+}
+
+.books .icon {
+    background-image: linear-gradient(-45deg, #fd7f30 0%, #fdb642 50%);
+}
+
+
+
+/* loading page  */
+.loader {
+    height: 90vh;
+
+}
+
+
+/* poems  */
+.all-poems-area {
+    height: 100vh;
+    background-image: linear-gradient(180deg,
+            hsl(283deg 61% 47%) 0%,
+            hsl(292deg 63% 44%) 11%,
+            hsl(300deg 66% 41%) 22%,
+            hsl(307deg 71% 42%) 33%,
+            hsl(312deg 75% 43%) 44%,
+            hsl(317deg 77% 44%) 56%,
+            hsl(321deg 77% 45%) 67%,
+            hsl(325deg 75% 47%) 78%,
+            hsl(329deg 72% 48%) 89%,
+            hsl(333deg 68% 50%) 100%);
+}
+
+.all-poems {
+    display: flex;
+    gap: 5rem;
+}
+
+
+/* search box */
+.search-box {
+    display: flex;
+    border-radius: 2rem;
+    padding: 0.4rem;
+    border-radius: 3rem;
+    background-image: linear-gradient(to left, var(--main-color), var(--main-orange));
+    color: var(--main-bg);
+    margin-bottom: 2rem
+}
+
+.search-area {
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0);
+    outline: none;
+    border: none;
+}
+
+.search-box button {
+    border: none;
+    background-color: rgba(255, 0, 0, 0);
+    margin-right: 0.2rem;
+}
+
+
+
+
+
+
+
+
+/* singlePeom  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* poem  */
+.poem-item figure img {
+    height: 15rem;
+    width: 10rem;
+}
+
+.poem-item {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+
+
+/* login form   */
+.login-cont {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange));
+    border-radius: 12px;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    width: 25rem;
+    /* margin-top: 10vh; */
+}
+
+.login-submit-btn {
+    box-shadow: 1px 2px 5px #000000;
+    background-image: linear-gradient(to bottom left, var(--bg-blue), var(--main-bg));
+    border: none;
+    height: 2.5rem
+}
+
+
+
+
+
+
+
+
+.updateArea {
+    height: 100vh;
+    background-image: linear-gradient(180deg,
+            hsl(283deg 61% 47%) 0%,
+            hsl(292deg 63% 44%) 11%,
+            hsl(300deg 66% 41%) 22%,
+            hsl(307deg 71% 42%) 33%,
+            hsl(312deg 75% 43%) 44%,
+            hsl(317deg 77% 44%) 56%,
+            hsl(321deg 77% 45%) 67%,
+            hsl(325deg 75% 47%) 78%,
+            hsl(329deg 72% 48%) 89%,
+            hsl(333deg 68% 50%) 100%);
+}
+
+.contentUpdateArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contentUpdateArea textarea {
+    background-color: #fed97576;
+    outline: none;
+    border: none;
+}
+
+.contentUpdateArea button {
+    width: 10rem;
+    padding: 0.5rem;
+    border: 1px solid white;
+    outline: none;
+    border-radius: 2rem;
+    color: #fff;
+    background-image: linear-gradient(90deg,
+            hsl(161deg 100% 42%) 0%,
+            hsl(153deg 73% 51%) 27%,
+            hsl(145deg 73% 56%) 46%,
+            hsl(135deg 74% 61%) 60%,
+            hsl(124deg 75% 65%) 71%,
+            hsl(110deg 79% 65%) 79%,
+            hsl(99deg 84% 63%) 86%,
+            hsl(90deg 88% 60%) 91%,
+            hsl(82deg 91% 56%) 96%,
+            hsl(74deg 100% 48%) 100%);
+}
+
+
+/* Upload Area  */
+.upload-area {
+    background-image: linear-gradient(180deg,
+            hsl(283deg 61% 47%) 0%,
+            hsl(292deg 63% 44%) 11%,
+            hsl(300deg 66% 41%) 22%,
+            hsl(307deg 71% 42%) 33%,
+            hsl(312deg 75% 43%) 44%,
+            hsl(317deg 77% 44%) 56%,
+            hsl(321deg 77% 45%) 67%,
+            hsl(325deg 75% 47%) 78%,
+            hsl(329deg 72% 48%) 89%,
+            hsl(333deg 68% 50%) 100%);
+}
+
+.upload {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* background-color: var(--main-bg); */
+}
+
+.upload input {
+    /* width: ; */
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group__input {
+    font: inherit;
+    z-index: 2;
+    width: 100%;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.3rem;
+    outline: 2px solid #fff;
+    background-color: transparent;
+    transition: ouline-color 500ms;
+}
+
+.input-group__input:is(:focus, :valid) {
+    /* outline-color: #3c50eb; */
+}
+
+.input-group__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    translate: 10px 10px;
+    color: #fff;
+    transition: translate 1000ms, scale 500ms;
+}
+
+.input-group__input:focus+.input-group__label,
+.input-group_input:valid+.input-group__label {
+    padding-inline: 5px;
+    translate: 10px -14px;
+    scale: 0.8;
+    /* outline-color: #3c50eb; */
+    background-color: #962fbf;
+}
+
+.upload-submit {
+    border: 1px solid #fff;
+    color: #fff;
+    background-image: linear-gradient(90deg,
+            hsl(161deg 100% 42%) 0%,
+            hsl(153deg 73% 51%) 27%,
+            hsl(145deg 73% 56%) 46%,
+            hsl(135deg 74% 61%) 60%,
+            hsl(124deg 75% 65%) 71%,
+            hsl(110deg 79% 65%) 79%,
+            hsl(99deg 84% 63%) 86%,
+            hsl(90deg 88% 60%) 91%,
+            hsl(82deg 91% 56%) 96%,
+            hsl(74deg 100% 48%) 100%);
+    width: 10rem;
+    padding: 0.3rem;
+    border-radius: 1rem;
+}
+
+.upload-submit:hover {
+    background-image: linear-gradient(270deg,
+            hsl(161deg 100% 42%) 0%,
+            hsl(153deg 73% 51%) 27%,
+            hsl(145deg 73% 56%) 46%,
+            hsl(135deg 74% 61%) 60%,
+            hsl(124deg 75% 65%) 71%,
+            hsl(110deg 79% 65%) 79%,
+            hsl(99deg 84% 63%) 86%,
+            hsl(90deg 88% 60%) 91%,
+            hsl(82deg 91% 56%) 96%,
+            hsl(74deg 100% 48%) 100%);
+    /* scale: 1.1; */
+}
+
+
+
+
+
+
+
+@media (max-width: 980px) {
+    .mobile-hero {
+        display: inline-block;
+    }
+
+    .laptop-hero {
+        display: none;
+    }
+}
