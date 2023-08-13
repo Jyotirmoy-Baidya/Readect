@@ -60,6 +60,7 @@ const ProfileProvider = ({ children }) => {
     const checkLogin = async (url) => {
         try {
             const resp = await axios.get(url);
+            console.log(resp);
             if (resp.data.status === "Success") {
                 dispatch({ type: "LOGGED_IN" });
             }
