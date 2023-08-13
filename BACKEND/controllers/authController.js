@@ -14,7 +14,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
   });
-
   createAndSendToken(newReader, 201, res);
 });
 
@@ -31,11 +30,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
   //GETTING TOKEN AND CHECKING IF ITS THERE
-  console.log("protect");
-  console.log(req.cookies.jwt);
   const token = req.cookies.jwt;
-
-  console.log("protect 2");
   if (!token)
     return next(
       new AppError(
