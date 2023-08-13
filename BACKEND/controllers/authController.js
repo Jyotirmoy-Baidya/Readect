@@ -27,6 +27,7 @@ exports.ifLoggedIn = catchAsync(async (req, res, next) => {
       )
     );
   else {
+    await promisify(jwt.verify)(token, "my-super-secret-string-is-superb");
     res.status(200).json({
       status: "success",
     });
@@ -69,6 +70,5 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.logout = catchAsync((req, res, next) => {
-  console.log("logout succes");
   createAndSendLogoutToken(req.reader, 200, res);
 });
