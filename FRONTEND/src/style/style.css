@@ -310,17 +310,11 @@ body::-webkit-scrollbar {
 
 
 /* login form   */
-.login-cont {
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .login-form {
-    background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange));
-    border-radius: 12px;
-    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    /* background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange)); */
+    /* border-radius: 12px; */
+    /* box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25); */
     width: 25rem;
     /* margin-top: 10vh; */
 }

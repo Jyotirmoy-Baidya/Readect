@@ -11,6 +11,8 @@ import UploadPoem from './pages/UploadPoem';
 import ProfilePage from './pages/ProfilePage';
 import { useProfileContext } from './context/ProfileContext';
 
+
+
 const GetProfileAPI = "/api/v1/reader";
 
 const App = () => {
@@ -22,7 +24,7 @@ const App = () => {
   }, [loggedInStatus]);
   return (
     <BrowserRouter>
-      <Navs />
+      {/* <Navs /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         {

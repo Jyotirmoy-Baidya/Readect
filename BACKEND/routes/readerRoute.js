@@ -15,10 +15,12 @@ const {
   login,
   protect,
   logout,
+  ifLoggedIn,
 } = require("../controllers/authController");
 
 router.route("/signup").post(signup);
 router.route("/login").post(login);
+router.route("/ifLoggedIn").get(ifLoggedIn);
 router.route("/logout").post(protect, logout);
 
 router.route("/getAllReaders").get(getReaders);

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import "../style/LoginRegis.css";
 import { useProfileContext } from '../context/ProfileContext';
 import toast, { Toaster } from 'react-hot-toast';
+import "../style/LoginRegis.css";
 
 const LoginAPI = "/api/v1/reader/login";
 const LoggedCheckAPI = "/api/v1/reader/"
@@ -39,11 +39,11 @@ function Login() {
                             <hr className="w-100" />
                             <div className="form-floating mb-3 mx-5">
                                 <input type="email" name="email" className="form-control" id="email" placeholder="name@example.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                                <label for="email">UserEmail</label>
+                                <label htmlFor="email">UserEmail</label>
                             </div>
-                            <div class="form-floating mx-5">
+                            <div className="form-floating mx-5">
                                 <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                                <label for=" password">Password</label>
+                                <label htmlFor=" password">Password</label>
                             </div>
                             <p className="mx-5 mb-1 login-forgetpass"><a href="/forgetPassword">Forget
                                 Password?</a></p>

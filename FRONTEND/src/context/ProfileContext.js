@@ -38,6 +38,24 @@ const ProfileProvider = ({ children }) => {
         }
     };
 
+    //Registration using axios
+    const register = async (url, body) => {
+        try {
+            const resp = await axios.post(url,
+                JSON.stringify(body),
+                {
+                    headers: { 'Content-type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            dispatch({ type: "LOGIN_SUCCESS" });
+            return false;
+        } catch (err) {
+            dispatch({ type: "API_ERROR", payload: err });
+            return err.response.data.message;
+        }
+    }
+
     //Check if logged in
     const checkLogin = async (url) => {
         try {

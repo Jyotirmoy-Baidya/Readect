@@ -17,6 +17,22 @@ exports.signup = catchAsync(async (req, res, next) => {
   createAndSendToken(newReader, 201, res);
 });
 
+exports.ifLoggedIn = catchAsync(async (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token)
+    return next(
+      new AppError(
+        "Please login to continue.If you do not have an account please signup.",
+        400
+      )
+    );
+  else {
+    res.status(200).json({
+      status: "success",
+    });
+  }
+});
+
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password)
