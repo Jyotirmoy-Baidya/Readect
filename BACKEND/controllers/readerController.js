@@ -17,15 +17,27 @@ exports.getReader = catchAsync(async (req, res) => {
     .select("-__v -id")
     .populate({
       path: "likedPoems",
-      select: "-userId",
+      select: "-userId -content -dislikes -likes -firstUploadTime -uploadDate",
     })
     .populate({
       path: "likedShortStories",
-      select: "-userId",
+      select: "-userId -content -dislikes -likes -firstUploadTime -uploadDate",
     })
     .populate({
       path: "poems",
-      select: "name title content tags uploadDate -userId",
+      select: "name title tags coverImage uploadDate -userId",
+    })
+    .populate({
+      path: "shortStories",
+      select: "name title tags coverImage uploadDate -userId",
+    })
+    .populate({
+      path: "articles",
+      select: "name title tags coverImage uploadDate -userId",
+    })
+    .populate({
+      path: "books",
+      select: "name title tags coverImage uploadDate -userId",
     });
   res.status(200).json({
     status: "success",
