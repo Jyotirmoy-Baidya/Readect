@@ -98,6 +98,30 @@ readerSchema.virtual("poems", {
   localField: "_id",
 });
 
+readerSchema.virtual("shortStories", {
+  ref: "ShortStory",
+  foreignField: "userId",
+  localField: "_id",
+});
+
+readerSchema.virtual("articles", {
+  ref: "Article",
+  foreignField: "userId",
+  localField: "_id",
+});
+
+readerSchema.virtual("books", {
+  ref: "Book",
+  foreignField: "userId",
+  localField: "_id",
+});
+
+readerSchema.virtual("shortStories", {
+  ref: "Poem",
+  foreignField: "userId",
+  localField: "_id",
+});
+
 readerSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
