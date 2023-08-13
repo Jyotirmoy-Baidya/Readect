@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
 import Poems from './pages/Poems';
@@ -10,7 +10,12 @@ import UpdatePoemContent from './components/UpdatePoemContent';
 import UploadPoem from './pages/UploadPoem';
 import ProfilePage from './pages/ProfilePage';
 
+const GetProfileAPI = "/api/v1/reader";
+
 const App = () => {
+  useEffect(() => {
+    checkLogin(GetProfileAPI);
+  }, [])
   return (
     <BrowserRouter>
       <Navs />

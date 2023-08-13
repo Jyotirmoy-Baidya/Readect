@@ -2,8 +2,6 @@ import { createContext, useContext, useReducer } from "react";
 import reducer from "../reducer/AppReducer"
 import axios from "axios";
 
-const APIThapa = "https://api.pujakaitem.com/api/products";
-// const "/api/v1/reader/upload/poem/getAllPoems"
 
 const AppContext = createContext();
 

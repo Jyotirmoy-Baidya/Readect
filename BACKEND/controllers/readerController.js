@@ -29,7 +29,7 @@ exports.getReader = catchAsync(async (req, res) => {
     });
   res.status(200).json({
     status: "success",
-    data: { currentReader },
+    data: currentReader,
   });
 });
 

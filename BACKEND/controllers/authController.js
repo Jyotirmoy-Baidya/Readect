@@ -12,9 +12,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newReader = await Reader.create({
     name: req.body.name,
     email: req.body.email,
-    active: req.body.active,
     password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
   });
 
   createAndSendToken(newReader, 201, res);

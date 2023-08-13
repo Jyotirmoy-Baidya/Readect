@@ -77,17 +77,8 @@ const readerSchema = new Schema(
     password: {
       type: String,
       required: [true, "Please enter a password"],
-      minLength: [8, "The entered password must be at least 8 characters long"],
+      // minLength: [8, "The entered password must be at least 8 characters long"],
       select: false,
-    },
-    confirmPassword: {
-      type: String,
-      required: [true, "Please confirm your password"],
-      validate: {
-        validator: function (el) {
-          return el === this.password;
-        },
-      },
     },
     active: {
       type: Boolean,
