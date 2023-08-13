@@ -46,7 +46,6 @@ exports.createAndSendLogoutToken = (
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
-  console.log(res);
   res.status(statusCode).json({
     status: "success",
     token,

@@ -51,43 +51,6 @@ const AppProvider = ({ children }) => {
         }
     }
 
-    //My Profile
-    const getMyProfile = async (url) => {
-        // console.log("profile");
-        // dispatch({ type: "SET_PROFILE_LOADING" });
-        // try {
-        //     console.log("aluu1");
-        //     const resp = await axios.get(url);
-        //     console.log("aluu2");
-        //     let profile = await resp.data;
-        //     profile = profile.data.currentReader;
-        //     console.log(profile);
-        //     dispatch({ type: "MY_PROFILE", payload: profile })
-        // } catch (error) {
-        //     dispatch({ type: "PROFILE_ERROR" });
-        // }
-        try {
-            const resp = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            });
-            let profile = await resp.json();
-            console.log(profile);
-            if (profile.status === "fail") {
-                dispatch({ type: "PROFILE_ERROR" });
-                return;
-            }
-            profile = profile.data.currentReader;
-            dispatch({ type: "MY_PROFILE", payload: profile });
-        } catch (error) {
-            console.log("as");
-            dispatch({ type: "PROFILE_ERROR" });
-        }
-    }
 
     //All Poem Comments
     const getPoemComments = async (url, i) => {
@@ -117,7 +80,7 @@ const AppProvider = ({ children }) => {
     }
 
     //untill and unless we pass the single rproduct beside state we will not be able to call through the single url
-    return <AppContext.Provider value={{ ...state, getPoems, getSinglePoem, getMyProfile, getPoemComments }}>
+    return <AppContext.Provider value={{ ...state, getPoems, getSinglePoem, getPoemComments }}>
         {children}
     </AppContext.Provider>
 };

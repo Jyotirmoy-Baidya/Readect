@@ -6,12 +6,14 @@ import './style/style.css'
 // import "./style/SinglePoem.css"
 
 import { AppProvider } from "./context/AppContext";
+import { ProfileProvider } from './context/ProfileContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppProvider>
-
-    <App />
+    <ProfileProvider>
+      <App />
+    </ProfileProvider>
   </AppProvider>
 );
 

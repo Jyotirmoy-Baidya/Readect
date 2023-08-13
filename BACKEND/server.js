@@ -7,12 +7,12 @@ const cookie_parser = require("cookie-parser");
 
 const Atlas = "mongodb+srv://moitreyo:codinghabits365@cluster1.oivomfg.mongodb.net/readerInsect?retryWrites=true&w=majority"
 
-
+const new1 = "mongodb://127.0.0.1:27017/Readect";
 app.use(cookie_parser());
 
 mongoose
   .connect(
-    "mongodb://127.0.0.1:27017/Readect",
+    Atlas,
     {
       useNewUrlParser: true,
     }

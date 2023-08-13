@@ -9,29 +9,39 @@ import Registration from './pages/Registration';
 import UpdatePoemContent from './components/UpdatePoemContent';
 import UploadPoem from './pages/UploadPoem';
 import ProfilePage from './pages/ProfilePage';
+import { useProfileContext } from './context/ProfileContext';
 
 const GetProfileAPI = "/api/v1/reader";
 
 const App = () => {
+  const { checkLogin, loggedInStatus } = useProfileContext();
+
   useEffect(() => {
     checkLogin(GetProfileAPI);
-  }, [])
+    console.log(loggedInStatus);
+  }, [loggedInStatus]);
   return (
     <BrowserRouter>
       <Navs />
       <Routes>
-        <Route path='/login' element={<Login />} />
-
-        <Route path='/register' element={<Registration />} />
-
         <Route path="/" element={<Home />} />
+        {
+          loggedInStatus ? <>
+            <Route path="/singlepoem/:id" element={<SinglePoem />} />
+            <Route path='/uploadpoem' element={<UploadPoem />} />
+            <Route path="/updatePoem/:fieldName/:poemId" element={<UpdatePoemContent />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </> :
+            <>
+              <Route path='/login' element={<Login />} />
+              <Route path="/poems" element={<Poems />} />
+              <Route path='/register' element={<Registration />} />
+            </>
+        }
+
+
         {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/poems" element={<Poems />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
-        <Route path="/singlepoem/:id" element={<SinglePoem />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/updatePoem/:fieldName/:poemId" element={<UpdatePoemContent />} />
-        <Route path='/uploadpoem' element={<UploadPoem />} />
         {/* <Route path="/cart" element={<Cart />} /> */}
         {/* <Route path="*" element={<Error />} /> */}
       </Routes>
