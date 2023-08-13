@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 // import NavLink from 'react-bootstrap/esm/NavLink';
-import { NavLink } from 'react-router-dom';
+import { json, NavLink, useNavigate } from 'react-router-dom';
 import { VscAccount } from "react-icons/vsc";
+import { useAppContext } from '../context/AppContext';
+const MyProfileApi = "/api/v1/reader/"
 
 const Navs = () => {
+    const navigate = useNavigate();
+    const { isLoading, profile = {}, getMyProfile, isLogin } = useAppContext();
+    useEffect(() => {
+        getMyProfile(MyProfileApi);
+    }, []);
+    const logout = async () => {
+        try {
+            const resp = await fetch("/api/v1/reader/logout", {
+                method: 'GET',
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    body: JSON.stringify({}),
+                },
+                credentials: "include",
+            });
+            const data = await resp.json();
+            navigate("/")
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <Navbar expand="lg" className="navbar">
             <Container>
@@ -25,22 +49,24 @@ const Navs = () => {
                             <NavLink className="nav-link" to="/books">Books</NavLink>
                         </NavDropdown>
 
-                        {/* login  */}
-                        <NavLink to="/login">Login</NavLink>
+                        {
+                            isLogin ?
 
+                                <NavDropdown title={<VscAccount />} id="basic-nav-dropdown" className='dropdown profile'>
+                                    <NavLink className="nav-link" to="/profile">My Profile</NavLink>
+                                    <NavDropdown.Divider />
+                                    <NavLink className="nav-link" to="/profile/library">Library</NavLink>
+                                    <NavLink className="nav-link" to="/profile/settings">Setting</NavLink>
+                                    <NavDropdown.Divider />
+                                    <NavLink className="nav-link" onClick={() => logout()}>Logout</NavLink>
+                                </NavDropdown> :
+                                <NavLink className="nav-link" to="/login" >Login</NavLink>
+                        }
 
-                        <NavDropdown title={<VscAccount />} id="basic-nav-dropdown" className='dropdown profile'>
-                            <NavLink className="nav-link" to="/profile">My Profile</NavLink>
-                            <NavDropdown.Divider />
-                            <NavLink className="nav-link" to="/profile/library">Library</NavLink>
-                            <NavLink className="nav-link" to="/profile/settings">Setting</NavLink>
-                            <NavDropdown.Divider />
-                            <NavLink className="nav-link" to="/profile/logout">Logout</NavLink>
-                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 }
 

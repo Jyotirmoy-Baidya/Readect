@@ -14,7 +14,9 @@ const initialState = {
     isSingleLoading: false,
     singlePoem: {},
     comments: [],
+    profile: {},
     userId: "",
+    isLogin: false,
 }
 
 const AppProvider = ({ children }) => {
@@ -31,10 +33,7 @@ const AppProvider = ({ children }) => {
                 credentials: "include",
             });
             const data = await resp.json();
-            console.log("cj");
-            console.log(data);
             const AllPoems = data.data.poems;
-
             dispatch({ type: "MY_ALL_POEMS", payload: AllPoems, tags: tags, searchBox: searchBox, rating: rating })
         } catch (error) {
             dispatch({ type: "API_ERROR" });
@@ -42,7 +41,7 @@ const AppProvider = ({ children }) => {
     }
 
 
-    //my 2nd API calling
+    //my single poem
     const getSinglePoem = async (url) => {
         dispatch({ type: "SET_SINGLE_LOADING" })
         try {
@@ -54,15 +53,40 @@ const AppProvider = ({ children }) => {
         }
     }
 
-    //My All Poems
+    //My Profile
     const getMyProfile = async (url) => {
-        dispatch({ type: "SET_PROFILE_LOADING" })
+        // console.log("profile");
+        // dispatch({ type: "SET_PROFILE_LOADING" });
+        // try {
+        //     console.log("aluu1");
+        //     const resp = await axios.get(url);
+        //     console.log("aluu2");
+        //     let profile = await resp.data;
+        //     profile = profile.data.currentReader;
+        //     console.log(profile);
+        //     dispatch({ type: "MY_PROFILE", payload: profile })
+        // } catch (error) {
+        //     dispatch({ type: "PROFILE_ERROR" });
+        // }
         try {
-            const resp = await axios.get(url);
-            let profile = await resp.data;
+            const resp = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            });
+            let profile = await resp.json();
+            console.log(profile);
+            if (profile.status === "fail") {
+                dispatch({ type: "PROFILE_ERROR" });
+                return;
+            }
             profile = profile.data.currentReader;
-            dispatch({ type: "MY_PROFILE", payload: profile })
+            dispatch({ type: "MY_PROFILE", payload: profile });
         } catch (error) {
+            console.log("as");
             dispatch({ type: "PROFILE_ERROR" });
         }
     }

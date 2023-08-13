@@ -10,7 +10,7 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-.all-poems {}
+
 
 /* navbar  */
 .navbar {
@@ -231,7 +231,13 @@ body::-webkit-scrollbar {
 
 .all-poems {
     display: flex;
+    min-width: 80vw;
     gap: 5rem;
+    overflow: scroll;
+}
+
+.all-poems::-webkit-scrollbar {
+    display: none;
 }
 
 

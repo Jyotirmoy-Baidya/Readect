@@ -12,7 +12,7 @@ function Registration() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const registrationUser = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let resp = await fetch("/api/v1/reader/signup", {
             method: 'POST',
             body: JSON.stringify({

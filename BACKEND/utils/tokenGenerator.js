@@ -1,5 +1,8 @@
 const jwt = require("jsonwebtoken");
 
+const expries = process.env.JWT_COOKIE_EXPIRES_IN || 900000;
+const environment = process.env.NODE_ENV || "production;"
+
 const createToken = (id, exp) => {
   return jwt.sign({ id: id }, "my-super-secret-string-is-superb", {
     expiresIn: exp,
@@ -7,15 +10,15 @@ const createToken = (id, exp) => {
 };
 
 exports.createAndSendToken = (newReader, statusCode, res) => {
-  const token = createToken(newReader._id, process.env.JWT_TOKEN_EXPIRES_IN);
+  const token = createToken(newReader._id, expries);
   const cookieOptions = {
     expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      Date.now() + expries * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
   };
 
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+  if (environment === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
 
@@ -43,7 +46,7 @@ exports.createAndSendLogoutToken = (
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
-
+  console.log(res);
   res.status(statusCode).json({
     status: "success",
     token,

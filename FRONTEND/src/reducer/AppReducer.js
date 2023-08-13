@@ -68,6 +68,7 @@ const AppReducer = (state, action) => {
         return {
             ...state,
             isLoading: false,
+            isLogin: true,
             profile: action.payload,
         }
     }
@@ -75,6 +76,7 @@ const AppReducer = (state, action) => {
         return {
             ...state,
             isLoading: false,
+            isLogin: false,
             isError: true,
         }
     }

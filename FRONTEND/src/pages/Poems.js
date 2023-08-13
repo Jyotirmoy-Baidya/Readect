@@ -36,7 +36,7 @@ function Poems() {
                 {
                     isLoading ? <Loading /> : <div className='row'>
                         <div className='col-md-10 col-10 mx-auto'>
-                            <div className='all-poems'>
+                            <div className='all-poems mx-auto'>
                                 {
                                     poems?.map((ele, i) => {
                                         return <Poem key={i} poem={ele} />

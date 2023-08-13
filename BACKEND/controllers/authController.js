@@ -24,7 +24,6 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password)
     return next(new AppError("Please provide an email and a password", 400));
-
   const reader = await Reader.findOne({ email: email }).select("+password");
   if (!reader || !(await reader.ifCorrectPassword(password, reader.password)))
     return next(new AppError("Incorrect email or password", 400));
@@ -34,13 +33,11 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
   //GETTING TOKEN AND CHECKING IF ITS THERE
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer ")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
-  }
+  console.log("protect");
+  console.log(req.cookies.jwt);
+  const token = req.cookies.jwt;
+
+  console.log("protect 2");
   if (!token)
     return next(
       new AppError(
@@ -48,7 +45,6 @@ exports.protect = catchAsync(async (req, res, next) => {
         400
       )
     );
-
   // VERIFY THE TOKEN
   const decoded = await promisify(jwt.verify)(
     token,
@@ -58,12 +54,12 @@ exports.protect = catchAsync(async (req, res, next) => {
   //CHECK IF USER STILL EXISTS
   const freshUser = await Reader.findById(decoded.id);
   if (!freshUser) return next(new AppError("User no longer exists", 400));
-
   //GRANT ACCESS
   req.reader = freshUser;
   next();
 });
 
 exports.logout = catchAsync((req, res, next) => {
+  console.log("logout succes");
   createAndSendLogoutToken(req.reader, 200, res);
 });

@@ -12,19 +12,22 @@ require("dotenv").config();
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
+const cookieParser = require("cookie-parser");
 
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 100, //1hr in milliseconds
   message: "Too many requests from this IP. Please try again in an hour.",
 });
-app.use("/api", limiter);
+// app.use("/api", limiter);
+
+app.use(cookieParser());
 
 //set security http headers (preventing anyone to manipulate headers)
-app.use(helmet());
+// app.use(helmet());
 
 //Data sanitization againt NoSQL query injection
-app.use(mongoSanitize());
+// app.use(mongoSanitize());
 
 app.use(express.json());
 

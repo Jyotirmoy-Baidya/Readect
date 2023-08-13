@@ -4,11 +4,10 @@ import MyUploads from '../components/MyUploads';
 import { useAppContext } from '../context/AppContext';
 import Loading from '../components/Loading';
 import "../style/Profile.css"
-const MyProfileApi = "/api/v1/reader"
+const MyProfileApi = "/api/v1/reader/"
 
 function ProfilePage() {
     const { isLoading, profile = {}, getMyProfile } = useAppContext();
-
     useEffect(() => {
         getMyProfile(MyProfileApi);
     }, []);
