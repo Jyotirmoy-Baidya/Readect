@@ -37,14 +37,15 @@ exports.createAndSendLogoutToken = (
   res,
   specialMessage
 ) => {
-  const token = createToken(newReader._id, 1);
+  const token = createToken(newReader._id, 10);
   const cookieOptions = {
-    expiresIn: 1,
+    expiresIn: new Date(
+      Date.now() + 10
+    ),
     httpOnly: true,
   };
 
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
-
+  if (environment === "production") cookieOptions.secure = true;
   res.cookie("jwt", token, cookieOptions);
   res.status(statusCode).json({
     status: "success",

@@ -8,7 +8,6 @@ import 'react-awesome-button/dist/styles.css';
 function MyUploads({ profile }) {
     const [categories, setCategories] = useState(0);
     const [uploads, setUploads] = useState(profile.poems);
-    console.log(profile.poems);
     const selectCat = () => {
         switch (categories) {
             case 0:

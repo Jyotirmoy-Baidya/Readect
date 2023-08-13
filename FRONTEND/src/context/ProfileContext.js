@@ -60,8 +60,12 @@ const ProfileProvider = ({ children }) => {
     const checkLogin = async (url) => {
         try {
             const resp = await axios.get(url);
-            console.log(resp);
-            dispatch({ type: "LOGGED_IN" });
+            if (resp.data.status === "Success") {
+                dispatch({ type: "LOGGED_IN" });
+            }
+            else {
+                dispatch({ type: "API_ERROR", payload: resp.data.message });
+            }
         } catch (error) {
             dispatch({ type: "API_ERROR", payload: error });
         }
@@ -70,6 +74,8 @@ const ProfileProvider = ({ children }) => {
     //logout
     const logout = async (url) => {
         try {
+            console.log(url);
+            console.log(resp);
             const resp = await axios.post(url);
             dispatch({ type: "LOGGED_OUT" });
             return false;
@@ -79,10 +85,7 @@ const ProfileProvider = ({ children }) => {
         }
     }
 
-
-
-
-    return <ProfileContext.Provider value={{ ...state, login, checkLogin, logout }}>
+    return <ProfileContext.Provider value={{ ...state, login, register, checkLogin, logout }}>
         {children}
     </ProfileContext.Provider>
 };

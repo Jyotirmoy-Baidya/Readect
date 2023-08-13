@@ -6,19 +6,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 // import NavLink from 'react-bootstrap/esm/NavLink';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { VscAccount } from "react-icons/vsc";
-import { useProfileContext } from '../context/ProfileContext';
+import { useProfileContext } from '../../context/ProfileContext';
 import toast, { Toaster } from 'react-hot-toast';
 
 const LogoutAPI = "/api/v1/reader/logout";
-const GetProfileAPI = "/api/v1/reader";
+const LoggedCheckAPI = "/api/v1/reader/islogged";
 
 const Navs = () => {
     const navigate = useNavigate();
     const { logout, checkLogin, loggedInStatus } = useProfileContext();
     const DoLogout = async () => {
         await logout(LogoutAPI);
-        await checkLogin(GetProfileAPI);
-        toast.success("Logout");
+        await checkLogin(LoggedCheckAPI);
+        toast.success("Logout Succesfully");
     }
     return (
         <Navbar expand="lg" className="navbar">

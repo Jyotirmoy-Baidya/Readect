@@ -20,7 +20,7 @@ const {
 
 router.route("/signup").post(signup);
 router.route("/login").post(login);
-router.route("/ifLoggedIn").get(ifLoggedIn);
+router.route("/islogged").get(ifLoggedIn);
 router.route("/logout").post(protect, logout);
 
 router.route("/getAllReaders").get(getReaders);

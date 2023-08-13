@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
 import Poems from './pages/Poems';
 import SinglePoem from './pages/SinglePoem';
-import Navs from './components/Navs';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import UpdatePoemContent from './components/UpdatePoemContent';
@@ -13,13 +12,13 @@ import { useProfileContext } from './context/ProfileContext';
 
 
 
-const GetProfileAPI = "/api/v1/reader";
+const LoggedCheckAPI = "/api/v1/reader/islogged";
 
 const App = () => {
   const { checkLogin, loggedInStatus } = useProfileContext();
 
   useEffect(() => {
-    checkLogin(GetProfileAPI);
+    checkLogin(LoggedCheckAPI);
     console.log(loggedInStatus);
   }, [loggedInStatus]);
   return (

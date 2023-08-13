@@ -28,7 +28,7 @@ exports.ifLoggedIn = catchAsync(async (req, res, next) => {
     );
   else {
     res.status(200).json({
-      status: "success",
+      status: "Success",
     });
   }
 });
@@ -69,5 +69,6 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.logout = catchAsync((req, res, next) => {
+  console.log("cehehhe");
   createAndSendLogoutToken(req.reader, 200, res);
 });

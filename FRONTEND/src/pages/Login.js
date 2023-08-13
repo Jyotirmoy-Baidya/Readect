@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useProfileContext } from '../context/ProfileContext';
@@ -6,8 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import "../style/LoginRegis.css";
 
 const LoginAPI = "/api/v1/reader/login";
-const LoggedCheckAPI = "/api/v1/reader/"
-// const 
+const LoggedCheckAPI = "/api/v1/reader/islogged";
 
 function Login() {
     const navigate = useNavigate();
@@ -16,6 +14,10 @@ function Login() {
     const [password, setPassword] = useState("");
     const loginUser = async (e) => {
         e.preventDefault();
+        if (email === "" || password === "") {
+            toast.error("Please Fill All The Details");
+            return;
+        }
         const check = await login(LoginAPI, { email, password });
         if (check) {
             toast.error(check);
@@ -24,7 +26,7 @@ function Login() {
             return;
         }
         toast.success("Login Success");
-        checkLogin(LoggedCheckAPI);
+        await checkLogin(LoggedCheckAPI);
         navigate("/");
 
 

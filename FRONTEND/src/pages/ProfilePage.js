@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import Profile from '../components/Profile';
-import MyUploads from '../components/MyUploads';
+import Profile from '../components/Profile/Profile';
+import MyUploads from '../components/Profile/MyUploads';
 import { useAppContext } from '../context/AppContext';
 import Loading from '../components/Loading';
 import "../style/Profile.css"
