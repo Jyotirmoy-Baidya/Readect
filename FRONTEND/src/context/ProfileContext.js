@@ -65,10 +65,10 @@ const ProfileProvider = ({ children }) => {
                 dispatch({ type: "LOGGED_IN" });
             }
             else {
-                dispatch({ type: "API_ERROR", payload: resp.data.message });
+                dispatch({ type: "LOGGED_OUT" });
             }
         } catch (error) {
-            dispatch({ type: "API_ERROR", payload: error });
+            dispatch({ type: "LOGGED_OUT" });
         }
     }
 
@@ -76,10 +76,8 @@ const ProfileProvider = ({ children }) => {
     const logout = async (url) => {
         try {
             console.log(url);
-            console.log(resp);
             const resp = await axios.post(url);
             dispatch({ type: "LOGGED_OUT" });
-            return false;
         }
         catch (err) {
             dispatch({ type: "API_ERROR", payload: err });

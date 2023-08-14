@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
-import Poems from './pages/Poems';
+import Contents from './pages/Contents';
 import SinglePoem from './pages/SinglePoem';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -9,6 +9,7 @@ import UpdatePoemContent from './components/UpdatePoemContent';
 import UploadPoem from './pages/UploadPoem';
 import ProfilePage from './pages/ProfilePage';
 import { useProfileContext } from './context/ProfileContext';
+import RequestLogin from './components/RequestLogin';
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
       {/* <Navs /> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/:contents" element={<Contents />} />
         {
           loggedInStatus ? <>
             <Route path="/singlepoem/:id" element={<SinglePoem />} />
@@ -35,8 +37,8 @@ const App = () => {
           </> :
             <>
               <Route path='/login' element={<Login />} />
-              <Route path="/poems" element={<Poems />} />
               <Route path='/register' element={<Registration />} />
+              <Route path="*" element={<RequestLogin />} />
             </>
         }
 

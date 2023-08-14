@@ -6,7 +6,7 @@ import { useProfileContext } from '../context/ProfileContext';
 import { Toaster, toast } from 'react-hot-toast';
 
 
-const RegisterAPI = "api/v1/reader/signup";
+const RegisterAPI = "/api/v1/reader/signup";
 const LoggedCheckAPI = "/api/v1/reader/islogged";
 
 function Registration() {

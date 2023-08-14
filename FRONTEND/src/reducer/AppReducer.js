@@ -7,6 +7,7 @@ const AppReducer = (state, action) => {
             isLoading: true,
         }
     }
+
     else if (action.type === "MY_ALL_POEMS") {
         // const tagPoems = action.payload.filter((ele) => {
         //     return 1;
@@ -28,6 +29,34 @@ const AppReducer = (state, action) => {
             poems: action.payload,
         }
     }
+
+    //Get All Articles
+    else if (action.type === "MY_ALL_ARTICLES") {
+        return {
+            ...state,
+            isLoading: false,
+            articles: action.payload,
+        }
+    }
+
+    //Get All ShortStory
+    else if (action.type === "MY_ALL_SHORTSTORIES") {
+        return {
+            ...state,
+            isLoading: false,
+            shortStories: action.payload,
+        }
+    }
+
+    //Get All Books
+    else if (action.type === "MY_ALL_BOOKS") {
+        return {
+            ...state,
+            isLoading: false,
+            books: action.payload,
+        }
+    }
+
     else if (action.type === "API_ERROR") {
         return {
             ...state,

@@ -32,22 +32,24 @@ exports.createAndSendToken = (newReader, statusCode, res) => {
 exports.createAndSendLogoutToken = (
   newReader,
   statusCode,
-  res,
-  specialMessage
+  res
 ) => {
-  const token = createToken(newReader._id, 10);
+  const token = createToken(newReader._id, 0);
   const cookieOptions = {
-    expiresIn: new Date(
-      Date.now() + 10
-    ),
+    expiresIn: 0,
+    // expries: new Date(Date.now()),
     httpOnly: true,
   };
 
   if (environment === "production") cookieOptions.secure = true;
+  console.log("check");
   res.cookie("jwt", token, cookieOptions);
   res.status(statusCode).json({
     status: "success",
-    token,
-    message: specialMessage ? specialMessage : "Successfully logged out",
+    // token,
+    // message: specialMessage ? specialMessage : "Successfully logged out",
+    message: "Succesfully Logged Out",
   });
+  console.log("cehck 2");
+  console.log("hek 3");
 };

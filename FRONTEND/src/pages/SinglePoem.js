@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import { useAppContext } from '../context/AppContext';
-import SinglePoemImage from '../components/SinglePoemImage';
-import SinglePoemContent from '../components/SinglePoemContent';
-import PoemComment from '../components/PoemComment';
+import SinglePoemImage from '../components/SingleContent/SinglePoemImage';
+import SinglePoemContent from '../components/SingleContent/SinglePoemContent';
+import PoemComment from '../components/SingleContent/PoemComment';
 import Loading from '../components/Loading';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/SingleContent/Pagination';
 import "../style/SinglePoem.css"
 
 const Api = "/api/v1/reader/poem/getPoem";

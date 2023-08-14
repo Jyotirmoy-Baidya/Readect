@@ -16,7 +16,7 @@ const Navs = () => {
     const navigate = useNavigate();
     const { logout, checkLogin, loggedInStatus } = useProfileContext();
     const DoLogout = async () => {
-        await logout(LogoutAPI);
+        const check = await logout(LogoutAPI);
         await checkLogin(LoggedCheckAPI);
         toast.success("Logout Succesfully");
     }

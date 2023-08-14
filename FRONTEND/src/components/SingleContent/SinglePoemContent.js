@@ -6,7 +6,6 @@ function SinglePoemContent({ name, description, author, stars }) {
     console.log(content);
     return (
         <>
-
             <div className='row'>
                 <div className='col-md-6 col-8 mx-auto'>
                     <h1 className='poem-name'>{name}</h1>

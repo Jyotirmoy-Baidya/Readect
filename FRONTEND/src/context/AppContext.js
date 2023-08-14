@@ -8,35 +8,75 @@ const AppContext = createContext();
 const initialState = {
     isLoading: false,
     isError: false,
+    starredContent: [],
     poems: [],
-    isSingleLoading: false,
-    singlePoem: {},
-    comments: [],
-    profile: {},
-    userId: "",
-    isLogin: false,
+    articles: [],
+    shortStories: [],
+    allContents: [],
+    books: [],
+    // isSingleLoading: false,
+    // singlePoem: {},
+    // comments: [],
+    // profile: {},
+    // userId: "",
+    // isLogin: false,
 }
 
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const getPoems = async (url, tags, searchBox, rating) => {
+    const getAllPoems = async (url, searchBox) => {
         dispatch({ type: "SET_LOADING" });
         try {
-            const resp = await fetch("/api/v1/reader/poem", {
-                method: 'get',
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                },
-                credentials: "include",
-            });
-            const data = await resp.json();
-            const AllPoems = data.data.poems;
-            dispatch({ type: "MY_ALL_POEMS", payload: AllPoems, tags: tags, searchBox: searchBox, rating: rating })
+            const resp = await axios.get(url);
+            console.log(resp);
+            dispatch({ type: "MY_ALL_POEMS", payload: resp.data.poems })
         } catch (error) {
             dispatch({ type: "API_ERROR" });
         }
     }
+
+    //Get All Article with axios
+    const getAllArticles = async (url, searchBox) => {
+        dispatch({ type: "SET_LOADING" });
+        try {
+            const resp = await axios.get(url);
+            console.log(resp);
+            dispatch({ type: "MY_ALL_ARTICLES", payload: resp.data.articles })
+        }
+        catch (err) {
+            dispatch({ type: "API_ERROR" });
+        }
+    }
+
+    //Get All ShortStories with axios
+    const getAllShortStories = async (url, searchBox) => {
+        dispatch({ type: "SET_LOADING" });
+        try {
+            const resp = await axios.get(url);
+            console.log(resp);
+            dispatch({ type: "MY_ALL_SHORTSTORIES", payload: resp.data.shortStories })
+        } catch (e) {
+            dispatch({ type: "API_ERROR" });
+        };
+    }
+
+    //Get All Books With Axios
+    const getAllBooks = async (url, searchBox) => {
+        dispatch({ type: "SET_LOADING" });
+        try {
+            const resp = await axios.get(url);
+            console.log(resp);
+            dispatch({ type: "MY_ALL_BOOKS", payload: resp.data.books })
+        } catch (e) {
+            dispatch({ type: "API_ERROR" });
+        };
+    }
+
+    //Get All Contents With Axios
+    const getAllContents = async (url, searchBox) => {
+
+    }
+
 
 
     //my single poem
@@ -80,7 +120,7 @@ const AppProvider = ({ children }) => {
     }
 
     //untill and unless we pass the single rproduct beside state we will not be able to call through the single url
-    return <AppContext.Provider value={{ ...state, getPoems, getSinglePoem, getPoemComments }}>
+    return <AppContext.Provider value={{ ...state, getAllPoems, getAllArticles, getAllBooks, getAllShortStories, getSinglePoem, getPoemComments }}>
         {children}
     </AppContext.Provider>
 };

@@ -3,16 +3,16 @@ import Container from 'react-bootstrap/Container';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-function Poem({ poem }) {
-    console.log(poem);
+const SingleUnit = ({ content }) => {
+    console.log(content);
     return (
-        <NavLink className='col-md-2 col-5 text-center poem-item mx-auto' to={`/singlepoem/${poem.id}`}>
-            <figure><img src={poem.coverImage} alt="" /></figure>
+        <NavLink className='col-md-2 col-5 text-center poem-item mx-auto' to={`/single/${content.id}`}>
+            <figure><img src={content.coverImage} alt="" /></figure>
             {/* <p>{poem.poems.coverImage}</p> */}
-            <p>{poem.title}</p>
+            <p>{content.title}</p>
         </NavLink>
     )
 }
 
 
-export default Poem
+export default SingleUnit;
