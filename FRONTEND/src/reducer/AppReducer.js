@@ -26,36 +26,24 @@ const AppReducer = (state, action) => {
         return {
             ...state,
             isLoading: false,
-            poems: action.payload,
+            allContents: action.payload,
         }
     }
 
-    //Get All Articles
-    else if (action.type === "MY_ALL_ARTICLES") {
+    //Search Contents
+    
+
+
+    //Get All Contents
+    else if (action.type === "GET_CONTENTS") {
+        console.log("ada");
         return {
             ...state,
             isLoading: false,
-            articles: action.payload,
+            allContents: action.payload,
         }
     }
 
-    //Get All ShortStory
-    else if (action.type === "MY_ALL_SHORTSTORIES") {
-        return {
-            ...state,
-            isLoading: false,
-            shortStories: action.payload,
-        }
-    }
-
-    //Get All Books
-    else if (action.type === "MY_ALL_BOOKS") {
-        return {
-            ...state,
-            isLoading: false,
-            books: action.payload,
-        }
-    }
 
     else if (action.type === "API_ERROR") {
         return {
@@ -64,6 +52,7 @@ const AppReducer = (state, action) => {
             isError: true,
         }
     }
+
     else if (action.type === "SET_SINGLE_LOADING") {
         return {
             ...state,

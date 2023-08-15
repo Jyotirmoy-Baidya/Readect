@@ -27,7 +27,7 @@ router
   .route("/")
   .get(getAllShortStories)
   .post(protect, uploadShortStory, createReview);
-router.route("/getShortStory/:shortStoryId").get(protect, getShortStory);
+router.route("/:shortStoryId").get(protect, getShortStory);
 router.use("/getShortStory/:genreId/reviews", reviewRouter);
 
 router

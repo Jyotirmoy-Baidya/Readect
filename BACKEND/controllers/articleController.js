@@ -14,7 +14,7 @@ exports.getAllArticles = catchAsync(async (req, res) => {
   res.status(200).json({
     status: "success",
     results: articles.length,
-    articles,
+    data: articles,
   });
 });
 
@@ -23,10 +23,9 @@ exports.getArticle = catchAsync(async (req, res, next) => {
     path: "comments",
     select: "comments -genreIdentifier -_id",
   });
-
   res.status(200).json({
     status: "success",
-    article,
+    data: article,
   });
 });
 

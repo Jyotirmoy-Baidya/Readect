@@ -14,7 +14,7 @@ exports.getAllShortStories = catchAsync(async (req, res) => {
   res.status(200).json({
     status: "success",
     results: shortStories.length,
-    shortStories,
+    data: shortStories,
   });
 });
 
@@ -28,7 +28,7 @@ exports.getShortStory = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    shortStory,
+    data: shortStory,
   });
 });
 

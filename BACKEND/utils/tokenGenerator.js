@@ -42,7 +42,6 @@ exports.createAndSendLogoutToken = (
   };
 
   if (environment === "production") cookieOptions.secure = true;
-  console.log("check");
   res.cookie("jwt", token, cookieOptions);
   res.status(statusCode).json({
     status: "success",
@@ -50,6 +49,4 @@ exports.createAndSendLogoutToken = (
     // message: specialMessage ? specialMessage : "Successfully logged out",
     message: "Succesfully Logged Out",
   });
-  console.log("cehck 2");
-  console.log("hek 3");
 };

@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/:contents" element={<Contents />} />
         {
           loggedInStatus ? <>
-            <Route path="/singlepoem/:id" element={<SinglePoem />} />
+            <Route path="/:type/:id" element={<SinglePoem />} />
             <Route path='/uploadpoem' element={<UploadPoem />} />
             <Route path="/updatePoem/:fieldName/:poemId" element={<UpdatePoemContent />} />
             <Route path="/profile" element={<ProfilePage />} />

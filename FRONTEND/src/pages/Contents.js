@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SingleUnit from '../components/Poem';
+import SingleUnit from '../components/SingleUnit';
 import Loading from '../components/Loading';
 import { useAppContext } from '../context/AppContext';
 import Card from 'react-bootstrap/Card';
@@ -14,7 +14,7 @@ const ArticlesAPI = "/api/v1/reader/article";
 const ShortStoriesAPI = "/api/v1/reader/shortstory";
 const BooksAPI = "/api/v1/reader/book";
 const ContentsAPI = "api/v1/reader";
-const type = ""
+let type = ""
 
 const tags = [];
 // const searchBox = "le";
@@ -22,34 +22,37 @@ const tags = [];
 const Contents = () => {
     const navigate = useNavigate();
     const { contents } = useParams();
-    console.log(contents);
-    const { isLoading, poems = [], articles = [],
-        shortStories = [],
-        books = [], getAllPoems, getAllArticles, getAllBooks, getAllShortStories, getAllContents } = useAppContext();
-    // const [rating, setRating] = useState(true);
-    const [searchBox, setSearchBox] = useState("");
-    const searchFunc = () => {
-        // console.log(document.querySelector('.search-area').value);
-        setSearchBox(document.querySelector('.search-area').value);
+    const { isLoading, allContents = [], searchContent = [], getAllContents, getSearchContent } = useAppContext();
+    const [search, setSearch] = useState("");
+    // const [searchBox, setSearchBox] = useState("");
+    const searchFunc = (value) => {
+        setSearch(value);
+        getSearchContent(search);
     }
     useEffect(() => {
         if (contents === "poems") {
+            // getAllPoems(PoemsAPI);
             type = "poem";
         }
         else if (contents === "articles") {
-            type = "article"
+            // getAllArticles(ArticlesAPI);
+            type = "article";
         }
         else if (contents === "books") {
-            type = "book"
+            // getAllBooks(BooksAPI);
+            type = "book";
         }
         else if (contents === "shortstories") {
+            // getAllShortStories(ShortStoriesAPI);
             type = "shortstory";
         }
         else {
             navigate(-1);
         }
+        console.log(`${ContentsAPI}/${type}`)
         getAllContents(`${ContentsAPI}/${type}`);
-    }, [searchBox])
+        console.log(allContents);
+    }, []);
     return (
         <>
             <Navs />
@@ -58,7 +61,8 @@ const Contents = () => {
                     <div className='col-md-6 col-10 text-center mx-auto'>
                         <h5>Our Amazing</h5>
                         <h1 className='display-2'>{contents}</h1>
-                        <SearchBox searchBox={searchBox} searchFunc={searchFunc} />
+                        {/* <SearchBox searchBox={search} searchFunc={searchFunc} />*/}
+
                     </div>
                     {
                         isLoading ?
@@ -67,26 +71,18 @@ const Contents = () => {
                                 <div className='col-md-10 col-10 mx-auto'>
                                     <div className='all-poems mx-auto'>
                                         {
-                                            contents === "poems" ?
-                                                poems?.map((ele, i) => {
-                                                    return <SingleUnit key={i} content={ele} />
-                                                }) :
+                                            search ? searchContent?.map((ele, i) => {
+                                                return <SingleUnit key={i} content={ele} type={type} />
+                                            }) :
+                                                allContents?.map((ele, i) => {
+                                                    return <SingleUnit key={i} content={ele} type={type} />
+                                                })
+                                        }
 
-                                                contents === "shortstories" ?
-                                                    shortStories?.map((ele, i) => {
-                                                        return <SingleUnit key={i} content={ele} />
-                                                    }) :
-
-                                                    contents === "articles" ?
-                                                        articles?.map((ele, i) => {
-                                                            return <SingleUnit key={i} content={ele} />
-                                                        }) :
-
-                                                        contents === "books" ?
+                                        {/* contents === "books" ?
                                                             books?.map((ele, i) => {
                                                                 return <SingleUnit key={i} content={ele} />
-                                                            }) : <div><button onClick={navigate(-1)}>Please Refresh</button></div>
-                                        }
+                                                            }) : <div><button onClick={navigate(-1)}>Please Refresh</button></div> */}
                                     </div>
                                 </div>
                             </div>

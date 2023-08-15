@@ -14,7 +14,7 @@ exports.getAllPoems = catchAsync(async (req, res) => {
   res.status(200).json({
     status: "success",
     results: poems.length,
-    poems,
+    data: poems,
   });
 });
 
