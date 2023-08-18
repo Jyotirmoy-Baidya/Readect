@@ -25,7 +25,6 @@ function SinglePoem() {
     console.log(singlePoem);
     return (
         <>
-            <Navs />
             <div className='container-fluid'>
                 <div className='row single-poem-area'>
                     <Pagination name={singlePoem.name} />

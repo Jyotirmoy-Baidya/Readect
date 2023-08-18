@@ -6,6 +6,7 @@
     --main-orange: #fa7e1e;
 }
 
+
 body::-webkit-scrollbar {
     display: none;
 }
@@ -124,18 +125,6 @@ body::-webkit-scrollbar {
 
 
 
-/* poem  */
-.poem-item figure img {
-    height: 15rem;
-    width: 10rem;
-}
-
-.poem-item {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 0.1rem;
-}
 
 
 

@@ -39,6 +39,23 @@ const ProfileReducer = (state, action) => {
             loggedInStatus: false,
         }
     }
+
+    //LOADER
+    else if (action.type === "SET_LOADING") {
+        return {
+            ...state,
+            isProfileLoading: true
+        }
+    }
+
+    //MY PROFILE
+    else if (action.type === "MY_PROFILE") {
+        return {
+            ...state,
+            isProfileLoading: false,
+            profile: action.payload
+        }
+    }
 }
 
 export default ProfileReducer;

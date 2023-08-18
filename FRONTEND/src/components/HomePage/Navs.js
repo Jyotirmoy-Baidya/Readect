@@ -13,7 +13,6 @@ const LogoutAPI = "/api/v1/reader/logout";
 const LoggedCheckAPI = "/api/v1/reader/islogged";
 
 const Navs = () => {
-    const navigate = useNavigate();
     const { logout, checkLogin, loggedInStatus } = useProfileContext();
     const DoLogout = async () => {
         const check = await logout(LogoutAPI);
@@ -24,7 +23,6 @@ const Navs = () => {
         <Navbar expand="lg" className="navbar">
             <Container>
                 <NavLink className="nav-link" to="/">Readect</NavLink>
-                {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
@@ -52,7 +50,6 @@ const Navs = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-            <Toaster />
         </Navbar>
     );
 }

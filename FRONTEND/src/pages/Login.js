@@ -25,18 +25,17 @@ function Login() {
             setPassword("");
             return;
         }
-        toast.success("Login Success");
-        await checkLogin(LoggedCheckAPI);
         navigate("/");
+        await checkLogin(LoggedCheckAPI);
+        toast.success("Login Success");
 
 
     }
     return (
         <>
             <div className='login-page'>
-                <div className="container-fluid login-cont">
-                    {/* <div className="row"> */}
-                    <form className="col-md-4 col-10 py-3 mx-2 form-floating login-form" >
+                <div className="login-cont">
+                    <form className="py-3 mx-2 form-floating login-form" >
                         <h1 className="display-6 text-center">Login</h1>
                         <hr className="w-100" />
                         <div className="form-floating mb-3 mx-5">
@@ -58,8 +57,6 @@ function Login() {
                     </form>
                 </div>
             </div>
-            {/* </div> */}
-            <Toaster />
         </>
     )
 }

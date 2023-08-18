@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+import { useProfileContext } from '../../context/ProfileContext';
 
-function Profile({ profile }) {
+function Profile() {
+    const { profile } = useProfileContext();
     console.log(profile);
     return (
         <>
@@ -10,7 +12,7 @@ function Profile({ profile }) {
                 </div>
                 <div className='profile-data'>
                     <div className='profile-card mx-auto text-center'>
-                        <h1 className=''>{profile.name}</h1>
+                        <h1 className='text-uppercase my-2'>{profile.name}</h1>
                         <a href='https://jb@gmail.com'>{profile.email}</a>
                         <div className='myUploads'>
                             <div>
