@@ -5,6 +5,5 @@ import axios from "axios";
 const SingleContext = createContext();
 
 const initialState = {
-    isSingleLoading: false,
     singleData: {},
 }
