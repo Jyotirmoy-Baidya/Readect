@@ -37,13 +37,13 @@ const AppProvider = ({ children }) => {
         }
     }
 
-    
+
 
     //Upload Content
 
 
     //untill and unless we pass the single rproduct beside state we will not be able to call through the single url
-    return <AppContext.Provider value={{ ...state, getAllContents, getSinglePoem, getPoemComments, getSearchContents }}>
+    return <AppContext.Provider value={{ ...state, getAllContents, getSearchContents }}>
         {children}
     </AppContext.Provider>
 };
