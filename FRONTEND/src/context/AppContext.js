@@ -37,33 +37,7 @@ const AppProvider = ({ children }) => {
         }
     }
 
-    //my single poem
-    const getSinglePoem = async (url) => {
-        dispatch({ type: "SET_SINGLE_LOADING" })
-        try {
-            const resp = await axios.get(url);
-            const poem = await resp.data;
-            dispatch({ type: "MY_SINGLE_POEM", payload: poem.data })
-        } catch (error) {
-            dispatch({ type: "SINGLE_API_ERROR" });
-        }
-    }
-
-
-    //All Poem Comments
-    const getPoemComments = async (url, i) => {
-        dispatch({ type: "SET_COMMENTS_LOADING" })
-        try {
-            const resp = await axios.get(url);
-            let comments = await resp.data;
-            console.log(comments);
-
-            comments = comments.data.reviews[0].comments;
-            dispatch({ type: "POEM_COMMENTS", payload: comments, num: i })
-        } catch (error) {
-            dispatch({ type: "COMMENTS_ERROR" });
-        }
-    }
+    
 
     //Upload Content
 
