@@ -31,7 +31,7 @@ const AppReducer = (state, action) => {
     }
 
     //Search Contents
-    
+
 
 
     //Get All Contents

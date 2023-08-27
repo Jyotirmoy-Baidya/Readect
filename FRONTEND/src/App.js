@@ -6,7 +6,7 @@ import SinglePoem from './pages/SinglePoem';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import UpdatePoemContent from './components/UpdatePoemContent';
-import UploadPoem from './pages/UploadPoem';
+import Upload from './pages/Upload';
 import ProfilePage from './pages/ProfilePage';
 import { useProfileContext } from './context/ProfileContext';
 import RequestLogin from './components/RequestLogin';
@@ -33,7 +33,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/type/:contents" element={<Contents />} />
             <Route path="/single/:type/:id" element={<SinglePoem />} />
-            <Route path='/uploadpoem' element={<UploadPoem />} />
+            <Route path='/upload' element={<Upload />} />
             <Route path="/updatePoem/:fieldName/:poemId" element={<UpdatePoemContent />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/profile/library" element={<ProfilePage />} />

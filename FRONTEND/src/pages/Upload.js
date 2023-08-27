@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import "../style/Upload.css"
 const url = "/api/v1/reader/poem"
 
 
-const UploadPoem = () => {
+
+const Upload = () => {
     const [title, setTitle] = useState("GIVE THE TITLE");
     const [content, setContent] = useState("");
     console.log(url);
@@ -54,4 +56,4 @@ const UploadPoem = () => {
     )
 }
 
-export default UploadPoem
+export default Upload

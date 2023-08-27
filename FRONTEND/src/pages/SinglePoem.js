@@ -17,12 +17,10 @@ function SinglePoem() {
     const { type, id } = useParams();
     console.log(type, id);
     console.log(`${GetSingleContentAPI}/${type}/${id}`);
-
     const { getSinglePoem, isSingleLoading, singlePoem = {} } = useAppContext();
     useEffect(() => {
         getSinglePoem(`${GetSingleContentAPI}/${type}/${id}`);
     }, []);
-    console.log(singlePoem);
     return (
         <>
             <div className='container-fluid'>

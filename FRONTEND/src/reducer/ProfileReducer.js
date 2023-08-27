@@ -53,7 +53,11 @@ const ProfileReducer = (state, action) => {
         return {
             ...state,
             isProfileLoading: false,
-            profile: action.payload
+            profile: action.payload,
+            myPoems: action.payload.poems,
+            myArticles: action.payload.articles,
+            myShortStories: action.payload.shortStories,
+            myBooks: action.payload.books
         }
     }
 }

@@ -50,9 +50,6 @@ const Contents = () => {
         else if (contents === "shortstories") {
             type = "shortstory";
         }
-        else {
-            navigate(-1);
-        }
         console.log(`${ContentsAPI}/${type}`)
         getAllContents(`${ContentsAPI}/${type}`);
         console.log(allContents);
