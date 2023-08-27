@@ -54,7 +54,7 @@ function SinglePoem() {
                 </div>
                 <div className="row">
                   <div className="col-md-12 col-12 text-center poem-comment-area">
-                    <PoemComment id={content._id} content={content?.comments} />
+                    <PoemComment id={content._id} content={content?.comments} type={type} />
                   </div>
                 </div>
               </>

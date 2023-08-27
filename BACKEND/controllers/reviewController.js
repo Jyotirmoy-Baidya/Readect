@@ -23,7 +23,7 @@ exports.getAllReviews = catchAsync(async (req, res) => {
   res.status(200).json({
     status: "success",
     results: data.length,
-    data,
+    data: data[0].comments,
   });
 });
 

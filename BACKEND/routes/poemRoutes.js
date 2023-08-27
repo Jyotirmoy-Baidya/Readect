@@ -27,7 +27,7 @@ const reviewRouter = require("./reviewRouter");
 
 router.route("/").get(getAllPoems).post(protect, uploadPoem, createReview);
 router.route("/:poemId").get(protect, getPoem);
-router.use("/getPoem/:genreId/reviews", reviewRouter);
+router.use("/reviews/:genreId", reviewRouter);
 
 // router.route("/").post(protect, uploadPoem, createReview);
 //genreId
