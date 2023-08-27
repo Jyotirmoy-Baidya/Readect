@@ -18,14 +18,14 @@ exports.getAllPoems = catchAsync(async (req, res) => {
 });
 
 exports.getPoem = catchAsync(async (req, res, next) => {
-  const poem = await Poem.findById(req.params.poemId).populate({
+  const data = await Poem.findById(req.params.poemId).populate({
     path: "comments",
     select: "comments -genreIdentifier -_id",
   });
 
   res.status(200).json({
     status: "success",
-    poem,
+    data,
   });
 });
 

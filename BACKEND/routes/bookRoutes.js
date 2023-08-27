@@ -4,6 +4,7 @@ const { protect } = require("../controllers/authController");
 const {
   getAllBooks,
   getBook,
+  searchBook,
   uploadBook,
   updateBook,
   likeBook,
@@ -26,6 +27,8 @@ const reviewRouter = require("./reviewRouter");
 router.route("/").get(getAllBooks).post(protect, uploadBook, createReview);
 router.route("/:bookId").get(protect, getBook);
 router.route("/:genreId").delete(protect, deleteBook, deleteReview);
+
+router.route("/search/:title").get(searchBook);
 
 router.route("/:genreId/:chapterId").patch(protect, updateBook);
 router.use("/getBook/:genreId/reviews", reviewRouter);

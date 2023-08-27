@@ -4,6 +4,7 @@ const {
   uploadArticle,
   getAllArticles,
   getArticle,
+  searchArticle,
   updateArticle,
   likeArticle,
   unlikeArticle,
@@ -29,6 +30,8 @@ router
   .post(protect, uploadArticle, createReview);
 router.route("/:articleId").get(protect, getArticle);
 router.use("/getArticle/:genreId/reviews", reviewRouter);
+
+router.route("/search/:title").get(searchArticle);
 
 router
   .route("/:genreId")

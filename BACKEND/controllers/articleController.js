@@ -29,6 +29,17 @@ exports.getArticle = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.searchArticle = catchAsync(async (req, res, next) => {
+  const regexPattern = new RegExp(`^${req.params.title}`);
+  const data = await Article.find({ title: regexPattern });
+
+  res.status(200).json({
+    status: "success",
+    results: data.length,
+    data,
+  });
+});
+
 exports.uploadArticle = catchAsync(async (req, res, next) => {
   const ArticleObj = {
     userId: req.reader._id,

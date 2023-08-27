@@ -10,21 +10,13 @@ import axios from "axios";
 
 const APIThapa = "https://api.pujakaitem.com/api/products";
 
-// const PoemsAPI = "/api/v1/reader/poem";
-// const ArticlesAPI = "/api/v1/reader/article";
-// const ShortStoriesAPI = "/api/v1/reader/shortstory";
-// const BooksAPI = "/api/v1/reader/book";
 const ContentsAPI = "/api/v1/reader";
 const Search = "/api/v1/reader/poem/search";
-const req = {
-  title: "name",
-};
 
 let type = "";
 
 const tags = [];
-// const searchBox = "le";
-// const rating = false;
+
 const Contents = () => {
   const navigate = useNavigate();
   const { contents } = useParams();
@@ -37,7 +29,16 @@ const Contents = () => {
   } = useAppContext();
   const [search, setSearch] = useState("");
 
-  // const [searchBox, setSearchBox] = useState("");
+  if (contents === "poems") {
+    type = "poem";
+  } else if (contents === "articles") {
+    type = "article";
+  } else if (contents === "books") {
+    type = "book";
+  } else if (contents === "shortstories") {
+    type = "shortstory";
+  }
+
   const searchFunc = (value) => {
     setSearch(value);
   };
@@ -47,10 +48,14 @@ const Contents = () => {
       const controller = new AbortController();
       try {
         if (search) {
-          const resp = await axios.get(`${ContentsAPI}/poem/search/${search}`, {
-            signal: controller.signal,
-          });
-          getSearchContents(resp);
+          const resp = await axios.get(
+            `${ContentsAPI}/${type}/search/${search}`,
+            {
+              signal: controller.signal,
+            }
+          );
+          console.log(resp);
+          getSearchContents(search, resp);
         }
       } catch (err) {
         if (err.name !== "AbortError") {
@@ -58,23 +63,13 @@ const Contents = () => {
         }
       }
       return function () {
-        //add
-        controller.abort(); //add
+        controller.abort();
       };
     }
     makeSearch();
   }, [search]);
 
   useEffect(() => {
-    if (contents === "poems") {
-      type = "poem";
-    } else if (contents === "articles") {
-      type = "article";
-    } else if (contents === "books") {
-      type = "book";
-    } else if (contents === "shortstories") {
-      type = "shortstory";
-    }
     getAllContents(`${ContentsAPI}/${type}`);
   }, []);
   return (
