@@ -27,9 +27,10 @@ exports.ifLoggedIn = catchAsync(async (req, res, next) => {
       )
     );
   else {
-    console.log("check1");
-    const check = await promisify(jwt.verify)(token, "my-super-secret-string-is-superb");
-    console.log(check);
+    const check = await promisify(jwt.verify)(
+      token,
+      "my-super-secret-string-is-superb"
+    );
     res.status(200).json({
       status: "Success",
     });
@@ -60,7 +61,8 @@ exports.protect = catchAsync(async (req, res, next) => {
   // VERIFY THE TOKEN
   const decoded = await promisify(jwt.verify)(
     token,
-    "my-super-secret-string-is-superb");
+    "my-super-secret-string-is-superb"
+  );
 
   //CHECK IF USER STILL EXISTS
   const freshUser = await Reader.findById(decoded.id);

@@ -10,7 +10,6 @@ exports.getAllPoems = catchAsync(async (req, res) => {
   const poems = await Poem.find().select(
     "-content -updateTime -firstUploadTime"
   );
-  console.log(poems);
   res.status(200).json({
     status: "success",
     results: poems.length,
@@ -31,10 +30,8 @@ exports.getPoem = catchAsync(async (req, res, next) => {
 });
 
 exports.searchPoem = catchAsync(async (req, res, next) => {
-  const regexPattern = new RegExp(`^${req.body.title}`);
+  const regexPattern = new RegExp(`^${req.params.title}`);
   const poems = await Poem.find({ title: regexPattern });
-
-  // console.log(poems[0]);
 
   res.status(200).json({
     status: "success",

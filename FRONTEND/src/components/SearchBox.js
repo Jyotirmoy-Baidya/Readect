@@ -1,16 +1,24 @@
-import React from 'react'
+import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
 function SearchBox({ search, searchFunc }) {
-    return (
-        <>
-            <form className='search-box'>
-                <input type="text" className='search-area' name='search' autoComplete='off' placeholder='Search' onChange={() => searchFunc()} />
-                {/* <div onClick={() => {
+  return (
+    <>
+      <form className="search-box">
+        <input
+          type="text"
+          className="search-area"
+          name="search"
+          autoComplete="off"
+          placeholder="Search"
+          value={search}
+          onChange={(e) => searchFunc(e.target.value)}
+        />
+        {/* <div onClick={() => {
                     console.log(document.querySelector('.tag').value);
                 }}><AiOutlineMenu /></div> */}
-            </form>
-            {/* <div className='filter-overlay'>
+      </form>
+      {/* <div className='filter-overlay'>
                 <div className='ratings' onClick={() => {
 
                 }}>Ratings</div>
@@ -20,8 +28,8 @@ function SearchBox({ search, searchFunc }) {
                     </div>
                 </div>
             </div> */}
-        </>
-    )
+    </>
+  );
 }
 
-export default SearchBox
+export default SearchBox;
