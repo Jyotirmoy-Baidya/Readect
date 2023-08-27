@@ -1,18 +1,36 @@
 const SingleReducer = (state, action) => {
-    if (action.type === "SET_LOADING") {
-        return {
-            ...state,
-            isSingleLoading: true,
-        }
-    }
+  switch (action.type) {
+    case "SET_LOADING":
+      return {
+        ...state,
+        isLoading: true,
+      };
 
-    //Upload Content
-    else if (action.type === "UPLOAD_SUCCESS") {
-        return {
-            ...state,
-        }
-    }
+    case "SET_LOADING_FALSE":
+      return {
+        ...state,
+        isLoading: false,
+      };
 
-}
+    case "GET_CONTENTS":
+      //console.log(action.action.payload);
+      return {
+        ...state,
+        content: action.payload,
+      };
+
+    // case "GET_COMMENTS":
+    //   return {
+    //     ...state,
+    //     comment: action.payload,
+    //   };
+    default:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+  }
+};
 
 export default SingleReducer;

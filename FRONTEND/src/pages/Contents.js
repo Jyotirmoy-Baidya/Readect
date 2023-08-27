@@ -10,15 +10,8 @@ import axios from "axios";
 
 const APIThapa = "https://api.pujakaitem.com/api/products";
 
-// const PoemsAPI = "/api/v1/reader/poem";
-// const ArticlesAPI = "/api/v1/reader/article";
-// const ShortStoriesAPI = "/api/v1/reader/shortstory";
-// const BooksAPI = "/api/v1/reader/book";
 const ContentsAPI = "/api/v1/reader";
 const Search = "/api/v1/reader/poem/search";
-const req = {
-  title: "name",
-};
 
 let type = "";
 

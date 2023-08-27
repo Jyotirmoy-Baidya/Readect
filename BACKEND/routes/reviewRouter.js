@@ -15,7 +15,7 @@ router.route("/").post(protect, postComment).delete(protect, deleteComment);
 
 router.route("/:commentId").patch(protect, updateComment);
 
-router.route("/:poemId").get(getAllReviews);
+router.route("/:genreId").get(getAllReviews);
 
 router.route("/deleteReview/:poemId").delete(deleteReview);
 

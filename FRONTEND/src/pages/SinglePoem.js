@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAppContext } from "../context/AppContext";
+import { useSingleContext } from "../context/SingleContext";
 import SinglePoemImage from "../components/SingleContent/SinglePoemImage";
 import SinglePoemContent from "../components/SingleContent/SinglePoemContent";
 import PoemComment from "../components/SingleContent/PoemComment";
@@ -14,19 +14,22 @@ const GetSingleContentAPI = "/api/v1/reader";
 // 64bdf4d6b2ef96b661ff83e1
 
 function SinglePoem() {
+  console.log("boom boom");
   const { type, id } = useParams();
+  const { getSinglePoem, isLoading, content = {} } = useSingleContext();
 
-  const { getSinglePoem, isSingleLoading, singlePoem = {} } = useAppContext();
   useEffect(() => {
     getSinglePoem(`${GetSingleContentAPI}/${type}/${id}`);
   }, []);
+
+  if (content?.comments) console.log(content?.comments);
   return (
     <>
       <div className="container-fluid">
         <div className="row single-poem-area">
-          <Pagination name={singlePoem.name} />
+          <Pagination name={content.name} />
           <div className="col-md-12 col-12 poem-area">
-            {isSingleLoading ? (
+            {isLoading ? (
               <div className="container">
                 <div className="row">
                   <div className="col-md-4 col-10 mx-auto">
@@ -42,16 +45,16 @@ function SinglePoem() {
                 <div className="row">
                   <div className="col-md-12 col-12 text-center poem-content-area">
                     <SinglePoemContent
-                      name={singlePoem.title}
-                      description={singlePoem.content}
+                      name={content.title}
+                      description={content.content}
                       stars={4}
-                      author={singlePoem.name}
+                      author={content.name}
                     />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-12 col-12 text-center poem-comment-area">
-                    <PoemComment id={singlePoem._id} />
+                    <PoemComment id={content._id} content={content?.comments} />
                   </div>
                 </div>
               </>

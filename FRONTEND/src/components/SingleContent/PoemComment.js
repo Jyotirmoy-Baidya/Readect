@@ -1,15 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { BsFillSendFill } from "react-icons/bs";
-import { useAppContext } from "../../context/AppContext";
+import { useSingleContext } from "../../context/SingleContext";
+import axios from "axios";
 
 const form = "https://formspree.io/f/mbjvlrbj";
 const url = "/api/v1/reader/poem";
 const allCommentUrl = "/api/v1/reader/reviews";
 
-function PoemComment({ url, id }) {
-  const { isLoading, comments, getPoemComments, userId } = useAppContext();
+function PoemComment({ content, id }) {
+  console.log(content);
+  //const { isLoading, comments, getPoemComments, userId } = useSingleContext();
+  // console.log(comments);
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
   const [cmtNum, setCmtNum] = useState(5);
+
+  async function getPoemComments(url, num) {
+    try {
+      if (url) {
+        //  console.log(url);
+        const resp = await axios.get(url);
+        //console.log(resp.data.data[0].comments);
+        //setComments(resp.data.data[0].comments);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  setComments(content);
+  // console.log(comments);
+
   const submitComment = async (e) => {
     e.preventDefault();
     try {
@@ -26,20 +47,23 @@ function PoemComment({ url, id }) {
       });
       const data = resp.json();
       setComment("");
-      getPoemComments(`${allCommentUrl}/${id}`, cmtNum);
+      if (id) getPoemComments(`${allCommentUrl}/${id}`, cmtNum);
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getPoemComments(`${allCommentUrl}/${id}`, cmtNum);
-  }, [cmtNum]);
-  const checkIfDelete = () => {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+  // useEffect(() => {
+  //   //if (id) getPoemComments(`${allCommentUrl}/${id}`, cmtNum);
+  //   //console.log(comments, id);
+  // }, []);
+  //[cmtNum]
+  // const checkIfDelete = () => {
+  //   try {
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const TimeDisplay = (ele) => {
     const months = [
       "",
@@ -81,7 +105,7 @@ function PoemComment({ url, id }) {
           </button>
         </form>
       </div>
-      <div className="row">
+      {/* <div className="row">
         <div className="col-md-6 col-10 mx-auto all-comments mt-2">
           {comments?.map((ele, i) => {
             return (
@@ -114,7 +138,7 @@ function PoemComment({ url, id }) {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

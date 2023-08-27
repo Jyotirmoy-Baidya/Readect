@@ -18,11 +18,12 @@ exports.createReview = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllReviews = catchAsync(async (req, res) => {
-  const reviews = await Review.find({ genreIdentifier: req.params.genreId });
+  const data = await Review.find({ genreIdentifier: req.params.genreId });
+  console.log(data);
   res.status(200).json({
     status: "success",
-    results: reviews.length,
-    data: { reviews },
+    results: data.length,
+    data,
   });
 });
 
