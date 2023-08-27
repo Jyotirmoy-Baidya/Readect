@@ -32,6 +32,17 @@ exports.getShortStory = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.searchShortStory = catchAsync(async (req, res, next) => {
+  const regexPattern = new RegExp(`^${req.params.title}`);
+  const data = await ShortStory.find({ title: regexPattern });
+
+  res.status(200).json({
+    status: "success",
+    results: data.length,
+    data,
+  });
+});
+
 exports.uploadShortStory = catchAsync(async (req, res, next) => {
   const shortStoryObj = {
     userId: req.reader._id,

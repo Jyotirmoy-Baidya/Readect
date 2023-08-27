@@ -23,8 +23,7 @@ const req = {
 let type = "";
 
 const tags = [];
-// const searchBox = "le";
-// const rating = false;
+
 const Contents = () => {
   const navigate = useNavigate();
   const { contents } = useParams();
@@ -37,7 +36,16 @@ const Contents = () => {
   } = useAppContext();
   const [search, setSearch] = useState("");
 
-  // const [searchBox, setSearchBox] = useState("");
+  if (contents === "poems") {
+    type = "poem";
+  } else if (contents === "articles") {
+    type = "article";
+  } else if (contents === "books") {
+    type = "book";
+  } else if (contents === "shortstories") {
+    type = "shortstory";
+  }
+
   const searchFunc = (value) => {
     setSearch(value);
   };
@@ -47,9 +55,13 @@ const Contents = () => {
       const controller = new AbortController();
       try {
         if (search) {
-          const resp = await axios.get(`${ContentsAPI}/poem/search/${search}`, {
-            signal: controller.signal,
-          });
+          const resp = await axios.get(
+            `${ContentsAPI}/${type}/search/${search}`,
+            {
+              signal: controller.signal,
+            }
+          );
+          console.log(resp);
           getSearchContents(search, resp);
         }
       } catch (err) {
@@ -58,23 +70,13 @@ const Contents = () => {
         }
       }
       return function () {
-        //add
-        controller.abort(); //add
+        controller.abort();
       };
     }
     makeSearch();
   }, [search]);
 
   useEffect(() => {
-    if (contents === "poems") {
-      type = "poem";
-    } else if (contents === "articles") {
-      type = "article";
-    } else if (contents === "books") {
-      type = "book";
-    } else if (contents === "shortstories") {
-      type = "shortstory";
-    }
     getAllContents(`${ContentsAPI}/${type}`);
   }, []);
   return (

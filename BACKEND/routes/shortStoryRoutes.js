@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getAllShortStories,
   getShortStory,
+  searchShortStory,
   updateShortStory,
   uploadShortStory,
   likeShortStory,
@@ -29,6 +30,8 @@ router
   .post(protect, uploadShortStory, createReview);
 router.route("/:shortStoryId").get(protect, getShortStory);
 router.use("/getShortStory/:genreId/reviews", reviewRouter);
+
+router.route("/search/:title").get(searchShortStory);
 
 router
   .route("/:genreId")

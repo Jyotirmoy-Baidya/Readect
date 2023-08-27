@@ -29,6 +29,17 @@ exports.getBook = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.searchBook = catchAsync(async (req, res, next) => {
+  const regexPattern = new RegExp(`^${req.params.title}`);
+  const data = await Book.find({ title: regexPattern });
+
+  res.status(200).json({
+    status: "success",
+    results: data.length,
+    data,
+  });
+});
+
 exports.uploadBook = catchAsync(async (req, res, next) => {
   const bookObj = {
     userId: req.reader._id,
