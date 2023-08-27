@@ -29,15 +29,11 @@ exports.createAndSendToken = (newReader, statusCode, res) => {
   });
 };
 
-exports.createAndSendLogoutToken = (
-  newReader,
-  statusCode,
-  res,
-  specialMessage
-) => {
-  const token = createToken(newReader._id, 10);
+exports.createAndSendLogoutToken = (newReader, statusCode, res) => {
+  const token = createToken(newReader._id, 0);
   const cookieOptions = {
     expiresIn: 0,
+    // expries: new Date(Date.now()),
     httpOnly: true,
   };
 
@@ -45,8 +41,8 @@ exports.createAndSendLogoutToken = (
   res.cookie("jwt", "", cookieOptions);
   res.status(statusCode).json({
     status: "success",
-    token,
-    message: "Successfully logged out",
-    //message: specialMessage ? specialMessage : "Successfully logged out",
+    // token,
+    // message: specialMessage ? specialMessage : "Successfully logged out",
+    message: "Succesfully Logged Out",
   });
 };

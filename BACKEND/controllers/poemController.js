@@ -10,11 +10,11 @@ exports.getAllPoems = catchAsync(async (req, res) => {
   const poems = await Poem.find().select(
     "-content -updateTime -firstUploadTime"
   );
-
+  console.log(poems);
   res.status(200).json({
     status: "success",
     results: poems.length,
-    data: { poems },
+    data: poems,
   });
 });
 

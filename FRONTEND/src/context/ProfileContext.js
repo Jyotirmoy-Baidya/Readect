@@ -5,7 +5,7 @@ import axios from "axios";
 const ProfileContext = createContext();
 
 const initialState = {
-    isLoading: false,
+    isProfileLoading: false,
     isError: false,
     loggedInStatus: false,
     profile: {},
@@ -65,10 +65,10 @@ const ProfileProvider = ({ children }) => {
                 dispatch({ type: "LOGGED_IN" });
             }
             else {
-                dispatch({ type: "API_ERROR", payload: resp.data.message });
+                dispatch({ type: "LOGGED_OUT" });
             }
         } catch (error) {
-            dispatch({ type: "API_ERROR", payload: error });
+            dispatch({ type: "LOGGED_OUT" });
         }
     }
 
@@ -76,17 +76,29 @@ const ProfileProvider = ({ children }) => {
     const logout = async (url) => {
         try {
             console.log(url);
-            console.log(resp);
             const resp = await axios.post(url);
             dispatch({ type: "LOGGED_OUT" });
-            return false;
         }
         catch (err) {
             dispatch({ type: "API_ERROR", payload: err });
         }
     }
 
-    return <ProfileContext.Provider value={{ ...state, login, register, checkLogin, logout }}>
+    //Get My Profile With Axios
+    const getMyProfile = async (url) => {
+        dispatch({ type: "SET_LOADING" });
+        try {
+            const resp = await axios.get(url);
+            console.log(resp);
+            dispatch({ type: "MY_PROFILE", payload: resp.data.data });
+            return true;
+        }
+        catch (err) {
+            dispatch({ type: "API_ERROR", payload: err });
+        }
+    }
+
+    return <ProfileContext.Provider value={{ ...state, login, register, checkLogin, logout, getMyProfile }}>
         {children}
     </ProfileContext.Provider>
 };

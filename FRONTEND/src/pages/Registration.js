@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import "../style/LoginRegis.css";
 import { useProfileContext } from '../context/ProfileContext';
-import { Toaster, toast } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 
-const RegisterAPI = "api/v1/reader/signup";
+const RegisterAPI = "/api/v1/reader/signup";
 const LoggedCheckAPI = "/api/v1/reader/islogged";
 
 function Registration() {
@@ -37,15 +37,15 @@ function Registration() {
             setConfirmPassword("");
             return;
         }
-        toast.success("Registration Done");
-        await checkLogin(LoggedCheckAPI);
         navigate("/");
+        await checkLogin(LoggedCheckAPI);
+        toast.success("Registration Done");
     }
     return (
         <>
             <div className='regis-page'>
-                <div className="container registration-cont">
-                    <form className="login-form col-md-4 col-10 mx-auto px-0 py-3 form-floating" >
+                <div className="registration-cont">
+                    <form className="py-3 form-floating registration-form" >
                         <h1 className="display-6 text-center">registration</h1>
                         <hr className="w-100" />
                         <div className="form-floating mb-3 mx-5">
@@ -70,7 +70,6 @@ function Registration() {
                     </form>
                 </div>
             </div>
-            <Toaster />
         </>
     )
 }

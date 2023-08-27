@@ -27,7 +27,7 @@ router
   .route("/")
   .get(getAllArticles)
   .post(protect, uploadArticle, createReview);
-router.route("/getArticle/:articleId").get(protect, getArticle);
+router.route("/:articleId").get(protect, getArticle);
 router.use("/getArticle/:genreId/reviews", reviewRouter);
 
 router

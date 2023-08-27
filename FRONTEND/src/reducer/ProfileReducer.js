@@ -16,7 +16,15 @@ const ProfileReducer = (state, action) => {
         }
     }
 
+
     //CHECK LOGGED IN
+    else if (action.type === "LOGGED_IN_LOADER") {
+        return {
+            ...state,
+            loggedInStatus: false,
+        }
+    }
+
     else if (action.type === "LOGGED_IN") {
         return {
             ...state,
@@ -25,13 +33,32 @@ const ProfileReducer = (state, action) => {
     }
 
     //NOT LOGGED IN
-    else if (action.type === "LOGOUT") {
+    else if (action.type === "LOGGED_OUT") {
         return {
             ...state,
             loggedInStatus: false,
         }
+    }
 
+    //LOADER
+    else if (action.type === "SET_LOADING") {
+        return {
+            ...state,
+            isProfileLoading: true
+        }
+    }
 
+    //MY PROFILE
+    else if (action.type === "MY_PROFILE") {
+        return {
+            ...state,
+            isProfileLoading: false,
+            profile: action.payload,
+            myPoems: action.payload.poems,
+            myArticles: action.payload.articles,
+            myShortStories: action.payload.shortStories,
+            myBooks: action.payload.books
+        }
     }
 }
 

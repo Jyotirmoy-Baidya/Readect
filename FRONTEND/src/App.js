@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
-import Poems from './pages/Poems';
+import Contents from './pages/Contents';
 import SinglePoem from './pages/SinglePoem';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import UpdatePoemContent from './components/UpdatePoemContent';
-import UploadPoem from './pages/UploadPoem';
+import Upload from './pages/Upload';
 import ProfilePage from './pages/ProfilePage';
 import { useProfileContext } from './context/ProfileContext';
+import RequestLogin from './components/RequestLogin';
+import { Toaster } from 'react-hot-toast';
+import Navs from './components/HomePage/Navs';
 
 
 
@@ -19,24 +22,29 @@ const App = () => {
 
   useEffect(() => {
     checkLogin(LoggedCheckAPI);
-    console.log(loggedInStatus);
   }, [loggedInStatus]);
   return (
     <BrowserRouter>
-      {/* <Navs /> */}
+      <Toaster />
+      <Navs />
       <Routes>
-        <Route path="/" element={<Home />} />
         {
           loggedInStatus ? <>
-            <Route path="/singlepoem/:id" element={<SinglePoem />} />
-            <Route path='/uploadpoem' element={<UploadPoem />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/type/:contents" element={<Contents />} />
+            <Route path="/single/:type/:id" element={<SinglePoem />} />
+            <Route path='/upload' element={<Upload />} />
             <Route path="/updatePoem/:fieldName/:poemId" element={<UpdatePoemContent />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/library" element={<ProfilePage />} />
+            <Route path='*' element={<>Error</>} />
           </> :
             <>
+              <Route path="/" element={<Home />} />
+              <Route path="/:contents" element={<Contents />} />
               <Route path='/login' element={<Login />} />
-              <Route path="/poems" element={<Poems />} />
               <Route path='/register' element={<Registration />} />
+              <Route path="*" element={<RequestLogin />} />
             </>
         }
 

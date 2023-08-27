@@ -7,6 +7,7 @@ const AppReducer = (state, action) => {
             isLoading: true,
         }
     }
+
     else if (action.type === "MY_ALL_POEMS") {
         // const tagPoems = action.payload.filter((ele) => {
         //     return 1;
@@ -25,9 +26,25 @@ const AppReducer = (state, action) => {
         return {
             ...state,
             isLoading: false,
-            poems: action.payload,
+            allContents: action.payload,
         }
     }
+
+    //Search Contents
+
+
+
+    //Get All Contents
+    else if (action.type === "GET_CONTENTS") {
+        console.log("ada");
+        return {
+            ...state,
+            isLoading: false,
+            allContents: action.payload,
+        }
+    }
+
+
     else if (action.type === "API_ERROR") {
         return {
             ...state,
@@ -35,6 +52,7 @@ const AppReducer = (state, action) => {
             isError: true,
         }
     }
+
     else if (action.type === "SET_SINGLE_LOADING") {
         return {
             ...state,

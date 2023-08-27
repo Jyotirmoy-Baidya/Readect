@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { RiArticleLine } from "react-icons/ri";
 import { SiStorybook } from "react-icons/si";
 import { MdHistoryEdu } from "react-icons/md";
@@ -18,7 +18,7 @@ function DiffCategories() {
                         {/* Articles s */}
                         <div className="col-md-5 col-12 mx-auto">
                             <div className="box categories-box">
-                                <NavLink to="/articles">
+                                <NavLink to="/type/articles">
                                     <div className="our-category articles">
                                         <div className="icon mx-auto d-flex justify-content-center align-items-center">
                                             <RiArticleLine />
@@ -33,7 +33,7 @@ function DiffCategories() {
                         {/* Poems  */}
                         <div className="col-md-5 col-12 mx-auto">
                             <div className="box categories-box">
-                                <NavLink to="/poems">
+                                <NavLink to="/type/poems">
                                     <div className="our-category poems">
                                         <div className="icon mx-auto d-flex justify-content-center align-items-center">
                                             <MdHistoryEdu />
@@ -51,7 +51,7 @@ function DiffCategories() {
                         {/* ShortStories  */}
                         <div className="col-md-5 col-12 mx-auto">
                             <div className="box categories-box">
-                                <NavLink to="/shortstories">
+                                <NavLink to="/type/shortstories">
                                     <div className="our-category shortstories">
                                         <div className="icon mx-auto d-flex justify-content-center align-items-center">
                                             <SiStorybook />
@@ -66,7 +66,7 @@ function DiffCategories() {
                         {/* Books  */}
                         <div className="col-md-5 col-12 mx-auto">
                             <div className="box categories-box">
-                                <NavLink to="/books">
+                                <NavLink to="/type/books">
                                     <div className="our-category books">
                                         <div className="icon mx-auto d-flex justify-content-center align-items-center">
                                             <TbBooks />

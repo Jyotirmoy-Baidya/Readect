@@ -7,14 +7,14 @@ const Review = require("../models/reviewModel");
 const { forcedLogout } = require("../utils/forcedLogout");
 
 exports.getAllShortStories = catchAsync(async (req, res) => {
-  const shortStory = await ShortStory.find().select(
+  const shortStories = await ShortStory.find().select(
     "-content -updateTime -firstUploadTime"
   );
 
   res.status(200).json({
     status: "success",
-    results: shortStory.length,
-    data: { shortStory },
+    results: shortStories.length,
+    data: shortStories,
   });
 });
 
@@ -28,7 +28,7 @@ exports.getShortStory = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    shortStory,
+    data: shortStory,
   });
 });
 
