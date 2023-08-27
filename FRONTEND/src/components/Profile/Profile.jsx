@@ -3,6 +3,7 @@ import { BsPeopleFill } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import { useProfileContext } from '../../context/ProfileContext';
 import { AwesomeButton } from 'react-awesome-button';
+import { BiGroup } from 'react-icons/bi';
 
 const img = "https://cdn4.vectorstock.com/i/1000x1000/40/53/passport-photo-of-young-handsome-man-close-up-vector-21284053.jpg";
 
@@ -12,10 +13,10 @@ function Profile() {
     const { profile, followData, getFollowData } = useProfileContext();
     console.log(profile);
     const [showType, setShowType] = useState("");
-    const showFollow = (e, type) => {
+    const showFollow = async (e, type) => {
         e.preventDefault();
         setShowType(type)
-        const check = getFollowData(`${ShowFollowAPI}/${type}`);
+        const check = await getFollowData(`${ShowFollowAPI}/${type}`);
         if (check) {
             displayPop();
         }
@@ -83,12 +84,15 @@ function Profile() {
             </div>
             <div className='follow-pop-up hidden'>
                 <div className='follow-label'>
-                    <h2>My {showType}s</h2>
+                    <h2>My {showType}</h2>
                     <RxCross1 onClick={() => displayPop()} />
                 </div>
                 <div className='people-list'>{
                     followData?.map((ele, i) => {
-                        return <div className="each-person" key={i}>{ele.name}</div>
+                        return <div className="each-person" key={i}>
+                            <div>{ele.name}</div>
+                            <div><BiGroup /> {ele.followerCount}</div>
+                        </div>
                     })
                 }</div>
             </div>

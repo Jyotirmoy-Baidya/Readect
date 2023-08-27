@@ -11,8 +11,9 @@ const initialState = {
 const SingleProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+
     //UPLOAD CONTENTS
-    const uploadContents=  async(url, )
+    // const uploadContents=  async(url, )
 }
 
 

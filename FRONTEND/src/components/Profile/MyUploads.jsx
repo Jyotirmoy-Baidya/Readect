@@ -5,74 +5,77 @@ import { AiFillDelete } from "react-icons/ai";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import { useProfileContext } from "../../context/ProfileContext";
+import { RiDeleteBack2Fill } from "react-icons/ri";
+import UploadEle from "./UploadEle";
 
 const MyUploads = () => {
-  const [type, setType] = useState("poem");
-  const { myPoems, myArticles, myBooks, myShortStories } = useProfileContext();
+    const [type, setType] = useState(0);
+    const { myPoems, myArticles, myBooks, myShortStories } = useProfileContext();
+    console.log(myPoems);
 
-  // const [categories, setCategories] = useState(0);
-  // const [uploads, setUploads] = useState(profile.poems);
-  // const selectCat = () => {
-  //     switch (categories) {
-  //         case 0:
-  //             setUploads(profile.poems);
-  //             break;
-  //         case 1:
-  //             setUploads(profile.shortStories);
-  //             break;
-  //         case 2:
-  //             setUploads(profile.articles);
-  //             break;
-  //         case 3:
-  //             setUploads(profile.books);
-  //             break;
-  //         default:
-  //             break;
-  //     }
-  // }
-  // useEffect(() => {
-  //     selectCat()
-  // }, [categories]);
-  // const activeSelect = (i) => {
-  //     setCategories(i);
-  //     const all = document.querySelectorAll(".myAll");
-  //     all.forEach(ele => {
-  //         ele.classList.remove("myAllActive");
-  //     });
-  //     all[i].classList.add("myAllActive");
-  // }
-  // return (
-  //     <>
-  //         <div className='row'>
-  //             <div className='col-md-8 col-11 mx-auto '>
-  //                 <div className='myAllButtons'>
-  //                     <button className='myAll myAllActive' onClick={(e) => activeSelect(0)}>My Poems</button>
-  //                     <button className='myAll' onClick={(e) => activeSelect(1)}>Stories</button>
-  //                     <button className='myAll' onClick={(e) => activeSelect(2)}>Articles</button>
-  //                     <button className='myAll' onClick={(e) => activeSelect(3)}>Books</button>
-  //                 </div>
-  //                 <div className='myAllPoems'>
-  //                     {
-  //                         uploads?.length ?
-  //                             uploads.map((ele, i) => {
-  //                                 return <div key={ele._id}>
-  //                                     <div className='eachPoem'>
-  //                                         <p>{i + 1}</p>
-  //                                         <NavLink to={`/singlepoem/${ele._id}`} className="title"><p>{ele.title}</p></NavLink>
-  //                                         <NavLink to={`/updatePoem/content/${ele._id}`} className="poem-options"><BiEdit /></NavLink>
-  //                                         <NavLink to={`/deletePoem/${ele._id}`} className="poem-options"><AiFillDelete /></NavLink>
-  //                                     </div>
-  //                                 </div>
-  //                             })
-  //                             : <div>
-  //                                 <h1>No Uploads</h1>
-  //                             </div>
-  //                     }
-  //                 </div>
-  //             </div>
-  //         </div>
-  // </>
-  // )
+    const DisplayType = (e, x) => {
+        e.preventDefault();
+        const btns = document.querySelectorAll(".show-type-btn");
+        btns.forEach(ele => {
+            ele.classList.remove("type-active");
+        });
+        e.target.classList.add("type-active");
+        setType(x);
+    }
+
+    return (
+        <>
+            <div className="container my-uploads-area">
+                <div className="row">
+                    <div className="col-md-6 col-11 mx-auto">
+                        <div className="row">
+                            <h3 className="col-12 text-center my-uploads-label">My Uploads</h3>
+                        </div>
+                        <div className="row text-center show-type">
+                            <div className="col-3 show-type-btn type-active" onClick={(e) => DisplayType(e, 0)}>Poems</div>
+                            <div className="col-3 show-type-btn" onClick={(e) => {
+                                DisplayType(e, 1)
+                            }}>Articles</div>
+                            <div className="col-3 show-type-btn" onClick={(e) => DisplayType(e, 2)} > Stories</div>
+                            <div className="col-3 show-type-btn" onClick={(e) => DisplayType(e, 3)} >Books</div>
+                        </div>
+                        <div className="row my-2 my-all-uploads">
+                            <div className="col-12">
+                                {
+                                    type === 0 ?
+                                        myPoems?.map((ele, i) => {
+                                            return (
+                                                <UploadEle key={i} title={ele.title} id={ele.id} type={"poem"} />
+                                            )
+                                        })
+                                        : type === 1 ?
+                                            myArticles?.map((ele, i) => {
+                                                return (
+                                                    <UploadEle key={i} title={ele.title} id={ele.id} type={"article"} />
+                                                )
+
+                                            })
+                                            : type === 2 ?
+                                                myShortStories?.map((ele, i) => {
+                                                    return (
+                                                        <UploadEle key={i} title={ele.title} id={ele.id} type={"shortstory"} />
+                                                    )
+
+                                                })
+                                                : type === 3 ?
+                                                    myBooks?.map((ele, i) => {
+                                                        return (
+                                                            <UploadEle key={i} title={ele.title} id={ele.id} type={"book"} />
+                                                        )
+                                                    }) : <></>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 };
 
 export default MyUploads;

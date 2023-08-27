@@ -50,11 +50,11 @@ const Contents = () => {
           const resp = await axios.get(`${ContentsAPI}/poem/search/${search}`, {
             signal: controller.signal,
           });
-          getSearchContents(search, resp);
+          getSearchContents(resp);
         }
       } catch (err) {
         if (err.name !== "AbortError") {
-          getSearchContents(search, "error");
+          getSearchContents("error");
         }
       }
       return function () {
@@ -94,11 +94,11 @@ const Contents = () => {
             <div className="col-md-10 col-12 mx-auto all-contents">
               {search
                 ? searchContent?.map((ele, i) => {
-                    return <SingleUnit key={i} content={ele} type={type} />;
-                  })
+                  return <SingleUnit key={i} content={ele} type={type} />;
+                })
                 : allContents?.map((ele, i) => {
-                    return <SingleUnit key={i} content={ele} type={type} />;
-                  })}
+                  return <SingleUnit key={i} content={ele} type={type} />;
+                })}
             </div>
           </div>
         )}

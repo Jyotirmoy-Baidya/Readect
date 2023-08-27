@@ -90,9 +90,7 @@ const ProfileProvider = ({ children }) => {
     //Get Follow Data
     const getFollowData = async (url) => {
         try {
-            console.log(url);
             const resp = await axios.get(url);
-            console.log(resp);
             dispatch({ type: "MY_FOLLOW_DATA", payload: resp.data.data });
             return true;
         } catch (error) {

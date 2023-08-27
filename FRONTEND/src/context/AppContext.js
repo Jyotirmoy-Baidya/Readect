@@ -26,11 +26,10 @@ const AppProvider = ({ children }) => {
   };
 
   //Get Search
-  const getSearchContents = async (search, resp) => {
+  const getSearchContents = async (resp) => {
     //dispatch({ type: "SET_LOADING" });
-
     if (resp !== "error")
-      dispatch({ type: "GET_SEARCH", payload: resp.data.poems });
+      dispatch({ type: "GET_SEARCH", payload: resp.data.data });
     else dispatch({ type: "API_ERROR" });
   };
 

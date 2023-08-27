@@ -36,7 +36,7 @@ exports.searchPoem = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     results: poems.length,
-    poems,
+    data: poems,
   });
 });
 

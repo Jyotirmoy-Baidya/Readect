@@ -79,7 +79,6 @@ body {
 /* FOLLOW POP UP  */
 .follow-pop-up {
     padding: 1rem;
-    min-height: 15rem;
     z-index: 9999;
     position: absolute;
     top: 40%;
@@ -101,7 +100,78 @@ body {
 .people-list {
     display: flex;
     flex-direction: column;
+    max-height: 13rem;
+    min-height: 5rem;
+    overflow: scroll;
+    background-color: #f55b2a;
+    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
 }
+
+.people-list::-webkit-scrollbar {
+    display: none;
+}
+
+.each-person {
+    padding: 0.3rem 1rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.158);
+}
+
+
+/* MY UPLOADS  */
+.my-uploads-area {
+    margin-bottom: 2rem;
+}
+
+.my-uploads-label {
+    text-transform: uppercase;
+    color: var(--main-bg);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1.2px 1px rgba(0, 0, 0, 0.42);
+    margin-bottom: 1rem;
+}
+
+.show-type {
+    display: flex;
+}
+
+.show-type-btn {
+    background-color: var(--bg-pink);
+    border: 1px solid var(--main-color);
+    padding: 0.3rem;
+    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.313);
+}
+
+.type-active {
+    background-color: #feda75;
+    box-shadow: 0px 0px 0px black;
+    transform: translate(0px, 3px);
+}
+
+.my-all-uploads {
+    min-height: 10rem;
+    background-color: var(--main-color);
+    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 0.2rem;
+}
+
+.upload-element {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    padding: 0.2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
 
 /* UPLOAD area  */
 .content-upload-area {
@@ -113,12 +183,7 @@ body {
 }
 
 
-.my-uploads-area {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
+
 
 
 
