@@ -1,77 +1,126 @@
 // import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/LoginRegis.css";
-import { useProfileContext } from '../context/ProfileContext';
-import toast from 'react-hot-toast';
-
+import { useProfileContext } from "../context/ProfileContext";
+import toast from "react-hot-toast";
 
 const RegisterAPI = "/api/v1/reader/signup";
-const LoggedCheckAPI = "/api/v1/reader/islogged";
+const LoggedCheckAPI = "/api/v1/reader/ifLoggedIn";
 
 function Registration() {
-    const navigate = useNavigate();
-    const { register, checkLogin } = useProfileContext();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const registrationUser = async (e) => {
-        e.preventDefault();
-        if (name === "" || email === "" || password === "" || confirmPassword === "") {
-            toast.error("Please Fill All The Details");
-            return;
-        }
-        if (password !== confirmPassword) {
-            toast.error("Confirm Password Does Not Match");
-            setPassword("");
-            setConfirmPassword("");
-            return;
-        }
-        const check = await register(RegisterAPI, { name, email, password });
-        if (check) {
-            toast.error(check);
-            setName("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            return;
-        }
-        navigate("/");
-        await checkLogin(LoggedCheckAPI);
-        toast.success("Registration Done");
+  const navigate = useNavigate();
+  const { register, checkLogin } = useProfileContext();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const registrationUser = async (e) => {
+    e.preventDefault();
+    if (
+      name === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
+      toast.error("Please Fill All The Details");
+      return;
     }
-    return (
-        <>
-            <div className='regis-page'>
-                <div className="registration-cont">
-                    <form className="py-3 form-floating registration-form" >
-                        <h1 className="display-6 text-center">registration</h1>
-                        <hr className="w-100" />
-                        <div className="form-floating mb-3 mx-5">
-                            <input type="text" name="name" className="form-control" id="name" placeholder="Username" value={name} onChange={(e) => { setName(e.target.value) }} />
-                            <label htmlFor="Username">UserName</label>
-                        </div>
-                        <div className="form-floating mb-3 mx-5">
-                            <input type="email" name="email" className="form-control" id="email" placeholder="name@example.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                            <label htmlFor="email">UserEmail</label>
-                        </div>
-                        <div className="form-floating mb-3 mx-5">
-                            <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                            <label htmlFor="password">Password</label>
-                        </div>
-                        <div className="form-floating mx-5">
-                            <input type="password" name="cpassword" className="form-control" id="cpassword" placeholder="ConfirmPassword" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
-                            <label htmlFor="cpassword">ConfirmPassword</label>
-                        </div>
-                        <div className="text-center my-3">
-                            <input className="registration-submit-btn btn w-50" type="submit" value="Submit" onClick={(e) => registrationUser(e)} />
-                        </div>
-                    </form>
-                </div>
+    if (password !== confirmPassword) {
+      toast.error("Confirm Password Does Not Match");
+      setPassword("");
+      setConfirmPassword("");
+      return;
+    }
+    const check = await register(RegisterAPI, { name, email, password });
+    if (check) {
+      toast.error(check);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      return;
+    }
+    navigate("/");
+    await checkLogin(LoggedCheckAPI);
+    toast.success("Registration Done");
+  };
+  return (
+    <>
+      <div className="regis-page">
+        <div className="registration-cont">
+          <form className="py-3 form-floating registration-form">
+            <h1 className="display-6 text-center">registration</h1>
+            <hr className="w-100" />
+            <div className="form-floating mb-3 mx-5">
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                id="name"
+                placeholder="Username"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <label htmlFor="Username">UserName</label>
             </div>
-        </>
-    )
+            <div className="form-floating mb-3 mx-5">
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                id="email"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <label htmlFor="email">UserEmail</label>
+            </div>
+            <div className="form-floating mb-3 mx-5">
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                id="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+            <div className="form-floating mx-5">
+              <input
+                type="password"
+                name="cpassword"
+                className="form-control"
+                id="cpassword"
+                placeholder="ConfirmPassword"
+                value={confirmPassword}
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+              />
+              <label htmlFor="cpassword">ConfirmPassword</label>
+            </div>
+            <div className="text-center my-3">
+              <input
+                className="registration-submit-btn btn w-50"
+                type="submit"
+                value="Submit"
+                onClick={(e) => registrationUser(e)}
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Registration
+export default Registration;

@@ -36,6 +36,8 @@ router
   .patch(protect, updatePoem, updateReviewGenreName)
   .delete(protect, deletePoem, deleteReview);
 
+router.route("/search/:title").get(searchPoem);
+
 router.route("/:poemId/like").post(protect, likePoem);
 router.route("/:poemId/unlike").post(protect, unlikePoem);
 router.route("/:poemId/dislike").post(protect, dislikePoem);

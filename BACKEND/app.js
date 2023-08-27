@@ -15,7 +15,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const cookieParser = require("cookie-parser");
 
 const limiter = rateLimit({
-  max: 3,
+  max: 1000,
   // windowMs: 60 * 60 * 100, //1hr in milliseconds
   windowMs: 20000, //1hr in milliseconds
   // message: "Too many requests from this IP. Please try again in an hour.",
