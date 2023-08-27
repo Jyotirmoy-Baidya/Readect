@@ -30,6 +30,19 @@ exports.getPoem = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.searchPoem = catchAsync(async (req, res, next) => {
+  const regexPattern = new RegExp(`^${req.body.title}`);
+  const poems = await Poem.find({ title: regexPattern });
+
+  // console.log(poems[0]);
+
+  res.status(200).json({
+    status: "success",
+    results: poems.length,
+    poems,
+  });
+});
+
 exports.uploadPoem = catchAsync(async (req, res, next) => {
   const poemObj = {
     userId: req.reader._id,

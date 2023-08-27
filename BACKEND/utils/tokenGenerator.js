@@ -37,17 +37,16 @@ exports.createAndSendLogoutToken = (
 ) => {
   const token = createToken(newReader._id, 10);
   const cookieOptions = {
-    expiresIn: new Date(
-      Date.now() + 10
-    ),
+    expiresIn: 0,
     httpOnly: true,
   };
 
-  if (environment === "production") cookieOptions.secure = true;
-  res.cookie("jwt", token, cookieOptions);
+  //if (environment === "production") cookieOptions.secure = true;
+  res.cookie("jwt", "", cookieOptions);
   res.status(statusCode).json({
     status: "success",
     token,
-    message: specialMessage ? specialMessage : "Successfully logged out",
+    message: "Successfully logged out",
+    //message: specialMessage ? specialMessage : "Successfully logged out",
   });
 };
