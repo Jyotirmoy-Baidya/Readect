@@ -60,6 +60,13 @@ const ProfileReducer = (state, action) => {
             myBooks: action.payload.books
         }
     }
-}
 
+    //FOLLOW DATA
+    else if (action.type === "MY_FOLLOW_DATA") {
+        return {
+            ...state,
+            followData: action.payload,
+        }
+    }
+}
 export default ProfileReducer;

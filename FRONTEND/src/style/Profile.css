@@ -76,6 +76,33 @@ body {
 }
 
 
+/* FOLLOW POP UP  */
+.follow-pop-up {
+    padding: 1rem;
+    min-height: 15rem;
+    z-index: 9999;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: var(--main-color);
+    width: 20rem;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562);
+    border-radius: 0.5rem;
+}
+
+.follow-label {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.people-list {
+    display: flex;
+    flex-direction: column;
+}
+
 /* UPLOAD area  */
 .content-upload-area {
     height: 6rem;
@@ -190,6 +217,10 @@ body {
 
 .poem-options:nth-child(4):hover {
     background-color: rgba(255, 0, 0, 0.653)
+}
+
+.hidden {
+    display: none;
 }
 
 

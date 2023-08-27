@@ -9,6 +9,7 @@ const initialState = {
     isError: false,
     loggedInStatus: false,
     profile: {},
+    followData: [],
     myPoems: [],
     myArticles: [],
     myShortStories: [],
@@ -98,7 +99,21 @@ const ProfileProvider = ({ children }) => {
         }
     }
 
-    return <ProfileContext.Provider value={{ ...state, login, register, checkLogin, logout, getMyProfile }}>
+    //Get Follow Data
+    const getFollowData = async (url) => {
+        try {
+            console.log(url);
+            const resp = await axios.get(url);
+            console.log(resp);
+            dispatch({ type: "MY_FOLLOW_DATA", payload: resp.data.data });
+            return true;
+        } catch (error) {
+            dispatch({ type: "API_ERROR", payload: error });
+            return false
+        }
+    }
+
+    return <ProfileContext.Provider value={{ ...state, login, register, checkLogin, logout, getMyProfile, getFollowData }}>
         {children}
     </ProfileContext.Provider>
 };

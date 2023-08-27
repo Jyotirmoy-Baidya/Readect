@@ -1,13 +1,38 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsPeopleFill } from "react-icons/ai";
+import { RxCross1 } from "react-icons/rx";
 import { useProfileContext } from '../../context/ProfileContext';
 import { AwesomeButton } from 'react-awesome-button';
 
 const img = "https://cdn4.vectorstock.com/i/1000x1000/40/53/passport-photo-of-young-handsome-man-close-up-vector-21284053.jpg";
 
+const ShowFollowAPI = "/api/v1/reader"
+
 function Profile() {
-    const { profile } = useProfileContext();
+    const { profile, followData, getFollowData } = useProfileContext();
     console.log(profile);
+    const [showType, setShowType] = useState("");
+    const showFollow = (e, type) => {
+        e.preventDefault();
+        setShowType(type)
+        const check = getFollowData(`${ShowFollowAPI}/${type}`);
+        if (check) {
+            displayPop();
+        }
+    }
+
+    //DISPLAY POP
+    const displayPop = (e) => {
+        // const
+        const pop = document.querySelector(".follow-pop-up");
+        if (pop.classList.contains("hidden")) {
+            pop.classList.remove("hidden");
+        }
+        else {
+            pop.classList.add("hidden");
+        }
+    }
+
     return (
         <>
             <div className='profile-area'>
@@ -19,11 +44,11 @@ function Profile() {
                 <div className='profile-data-area'>
                     <h1 className='username'>{profile.name}</h1>
                     <div className='my-follow'>
-                        <div className='my-follower'>
+                        <div className='my-follower' onClick={(e) => showFollow(e, "followers")}>
                             <p>{profile?.followerCount}</p>
                             <p>Followers</p>
                         </div>
-                        <div className='my-following'>
+                        <div className='my-following' onClick={(e) => showFollow(e, "followings")}>
                             <p>{profile?.followingCount}</p>
                             <p>Followings</p>
                         </div>
@@ -56,8 +81,16 @@ function Profile() {
                 </div> */}
 
             </div>
-            <div>
-
+            <div className='follow-pop-up hidden'>
+                <div className='follow-label'>
+                    <h2>My {showType}s</h2>
+                    <RxCross1 onClick={() => displayPop()} />
+                </div>
+                <div className='people-list'>{
+                    followData?.map((ele, i) => {
+                        return <div className="each-person" key={i}>{ele.name}</div>
+                    })
+                }</div>
             </div>
         </>
     )

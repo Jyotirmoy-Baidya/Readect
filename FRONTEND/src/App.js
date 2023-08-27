@@ -15,7 +15,7 @@ import Navs from './components/HomePage/Navs';
 
 
 
-const LoggedCheckAPI = "/api/v1/reader/islogged";
+const LoggedCheckAPI = "/api/v1/reader/ifloggedin";
 
 const App = () => {
   const { checkLogin, loggedInStatus } = useProfileContext();
@@ -41,7 +41,7 @@ const App = () => {
           </> :
             <>
               <Route path="/" element={<Home />} />
-              <Route path="/:contents" element={<Contents />} />
+              <Route path="/type/:contents" element={<Contents />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Registration />} />
               <Route path="*" element={<RequestLogin />} />

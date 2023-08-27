@@ -13,7 +13,7 @@ function RequestLogin() {
                         <button className='rqst-back' onClick={() => navigate(-1)}><BiArrowBack /></button>
                     </div>
                     <h2>Please Login To Continue</h2>
-                    <NavLink to="/login"><button className='rqst-login-btn'>Login</button></NavLink>
+                    <NavLink to="/"><button className='rqst-login-btn'>Login</button></NavLink>
                 </div>
 
             </div>
