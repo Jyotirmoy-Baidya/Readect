@@ -25,7 +25,7 @@ function Profile() {
                         </div>
                         <div className='my-following'>
                             <p>{profile?.followingCount}</p>
-                            <p>Followers</p>
+                            <p>Followings</p>
                         </div>
                     </div>
                     {/* <AwesomeButton className='mx-auto upload-btn' type='secondary'>Upload</AwesomeButton> */}
@@ -54,6 +54,9 @@ function Profile() {
                 {/* </div> */}
                 {/* </div>
                 </div> */}
+
+            </div>
+            <div>
 
             </div>
         </>

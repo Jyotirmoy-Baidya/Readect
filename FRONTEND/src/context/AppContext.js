@@ -31,6 +31,7 @@ const AppProvider = ({ children }) => {
     const getSearchContents = async (search) => {
         dispatch({ type: "SET_LOADING" })
         try {
+
             dispatch({ type: "GET_SEARCH", payload: search });
         } catch (error) {
             dispatch({ type: "API_ERROR" });
