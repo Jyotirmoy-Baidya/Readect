@@ -15,11 +15,15 @@ const mongoSanitize = require("express-mongo-sanitize");
 const cookieParser = require("cookie-parser");
 
 const limiter = rateLimit({
-  max: 100,
-  windowMs: 60 * 60 * 100, //1hr in milliseconds
-  message: "Too many requests from this IP. Please try again in an hour.",
+  max: 3,
+  // windowMs: 60 * 60 * 100, //1hr in milliseconds
+  windowMs: 20000, //1hr in milliseconds
+  // message: "Too many requests from this IP. Please try again in an hour.",
+  message: {
+    message: "Too many requests from this IP. Please try again in an hour",
+  },
 });
-// app.use("/api", limiter);
+app.use("/api", limiter);
 
 app.use(cookieParser());
 

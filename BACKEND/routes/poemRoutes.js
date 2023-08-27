@@ -4,6 +4,7 @@ const {
   uploadPoem,
   getAllPoems,
   getPoem,
+  searchPoem,
   updatePoem,
   likePoem,
   unlikePoem,

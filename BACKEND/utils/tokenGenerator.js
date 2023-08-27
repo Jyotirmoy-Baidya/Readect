@@ -29,11 +29,7 @@ exports.createAndSendToken = (newReader, statusCode, res) => {
   });
 };
 
-exports.createAndSendLogoutToken = (
-  newReader,
-  statusCode,
-  res
-) => {
+exports.createAndSendLogoutToken = (newReader, statusCode, res) => {
   const token = createToken(newReader._id, 0);
   const cookieOptions = {
     expiresIn: 0,
@@ -41,8 +37,8 @@ exports.createAndSendLogoutToken = (
     httpOnly: true,
   };
 
-  if (environment === "production") cookieOptions.secure = true;
-  res.cookie("jwt", token, cookieOptions);
+  //if (environment === "production") cookieOptions.secure = true;
+  res.cookie("jwt", "", cookieOptions);
   res.status(statusCode).json({
     status: "success",
     // token,
