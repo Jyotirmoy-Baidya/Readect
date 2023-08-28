@@ -38,15 +38,15 @@ router
   .patch(protect, updateArticle, updateReviewGenreName)
   .delete(protect, deleteArticle, deleteReview);
 
-router.route("/:articleId/like").post(protect, likeArticle);
-router.route("/:articleId/unlike").post(protect, unlikeArticle);
-router.route("/:articleId/dislike").post(protect, dislikeArticle);
+router.route("/like/:articleId").post(protect, likeArticle);
+router.route("/unlike/:articleId").post(protect, unlikeArticle);
+router.route("/dislike/:articleId").post(protect, dislikeArticle);
 router.route("/likedArticles").get(protect, getLikedArticles);
 
-router.route("/getReadLater").get(protect, getReadLaterArticle);
-router.route("/:articleId/readLater").post(protect, readLaterArticle);
+router.route("/get/ReadLater").get(protect, getReadLaterArticle);
+router.route("/readLater/:articleId").post(protect, readLaterArticle);
 router
-  .route("/:articleId/removefromReadLater")
+  .route("/removefromReadLater/:articleId")
   .post(protect, removefromReadLaterArticle);
 
 module.exports = router;

@@ -27,9 +27,9 @@ const AppProvider = ({ children }) => {
 
   //Get Search
   const getSearchContents = async (resp) => {
-    //dispatch({ type: "SET_LOADING" });
+    console.log(resp);
     if (resp !== "error")
-      dispatch({ type: "GET_SEARCH", payload: resp.data.data });
+      dispatch({ type: "GET_SEARCH", payload: resp });
     else dispatch({ type: "API_ERROR" });
   };
 

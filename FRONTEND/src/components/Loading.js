@@ -6,7 +6,7 @@ function Loading() {
         <>
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className='loader col-md-6 col-6 mx-auto'>
+                    <div className='loader col-md-6 col-6 mx-auto text-center'>
                         <Spinner animation="border" role="status">
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>

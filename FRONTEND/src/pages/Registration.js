@@ -110,7 +110,7 @@ function Registration() {
             </div>
             <div className="text-center my-3">
               <input
-                className="registration-submit-btn btn w-50"
+                className="registration-submit-btn w-50"
                 type="submit"
                 value="Submit"
                 onClick={(e) => registrationUser(e)}

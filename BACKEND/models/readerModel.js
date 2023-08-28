@@ -37,6 +37,7 @@ const readerSchema = new Schema(
     followerCount: {
       type: Number,
       default: 0,
+      minimum: 0,
     },
     followers: {
       type: [Schema.ObjectId],
@@ -46,6 +47,7 @@ const readerSchema = new Schema(
     followingCount: {
       type: Number,
       default: 0,
+      minimum: 0,
     },
     followings: {
       type: [Schema.ObjectId],

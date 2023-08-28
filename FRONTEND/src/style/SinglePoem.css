@@ -6,89 +6,148 @@
     --main-orange: #fa7e1e;
 }
 
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.pagination {
+    margin-top: 1rem;
+    text-transform: capitalize;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: black;
+    text-transform: capitalize;
+}
+
 .single-poem-area {
-    background-color: var(--main-bg);
-    height: 91vh;
     display: flex;
     flex-direction: column;
 }
 
-.poem-area {
-    padding-left: 0;
-    padding-right: 0;
-    width: 100vw;
+
+.content-image-area {
+    height: 17rem;
 }
 
-.poem-image-area {
-    margin-top: 1.2rem;
-    background-image: linear-gradient(180deg,
-            hsl(283deg 61% 47%) 0%,
-            hsl(308deg 68% 45%) 10%,
-            hsl(323deg 76% 52%) 18%,
-            hsl(336deg 93% 61%) 26%,
-            hsl(349deg 100% 67%) 34%,
-            hsl(4deg 100% 71%) 42%,
-            hsl(17deg 100% 69%) 52%,
-            hsl(28deg 100% 69%) 64%,
-            hsl(36deg 100% 70%) 78%,
-            hsl(44deg 99% 73%) 100%);
-    height: 20rem;
+.content-cover-img {
+    height: 15rem;
+    width: 10rem;
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px 5px rgb(4, 61, 16);
 }
 
 
 
-.poem-content-area {
-    background-color: var(--main-color);
-    min-height: 45vh;
-}
 
 .poem-name {
     font-size: 2rem;
-    margin-bottom: 0;
+    margin: 0.3rem;
+    font-weight: 600;
+    font-family: 'Comic Neue', cursive;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .authorname {
-    margin-left: 4rem;
+    margin-left: 6rem;
+    font-weight: 700;
     font-size: 0.8rem;
+    text-align: center;
     color: rgba(71, 70, 70, 0.728);
 }
 
-.content {
-    margin-top: 2rem;
-    text-align: center;
-    padding: 2rem;
-    background-color: #ffd04f;
-    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
-    /* width: auto; */
+.author-span {
+    text-transform: capitalize;
 }
 
-.single-poem-content {
+/* The Main Content  */
+.single-content {
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
 }
 
+.content {
+    background-color: rgba(61, 217, 129, 0.13);
+    padding: 1.5rem 3rem;
+    border-radius: 0.6rem;
+    box-shadow: inset 1px 1px 5px rgba(47, 79, 79, 0.498);
+    min-width: 37rem;
+    max-width: 40rem;
+    min-height: 30rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content-lines {
+    text-align: justify;
+    width: auto;
+}
+
+
+
+/* Follow Area  */
+.single-content-follow {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    text-decoration: none;
+    color: black;
+}
+
+.author-name span {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.follow-btn {
+    margin-top: 0.3rem;
+    width: 10rem;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 4px rgba(36, 65, 105, 0.315);
+    padding: 0.5rem 0rem;
+}
+
+
+.following {
+    background-color: #4fd596;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+}
+
+.content-features {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+}
+
+
+
+
+
+
+
 
 
 /* comment area  */
-.poem-comment-area {
-    background-color: var(--main-color);
+.content-comment-area {
+    /* background-color: rgba(0, 139, 139, 0.144); */
+    min-height: 20rem;
 }
 
 .comment-area {
     display: flex;
+    background-color: rgba(0, 139, 139, 0.144);
     gap: 0.5rem;
     border-radius: 2rem;
-    background-image: linear-gradient(270deg,
-            hsl(44deg 99% 73%) 0%,
-            hsl(44deg 100% 76%) 10%,
-            hsl(44deg 100% 79%) 22%,
-            hsl(44deg 100% 82%) 35%,
-            hsl(43deg 100% 85%) 48%,
-            hsl(43deg 100% 88%) 61%,
-            hsl(43deg 100% 91%) 72%,
-            hsl(43deg 100% 94%) 83%,
-            hsl(43deg 100% 97%) 92%,
-            hsl(0deg 0% 100%) 100%);
     box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -102,7 +161,9 @@
 }
 
 .comment-area button {
-    background-color: rgba(236, 111, 8, 0.511);
+    /* background-color: rgba(236, 111, 8, 0.511); */
+    background-color: darkslategray;
+    color: white;
     border: none;
     height: 2.5rem;
     width: 2.5rem;
@@ -112,9 +173,9 @@
 .all-comments {
     display: flex;
     flex-direction: column;
-    max-height: 30vh;
+    max-height: 80vh;
     min-height: 10vh;
-    background-color: #ffffff89;
+    background-color: rgba(42, 201, 201, 0.062);
     border-radius: 1rem;
     overflow: scroll;
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
@@ -142,4 +203,15 @@
 
 .single-comment-time {
     font-size: 0.6rem;
+}
+
+
+
+
+@media (max-width: 980px) {
+    .content {
+        min-width: 21rem;
+        max-width: 23rem;
+        padding: 1rem 2rem;
+    }
 }

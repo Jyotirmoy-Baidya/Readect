@@ -7,6 +7,7 @@ import SearchBox from "../components/SearchBox";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import "../style/Contents.css";
 import axios from "axios";
+import { TbMoodSad } from "react-icons/tb";
 
 const APIThapa = "https://api.pujakaitem.com/api/products";
 
@@ -54,8 +55,8 @@ const Contents = () => {
               signal: controller.signal,
             }
           );
-          console.log(resp);
-          getSearchContents(search, resp);
+          console.log(resp.data.data);
+          getSearchContents(resp.data.data);
         }
       } catch (err) {
         if (err.name !== "AbortError") {
@@ -67,6 +68,7 @@ const Contents = () => {
       };
     }
     makeSearch();
+    console.log(searchContent);
   }, [search]);
 
   useEffect(() => {
@@ -77,8 +79,7 @@ const Contents = () => {
       <div className="container-fluid all-contents-area">
         <div className="row">
           <div className="col-md-6 col-10 text-center mx-auto">
-            <h5>Our Amazing</h5>
-            <h1 className="display-2 text-uppercase">{contents}</h1>
+            <h1 className="display-2 text-uppercase mt-4">{contents}</h1>
             <SearchBox searchBox={search} searchFunc={searchFunc} />
           </div>
         </div>
@@ -86,14 +87,19 @@ const Contents = () => {
           <Loading />
         ) : (
           <div className="row">
-            <div className="col-md-10 col-12 mx-auto all-contents">
+            <div className="col-md-10 col-11 mx-auto all-contents">
               {search
-                ? searchContent?.map((ele, i) => {
-                  return <SingleUnit key={i} content={ele} type={type} />;
-                })
+                ? searchContent.length === 0 ? <div className="no-result">No Results <TbMoodSad /></div> : <>
+                  {
+                    searchContent?.map((ele, i) => {
+                      return <SingleUnit key={i} content={ele} type={type} />;
+                    })
+                  }
+                </>
                 : allContents?.map((ele, i) => {
                   return <SingleUnit key={i} content={ele} type={type} />;
-                })}
+                })
+              }
             </div>
           </div>
         )}

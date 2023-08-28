@@ -8,52 +8,48 @@ import Loading from "../components/Loading";
 import Pagination from "../components/SingleContent/Pagination";
 import "../style/SinglePoem.css";
 import Navs from "../components/HomePage/Navs";
+import Follow from "./Follow";
+import { useProfileContext } from "../context/ProfileContext";
 
 const GetSingleContentAPI = "/api/v1/reader";
-
+const MyProfileApi = "/api/v1/reader/";
 // 64bdf4d6b2ef96b661ff83e1
 
 function SinglePoem() {
-  console.log("boom boom");
   const { type, id } = useParams();
   const { getSinglePoem, isLoading, content = {} } = useSingleContext();
+  const { getMyProfile, isProfileLoading } = useProfileContext();
 
   useEffect(() => {
+    getMyProfile(MyProfileApi);
     getSinglePoem(`${GetSingleContentAPI}/${type}/${id}`);
   }, []);
 
-  if (content?.comments) console.log(content?.comments);
   return (
     <>
       <div className="container-fluid">
         <div className="row single-poem-area">
-          <Pagination name={content.name} />
+          <Pagination name={content.title} type={type} />
           <div className="col-md-12 col-12 poem-area">
-            {isLoading ? (
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-4 col-10 mx-auto">
-                    <Loading />
-                  </div>
+            {isLoading || isProfileLoading ? (
+              <div className="row">
+                <div className="col-md-4 col-10 mx-auto">
+                  <Loading />
                 </div>
               </div>
             ) : (
               <>
-                <div className="row mt-4">
-                  <SinglePoemImage />
-                </div>
                 <div className="row">
-                  <div className="col-md-12 col-12 text-center poem-content-area">
+                  <div className="col-md-8 col-12">
+                    <SinglePoemImage />
                     <SinglePoemContent
                       name={content.title}
                       description={content.content}
-                      stars={4}
                       author={content.name}
                     />
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12 col-12 text-center poem-comment-area">
+                  <div className="col-md-4 col-12">
+                    <Follow />
                     <PoemComment id={content._id} content={content?.comments} type={type} />
                   </div>
                 </div>

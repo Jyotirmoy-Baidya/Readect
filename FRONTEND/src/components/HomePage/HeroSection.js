@@ -10,8 +10,8 @@ function HeroSection() {
                     <div className='col-md-6 col-10 order-md-0 order-1 hero-text mx-auto'>
                         <h1>Best Place To Increase Your <span>Imagination</span></h1>
                         <div>
-                            <NavLink to="/typesid"><button>Explore</button></NavLink>
-                            <NavLink to="/upload"><button>Start Writting</button></NavLink>
+                            <a href="#typesid"><button className='hero-btn'>Explore</button></a>
+                            <NavLink to="/upload"><button className='hero-btn'>Start Writting</button></NavLink>
                         </div>
                     </div>
                     <div className='col-md-6 col-10 order-md-1 order-0 hero-img mx-auto'>

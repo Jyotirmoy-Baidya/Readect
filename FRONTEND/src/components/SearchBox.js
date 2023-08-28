@@ -14,20 +14,7 @@ function SearchBox({ search, searchFunc }) {
           value={search}
           onChange={(e) => searchFunc(e.target.value)}
         />
-        {/* <div onClick={() => {
-                    console.log(document.querySelector('.tag').value);
-                }}><AiOutlineMenu /></div> */}
       </form>
-      {/* <div className='filter-overlay'>
-                <div className='ratings' onClick={() => {
-
-                }}>Ratings</div>
-                <div className='popular-tags'><p>Tags</p>
-                    <div>
-                        <p className='tag'>Thriller</p>
-                    </div>
-                </div>
-            </div> */}
     </>
   );
 }

@@ -3,14 +3,26 @@ import { BsPeopleFill } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import { useProfileContext } from '../../context/ProfileContext';
 import { AwesomeButton } from 'react-awesome-button';
-import { BiGroup } from 'react-icons/bi';
+import { BiGroup, BiLogOut } from 'react-icons/bi';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const img = "https://cdn4.vectorstock.com/i/1000x1000/40/53/passport-photo-of-young-handsome-man-close-up-vector-21284053.jpg";
 
 const ShowFollowAPI = "/api/v1/reader"
+const LogoutAPI = "/api/v1/reader/logout";
+const LoggedCheckAPI = "/api/v1/reader/ifLoggedIn";
 
 function Profile() {
-    const { profile, followData, getFollowData } = useProfileContext();
+    const Navigate = useNavigate();
+    const { logout, checkLogin, profile, followData, getFollowData } = useProfileContext();
+
+    const DoLogout = async () => {
+        const check = await logout(LogoutAPI);
+        await checkLogin(LoggedCheckAPI);
+        toast.success("Logout Succesfully");
+        Navigate("/");
+    };
     console.log(profile);
     const [showType, setShowType] = useState("");
     const showFollow = async (e, type) => {
@@ -44,57 +56,35 @@ function Profile() {
                 </div>
                 <div className='profile-data-area'>
                     <h1 className='username'>{profile.name}</h1>
+                    <div className='logout-btn' onClick={(e) => { DoLogout(e) }}>
+                        <button><BiLogOut /></button>
+                    </div>
                     <div className='my-follow'>
                         <div className='my-follower' onClick={(e) => showFollow(e, "followers")}>
-                            <p>{profile?.followerCount}</p>
-                            <p>Followers</p>
+                            <p>{profile?.followers?.length}</p>
+                            <div>Followers</div>
                         </div>
                         <div className='my-following' onClick={(e) => showFollow(e, "followings")}>
-                            <p>{profile?.followingCount}</p>
-                            <p>Followings</p>
+                            <p>{profile?.followings?.length}</p>
+                            <div>Followings</div>
                         </div>
                     </div>
-                    {/* <AwesomeButton className='mx-auto upload-btn' type='secondary'>Upload</AwesomeButton> */}
-                </div>
-                {/* <div className='profile-data'>
-                    <div className='profile-card mx-auto text-center'>
-                        <h1 className='text-uppercase my-2'>{profile.name}</h1>
-                        <a href='https://jb@gmail.com'>{profile.email}</a>
-                        <div className='myUploads'>
-                            <div>
-                                <p>{profile.poems?.length}</p>
-                                <p>Poems</p>
-                            </div>
-                            <div>
-                                <p>{profile.articles?.length}</p>
-                                <p>Articles</p>
-                            </div>
-                            <div>
-                                <p>{profile.shortStories?.length}</p>
-                                <p>Stories</p>
-                            </div>
-                            {/* <div>
-                                <p>{profile.?.length}</p>
-                                <p>Poems</p>
-                            </div> */}
-                {/* </div> */}
-                {/* </div>
-                </div> */}
 
-            </div>
-            <div className='follow-pop-up hidden'>
-                <div className='follow-label'>
-                    <h2>My {showType}</h2>
-                    <RxCross1 onClick={() => displayPop()} />
                 </div>
-                <div className='people-list'>{
-                    followData?.map((ele, i) => {
-                        return <div className="each-person" key={i}>
-                            <div>{ele.name}</div>
-                            <div><BiGroup /> {ele.followerCount}</div>
-                        </div>
-                    })
-                }</div>
+                <div className='follow-pop-up hidden'>
+                    <div className='follow-label'>
+                        <h2>My {showType}</h2>
+                        <RxCross1 onClick={() => displayPop()} />
+                    </div>
+                    <div className='people-list'>{
+                        followData?.map((ele, i) => {
+                            return <div className="each-person" key={i}>
+                                <div>{ele.name}</div>
+                                <div><BiGroup /></div>
+                            </div>
+                        })
+                    }</div>
+                </div>
             </div>
         </>
     )

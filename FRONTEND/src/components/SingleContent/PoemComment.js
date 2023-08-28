@@ -24,12 +24,9 @@ function PoemComment({ content, id, type }) {
   async function getPoemComments(url) {
     try {
       if (url) {
-        //  console.log(url);
         const resp = await axios.get(url);
         const arr = resp.data.data;
         setComments(arr.reverse());
-        //console.log(resp.data.data[0].comments);
-        //setComments(resp.data.data[0].comments);
       }
     } catch (err) {
       console.log(err);
@@ -80,14 +77,14 @@ function PoemComment({ content, id, type }) {
   };
   return (
     <>
-      <div className="row">
+      <div className="content-comment-area">
         <hr />
         <hr />
-        <form className="col-md-6 col-10 mx-auto py-2 comment-area">
+        <form className="py-2 comment-area">
           <input
             className="w-100 py-2 px-2"
             type="text"
-            placeholder="Write a comment"
+            placeholder="Write Your Comment"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
           />
@@ -99,41 +96,41 @@ function PoemComment({ content, id, type }) {
             <BsFillSendFill />
           </button>
         </form>
-      </div>
-      <div className="row">
-        <div className="col-md-6 col-10 mx-auto all-comments mt-2">
-          {comments?.map((ele, i) => {
-            if (i < cmtNum || cmtNum === 0) {
-              return (
-                <div className="single-comment-area" key={i}>
-                  <div className="single-comment-text">
-                    <div className="comment-name">{ele.name}</div>
-                    <div className="comment-content">{ele.comment}</div>
+        <div className="row">
+          <div className="all-comments mt-2">
+            {comments?.map((ele, i) => {
+              if (i < cmtNum || cmtNum === 0) {
+                return (
+                  <div className="single-comment-area" key={i}>
+                    <div className="single-comment-text">
+                      <div className="comment-name">{ele.name}</div>
+                      <div className="comment-content">{ele.comment}</div>
+                    </div>
+                    <div className="single-comment-time">
+                      <p>{TimeDisplay(ele.uploadDate)}</p>
+                    </div>
                   </div>
-                  <div className="single-comment-time">
-                    <p>{TimeDisplay(ele.uploadDate)}</p>
-                  </div>
-                </div>
-              );
-            }
-          })}
-          {cmtNum ? (
-            <div
-              onClick={() => {
-                setCmtNum(0);
-              }}
-            >
-              View All
-            </div>
-          ) : (
-            <div
-              onClick={() => {
-                setCmtNum(5);
-              }}
-            >
-              View Less
-            </div>
-          )}
+                );
+              }
+            })}
+            {cmtNum ? (
+              <div
+                onClick={() => {
+                  setCmtNum(0);
+                }}
+              >
+                View All
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  setCmtNum(5);
+                }}
+              >
+                View Less
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

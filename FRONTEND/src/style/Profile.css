@@ -9,6 +9,7 @@
 
 body {
     background-color: white;
+    font-family: 'Inter', sans-serif;
 }
 
 .profile-area {
@@ -19,7 +20,6 @@ body {
 }
 
 .profile-img-area {
-    background-color: var(--main-bg);
     height: 8rem;
     width: 100vw;
     position: relative;
@@ -36,7 +36,22 @@ body {
     transform: translate(50%, 50%);
 }
 
+.logout-btn {
+    position: absolute;
+    right: 5%;
+}
+
+.logout-btn button {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+}
+
 .profile-data-area {
+    position: relative;
     width: 20rem;
     border-radius: 0.2rem;
     margin-top: 6rem;
@@ -45,7 +60,8 @@ body {
     flex-direction: column;
     gap: 2rem;
     border-radius: 0.5rem;
-    background-image: linear-gradient(180deg,
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.771);
+    /* background-image: linear-gradient(180deg,
             hsl(161deg 100% 42%) 0%,
             hsl(153deg 73% 51%) 20%,
             hsl(145deg 73% 56%) 30%,
@@ -55,7 +71,10 @@ body {
             hsl(99deg 84% 63%) 70%,
             hsl(90deg 88% 60%) 80%,
             hsl(82deg 91% 56%) 90%,
-            hsl(74deg 100% 48%) 100%);
+            hsl(74deg 100% 48%) 100%); */
+    background-color: rgba(35, 183, 99, 0.575);
+    /* font-family: cursive;
+    ; */
 }
 
 .username {
@@ -69,6 +88,10 @@ body {
 .my-follow {
     display: flex;
     justify-content: space-evenly;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: rgba(35, 183, 99, 0.275);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.553);
 }
 
 .my-follow div {
@@ -81,10 +104,10 @@ body {
     padding: 1rem;
     z-index: 9999;
     position: absolute;
+    background-color: rgb(166, 215, 190);
     top: 40%;
     left: 50%;
     transform: translate(-50%, 0%);
-    background-color: var(--main-color);
     width: 20rem;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562);
     border-radius: 0.5rem;
@@ -102,8 +125,10 @@ body {
     flex-direction: column;
     max-height: 13rem;
     min-height: 5rem;
+    gap: 0.2px;
     overflow: scroll;
-    background-color: #f55b2a;
+    color: black;
+    background-color: white;
     box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -121,16 +146,20 @@ body {
 }
 
 
+.content-upload-area {
+    display: flex;
+    justify-content: center;
+}
+
 /* MY UPLOADS  */
 .my-uploads-area {
     margin-bottom: 2rem;
+    /* font-family: cursive; */
 }
 
 .my-uploads-label {
     text-transform: uppercase;
-    color: var(--main-bg);
     font-size: 2rem;
-    font-weight: 700;
     letter-spacing: 1px;
     text-shadow: 1px 1.2px 1px rgba(0, 0, 0, 0.42);
     margin-bottom: 1rem;
@@ -141,21 +170,22 @@ body {
 }
 
 .show-type-btn {
-    background-color: var(--bg-pink);
-    border: 1px solid var(--main-color);
+    background-color: darkslategray;
+    color: white;
     padding: 0.3rem;
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.313);
 }
 
 .type-active {
-    background-color: #feda75;
+    background-color: rgba(35, 183, 99, 0.275);
+    color: black;
     box-shadow: 0px 0px 0px black;
     transform: translate(0px, 3px);
 }
 
 .my-all-uploads {
     min-height: 10rem;
-    background-color: var(--main-color);
+    background-color: rgba(35, 183, 99, 0.275);
     box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
     border-radius: 0.2rem;
 }
@@ -165,124 +195,15 @@ body {
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    padding: 0.2rem;
+    padding: 1rem;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid darkslategray;
 }
 
 
 
 
-/* UPLOAD area  */
-.content-upload-area {
-    height: 6rem;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-
-
-
-.myUploads div p:first-child {
-    margin-bottom: 0;
-}
-
-.myUploads div p:last-child {
-    letter-spacing: 0.1rem;
-}
-
-.myAll {
-    background-color: var(--bg-pink);
-    width: 100%;
-    height: 3rem;
-    outline: none;
-    border: none;
-    border-top: 2px solid var(--bg-pink);
-}
-
-.myAll:first-child {
-    border-radius: 1rem 0 0 0;
-    border-top: 2px solid var(--bg-pink);
-}
-
-.myAll:last-child {
-    border-radius: 0 1rem 0 0;
-    border-right: 2px solid var(--bg-pink);
-}
-
-.myAllActive {
-    background-image: linear-gradient(90deg,
-            hsl(333deg 68% 50%) 0%,
-            hsl(33deg 100% 69%) 20%,
-            hsl(44deg 99% 73%) 40%,
-            hsl(44deg 99% 73%) 60%,
-            hsl(33deg 100% 69%) 80%,
-            hsl(333deg 68% 50%) 100%);
-}
-
-.myAllButtons {
-    display: flex;
-}
-
-.myAllPoems {
-    max-height: 50vh;
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--main-color);
-    overflow: scroll;
-}
-
-.eachPoem {
-    display: flex;
-    border-bottom: 1px solid #f55b2a;
-    padding: 1rem;
-    /* justify-content: center; */
-    align-items: center;
-    gap: 1rem;
-}
-
-.eachPoem p {
-    margin-bottom: 0;
-}
-
-.title {
-    width: 100%;
-    text-decoration: none;
-    color: black;
-}
-
-.poem-options {
-    text-decoration: none;
-    color: black;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 2rem;
-    height: 1.7rem;
-    width: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.poem-options:nth-child(3) {
-    background-color: rgba(144, 244, 29, 0.653);
-}
-
-.poem-options:nth-child(3):hover {
-    background-color: rgba(13, 255, 0, 0.653)
-}
-
-.poem-options:nth-child(4) {
-    background-color: rgba(244, 104, 29, 0.653);
-}
-
-.poem-options:nth-child(4):hover {
-    background-color: rgba(255, 0, 0, 0.653)
-}
 
 .hidden {
     display: none;

@@ -12,14 +12,17 @@ import { useProfileContext } from "./context/ProfileContext";
 import RequestLogin from "./components/RequestLogin";
 import { Toaster } from "react-hot-toast";
 import Navs from "./components/HomePage/Navs";
+import ReadLate from "./pages/ReadLate";
 
 const LoggedCheckAPI = "/api/v1/reader/ifLoggedIn";
+const MyProfileApi = "/api/v1/reader/"
 
 const App = () => {
-  const { checkLogin, loggedInStatus } = useProfileContext();
+  const { checkLogin, loggedInStatus, getMyProfile } = useProfileContext();
 
   useEffect(() => {
     checkLogin(LoggedCheckAPI);
+    getMyProfile(MyProfileApi);
   }, [loggedInStatus]);
   return (
     <BrowserRouter>
@@ -37,12 +40,12 @@ const App = () => {
               element={<UpdatePoemContent />}
             />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/profile/library" element={<div>Checkkkk</div>} />
+            <Route path="/profile/library" element={<ReadLate />} />
             <Route path='*' element={<>Error</>} />
           </> :
           <>
             <Route path="/" element={<Home />} />
-            <Route path="/:contents" element={<Contents />} />
+            <Route path="/type/:contents" element={<Contents />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Registration />} />
             <Route path="*" element={<RequestLogin />} />

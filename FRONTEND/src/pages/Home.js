@@ -7,8 +7,9 @@ import "../style/HomePage.css"
 function Home() {
     return (
         <>
-            {/* <Navs /> */}
             <HeroSection />
+            <hr />
+            <hr />
             <DiffCategories />
         </>
     )

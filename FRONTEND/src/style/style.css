@@ -7,6 +7,8 @@
 }
 
 
+
+
 body::-webkit-scrollbar {
     display: none;
 }
@@ -15,21 +17,56 @@ body::-webkit-scrollbar {
 
 /* navbar  */
 .navbar {
-    background-color: var(--main-bg);
-}
-
-.navbar-nav {
-    justify-content: center;
-}
-
-.dropdown-menu {
-    background-color: var(--bg-pink);
-}
-
-.dropdown-menu a:hover {
-    background-color: #7f1947;
+    background-color: darkslategray;
     color: white;
 }
+
+.nav-title {
+    font-family: 'Qwitcher Grypen', cursive;
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+}
+
+.nav-items {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-item {
+    font-family: cursive;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-login {
+    background-color: rgb(156, 199, 0);
+    border-radius: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-login:hover {
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+    /* background-color: darkslategray; */
+}
+
+.nav-login:active {
+    background-color: white;
+}
+
+.drop:hover {
+    background-color: darkslategray;
+    color: white;
+}
+
 
 .profile a svg {
     font-size: 2rem;
@@ -42,97 +79,6 @@ body::-webkit-scrollbar {
     height: 90vh;
 
 }
-
-
-/* poems  */
-.all-poems-area {
-    height: 100vh;
-    background-image: linear-gradient(180deg,
-            hsl(283deg 61% 47%) 0%,
-            hsl(292deg 63% 44%) 11%,
-            hsl(300deg 66% 41%) 22%,
-            hsl(307deg 71% 42%) 33%,
-            hsl(312deg 75% 43%) 44%,
-            hsl(317deg 77% 44%) 56%,
-            hsl(321deg 77% 45%) 67%,
-            hsl(325deg 75% 47%) 78%,
-            hsl(329deg 72% 48%) 89%,
-            hsl(333deg 68% 50%) 100%);
-}
-
-.all-poems {
-    display: flex;
-    min-width: 80vw;
-    gap: 5rem;
-    overflow: scroll;
-}
-
-.all-poems::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* search box */
-.search-box {
-    display: flex;
-    border-radius: 2rem;
-    padding: 0.4rem;
-    border-radius: 3rem;
-    background-image: linear-gradient(to left, var(--main-color), var(--main-orange));
-    color: var(--main-bg);
-    margin-bottom: 2rem
-}
-
-.search-area {
-    width: 100%;
-    background-color: rgba(255, 0, 0, 0);
-    outline: none;
-    border: none;
-}
-
-.search-box button {
-    border: none;
-    background-color: rgba(255, 0, 0, 0);
-    margin-right: 0.2rem;
-}
-
-
-
-
-
-
-
-
-/* singlePeom  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -201,28 +147,24 @@ body::-webkit-scrollbar {
 
 
 /* Rqst Login */
-.rqst-login {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(135deg,
-            hsl(283deg 61% 47%) 0%,
-            hsl(315deg 76% 43%) 50%,
-            hsl(333deg 68% 50%) 100%);
-}
-
 .rqst-login-popup {
-    height: 10rem;
-    background-color: #feda75;
+    font-family: cursive;
+    width: 28rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(3, 123, 113);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 0.8rem;
     align-items: center;
     padding: 1rem;
     border-radius: 1rem;
-    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
-    border: 2px solid rgba(255, 255, 255, 0.427);
+    box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.509);
+    color: rgb(230, 250, 255);
+    text-shadow: 2px 2px black;
 }
 
 .rqst-back {
@@ -240,40 +182,35 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .rqst-back button:hover {
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
-}
-
-.upload-area
-
-.rqst-login-popup h2 {
-    letter-spacing: 0.3px;
-    margin-bottom: 1.5rem;
+    background-color: rgb(230, 250, 255);
+    color: black;
 }
 
 .rqst-login-btn {
     box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
     border: none;
-    background-image: linear-gradient(180deg,
-            hsl(161deg 100% 42%) 0%,
-            hsl(153deg 73% 51%) 20%,
-            hsl(145deg 73% 56%) 30%,
-            hsl(135deg 74% 61%) 40%,
-            hsl(124deg 75% 65%) 50%,
-            hsl(110deg 79% 65%) 60%,
-            hsl(99deg 84% 63%) 70%,
-            hsl(90deg 88% 60%) 80%,
-            hsl(82deg 91% 56%) 90%,
-            hsl(74deg 100% 48%) 100%);
     border-radius: 0.5rem;
+    background-color: rgb(230, 250, 255);
     width: 6rem;
     padding: 0.4rem;
     letter-spacing: 0.1rem;
 }
 
 .rqst-login-btn:hover {
-    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25);
+    background-color: white;
 }
 
+.aluu1 {
+    color: white;
+}
+
+.aluu {
+    color: white;
+    font-size: 2rem;
+}

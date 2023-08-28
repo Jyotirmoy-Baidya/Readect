@@ -34,7 +34,7 @@ function Login() {
       <div className="login-page">
         <div className="login-cont">
           <form className="py-3 mx-2 form-floating login-form">
-            <h1 className="display-6 text-center">Login</h1>
+            <h1 className="display-6 text-center">LOGIN</h1>
             <hr className="w-100" />
             <div className="form-floating mb-3 mx-5">
               <input
@@ -69,7 +69,7 @@ function Login() {
             </p>
             <div className="text-center">
               <input
-                className="login-submit-btn btn w-50"
+                className="w-50 login-submit-btn"
                 type="submit"
                 value="Submit"
                 onClick={loginUser}

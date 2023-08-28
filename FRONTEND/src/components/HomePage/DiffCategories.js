@@ -9,7 +9,7 @@ import { TbBooks } from "react-icons/tb";
 function DiffCategories() {
     return (
         <>
-            <div className='diffcategories'>
+            <div className='diffcategories' id='typesid'>
                 <div className='container'>
                     <div className='row'>
                         <h1 className='col-md-10 col-10 text-center mx-auto'>You Can Browse</h1>

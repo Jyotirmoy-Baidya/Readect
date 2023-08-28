@@ -38,15 +38,15 @@ router
 
 router.route("/search/:title").get(searchPoem);
 
-router.route("/:poemId/like").post(protect, likePoem);
-router.route("/:poemId/unlike").post(protect, unlikePoem);
-router.route("/:poemId/dislike").post(protect, dislikePoem);
+router.route("/like/:poemId").post(protect, likePoem);
+router.route("/unlike/:poemId").post(protect, unlikePoem);
+router.route("/dislike/:poemId").post(protect, dislikePoem);
 router.route("/likedPoems").get(protect, getLikedPoems);
 
-router.route("/getReadLater").get(protect, getReadLaterPoem);
-router.route("/:poemId/readLater").post(protect, readLaterPoem);
+router.route("/get/ReadLater").get(protect, getReadLaterPoem);
+router.route("/readLater/:poemId").post(protect, readLaterPoem);
 router
-  .route("/:poemId/removefromReadLater")
+  .route("/removefromReadLater/:poemId")
   .post(protect, removefromReadLaterPoem);
 
 router.route("/testRoute/:poemId").get(protect, testController);

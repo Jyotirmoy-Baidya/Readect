@@ -8,20 +8,9 @@
 
 /* heropage  */
 .main-part {
-    background-image: linear-gradient(180deg,
-            hsl(283deg 61% 47%) 0%,
-            hsl(292deg 63% 44%) 11%,
-            hsl(300deg 66% 41%) 22%,
-            hsl(307deg 71% 42%) 33%,
-            hsl(312deg 75% 43%) 44%,
-            hsl(317deg 77% 44%) 56%,
-            hsl(321deg 77% 45%) 67%,
-            hsl(325deg 75% 47%) 78%,
-            hsl(329deg 72% 48%) 89%,
-            hsl(333deg 68% 50%) 100%);
+    font-family: cursive;
     height: 70vh;
     justify-content: center;
-
 }
 
 .hero-text {
@@ -51,21 +40,33 @@
     display: inline-block;
 }
 
+.hero-btn {
+    margin: 0.5rem;
+    border-radius: 1.5rem;
+    padding: 0.4rem 1rem;
+    background-color: rgb(178, 225, 38);
+    border: none;
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.518);
+    color: darkslategray;
+}
+
+.hero-btn:hover {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.518);
+}
+
+.hero-btn:active {
+    background-color: cadetblue;
+}
+
 
 /* diffcategories */
 .diffcategories {
-    padding-bottom: 5rem;
-    background-image: linear-gradient(0deg,
-            hsl(44deg 99% 73%) 0%,
-            hsl(38deg 100% 70%) 34%,
-            hsl(32deg 100% 69%) 49%,
-            hsl(26deg 100% 68%) 59%,
-            hsl(19deg 100% 68%) 67%,
-            hsl(11deg 98% 68%) 73%,
-            hsl(2deg 91% 67%) 79%,
-            hsl(352deg 83% 63%) 85%,
-            hsl(342deg 76% 57%) 91%,
-            hsl(333deg 68% 50%) 100%);
+    padding: 2rem;
+    padding-bottom: 4rem;
+
+    background-color: rgba(181, 255, 188, 0.418);
+    border-radius: 12rem 0rem 12rem 0;
+    width: 100vw;
 }
 
 .categories-box a {
@@ -73,9 +74,7 @@
     color: black
 }
 
-.category-style {
-    margin-bottom: 10rem;
-}
+
 
 .box {
     position: relative;
@@ -109,8 +108,119 @@
     text-decoration: none;
 }
 
+.our-category {
+    margin-top: 75px;
+    padding-bottom: 30px;
+    padding: 0 30px;
+    min-height: 198px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 0 25px 0 rgba(20, 27, 202, 0.17);
+}
 
-/* Categories on hover  */
+.our-category .icon {
+    margin-bottom: -21px;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.our-category h4 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.our-category:hover h4,
+.our-category:hover p {
+    color: #fff;
+}
+
+.poems:hover {
+    box-shadow: 0 0 25px 0 rgba(33, 39, 221, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #f33474 0%, #f55b2a 50%);
+}
+
+.articles:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+}
+
+.shortstories:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #5035ec 0%, #44a2f6 50%);
+}
+
+.books:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, 0.2);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #fd7f30 0%, #fdb642 50%);
+}
+
+.our-category .icon {
+    background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+    border-radius: 54% 46% 33% 67% / 64% 66% 34% 36%;
+    height: 3rem;
+    width: 3rem;
+    color: white;
+}
+
+.articles .icon {
+    background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+}
+
+.poems .icon {
+    background-image: linear-gradient(-45deg, #f33474 0%, #f55b2a 50%);
+}
+
+.shortstories .icon {
+    background-image: linear-gradient(-45deg, #5035ec 0%, #44a2f6 50%);
+}
+
+.books .icon {
+    background-image: linear-gradient(-45deg, #fd7f30 0%, #fdb642 50%);
+}
+
+@media (max-width: 980px) {
+    .profile svg {
+        display: none;
+    }
+
+    .service-style .sub-heading,
+    .contact-style .sub-heading {
+        font-size: 2rem;
+    }
+
+    .poems {
+        background-image: linear-gradient(-45deg, #f33474 0%, #f55b2a 50%);
+        color: white;
+    }
+
+    .articles {
+        background-image: linear-gradient(-45deg, #49d0da 0%, #210c59 50%);
+        color: white;
+    }
+
+    .shortstories {
+        background-image: linear-gradient(-45deg, #5035ec 0%, #44a2f6 50%);
+        color: white;
+    }
+
+    .books {
+        background-image: linear-gradient(-45deg, #fd7f30 0%, #fdb642 50%);
+        color: white;
+    }
+
+    .diffcategories {
+        border-radius: 6rem 0 6rem 0;
+    }
+}
+
+/* 
+Categories on hover 
 .our-category:hover h4,
 .our-category:hover p {
     color: #fff;
@@ -145,4 +255,4 @@
 .books .icon,
 .shortstories .icon {
     background-image: linear-gradient(-45deg, #fd7f30 0%, #fdb642 50%);
-}
+} */

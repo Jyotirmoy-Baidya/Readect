@@ -9,17 +9,7 @@
 .login-page,
 .regis-page {
     height: 100vh;
-    background-image: linear-gradient(180deg,
-            hsl(284deg 65% 76%) 0%,
-            hsl(312deg 69% 77%) 11%,
-            hsl(331deg 100% 81%) 22%,
-            hsl(342deg 100% 83%) 33%,
-            hsl(355deg 100% 85%) 44%,
-            hsl(10deg 100% 84%) 56%,
-            hsl(21deg 100% 84%) 67%,
-            hsl(29deg 100% 84%) 78%,
-            hsl(37deg 100% 85%) 89%,
-            hsl(44deg 100% 87%) 100%);
+    background-color: rgba(181, 255, 188, 0.6);
     display: flex;
     justify-content: center;
 }
@@ -28,22 +18,45 @@
 .login-cont {
     display: flex;
     justify-content: center;
+    font-family: cursive;
 }
 
 .login-form {
     height: 23rem;
     width: 23rem;
     margin-top: 12vh;
-    background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange));
+    background-image: linear-gradient(0deg,
+            hsl(161deg 100% 42%) 0%,
+            hsl(153deg 73% 51%) 20%,
+            hsl(145deg 73% 56%) 30%,
+            hsl(135deg 74% 61%) 40%,
+            hsl(124deg 75% 65%) 50%,
+            hsl(110deg 79% 65%) 60%,
+            hsl(99deg 84% 63%) 70%,
+            hsl(90deg 88% 60%) 80%,
+            hsl(82deg 91% 56%) 90%,
+            hsl(74deg 100% 48%) 100%);
     border-radius: 12px;
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
 }
 
 .login-submit-btn {
     box-shadow: 1px 2px 5px #000000;
-    background-image: linear-gradient(to bottom left, var(--bg-blue), var(--main-bg));
     border: none;
-    height: 2.5rem
+    background-color: white;
+    height: 2.5rem;
+    border-radius: 2rem;
+}
+
+.login-submit-btn:hover {
+    background-color: darkslategray;
+    color: white;
+    letter-spacing: 0.2px;
+}
+
+.login-submit-btn:active {
+    background-color: white;
+    color: black;
 }
 
 .form-control {
@@ -53,6 +66,7 @@
 .login-forgetpass a {
     text-decoration: none;
     font-size: 0.8rem;
+    color: black;
 }
 
 .signup {
@@ -64,18 +78,40 @@
 }
 
 .registration-form {
+    font-family: cursive;
     height: 30rem;
     margin-top: 2rem;
-    background-image: linear-gradient(to bottom left, var(--main-color), var(--main-orange));
-    border-radius: 12px;
+    background-image: linear-gradient(0deg,
+            hsl(161deg 100% 42%) 0%,
+            hsl(153deg 73% 51%) 20%,
+            hsl(145deg 73% 56%) 30%,
+            hsl(135deg 74% 61%) 40%,
+            hsl(124deg 75% 65%) 50%,
+            hsl(110deg 79% 65%) 60%,
+            hsl(99deg 84% 63%) 70%,
+            hsl(90deg 88% 60%) 80%,
+            hsl(82deg 91% 56%) 90%,
+            hsl(74deg 100% 48%) 100%);
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
 }
 
 .registration-submit-btn {
     box-shadow: 1px 2px 5px #000000;
-    background-image: linear-gradient(to bottom left, var(--bg-blue), var(--main-bg));
     border: none;
-    height: 2.5rem
+    background-color: white;
+    height: 2.5rem;
+    border-radius: 2rem;
+}
+
+.registration-submit-btn:hover {
+    background-color: darkslategray;
+    color: white;
+    letter-spacing: 0.2px;
+}
+
+.registration-submit-btn:active {
+    background-color: white;
+    color: black;
 }
 
 
