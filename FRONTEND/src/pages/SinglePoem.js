@@ -22,7 +22,7 @@ function SinglePoem() {
 
   useEffect(() => {
     getMyProfile(MyProfileApi);
-    getSinglePoem(`${GetSingleContentAPI}/${type}/${id}`);
+    getSinglePoem(`${GetSingleContentAPI}/${type}/single/${id}`);
   }, []);
 
   return (

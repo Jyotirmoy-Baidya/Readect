@@ -28,13 +28,13 @@ router
   .route("/")
   .get(getAllShortStories)
   .post(protect, uploadShortStory, createReview);
-router.route("/:shortStoryId").get(protect, getShortStory);
+router.route("/single/:shortStoryId").get(protect, getShortStory);
 router.use("/getShortStory/:genreId/reviews", reviewRouter);
 
 router.route("/search/:title").get(searchShortStory);
 
 router
-  .route("/:genreId")
+  .route("/update/:genreId")
   .patch(protect, updateShortStory, updateReviewGenreName)
   .delete(protect, deleteShortStory, deleteReview);
 

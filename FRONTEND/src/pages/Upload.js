@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/Upload.css";
 import { toast } from "react-hot-toast";
 const url = "/api/v1/reader";
@@ -6,7 +6,8 @@ const url = "/api/v1/reader";
 const Upload = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [type, setType] = useState("poem");
+  const [type, setType] = useState(0);
+  const [select, setSelect] = useState("poem");
 
   const DisplayType = (e, x) => {
     e.preventDefault();
@@ -17,6 +18,29 @@ const Upload = () => {
     e.target.classList.add("type-active");
     setType(x);
   }
+
+  const selectType = (() => {
+    switch (type) {
+      case 0:
+        setSelect("poem");
+        break;
+      case 1:
+        setSelect("article");
+        break;
+      case 2:
+        setSelect("shortstory");
+        break;
+      case 3:
+        setSelect("book");
+        break;
+      default:
+        break;
+    }
+  })
+
+  useEffect(() => {
+    selectType();
+  }, [type])
 
   const uploadContent = async (e, url) => {
     e.preventDefault();
@@ -46,18 +70,30 @@ const Upload = () => {
   };
   return (
     <>
-      <div className="row text-center show-type">
-        <div className="col-3 show-type-btn type-active" onClick={(e) => DisplayType(e, "poem")}>Poems</div>
-        <div className="col-3 show-type-btn" onClick={(e) => {
-          DisplayType(e, "article")
-        }}>Articles</div>
-        <div className="col-3 show-type-btn" onClick={(e) => DisplayType(e, "shortstory")} > Stories</div>
-        <div className="col-3 show-type-btn" onClick={(e) => DisplayType(e, "book")} >Books</div>
+      <div className="show-type">
+        <div className="show-type-btn type-active" onClick={(e) => DisplayType(e, 0)}>
+          Poems
+        </div>
+        <div className="show-type-btn" onClick={(e) => {
+          DisplayType(e, 1)
+        }}>
+          Articles
+        </div>
+        <div className="show-type-btn" onClick={(e) => {
+          DisplayType(e, 2)
+        }}>
+          Stories
+        </div>
+        <div className="show-type-btn" onClick={(e) => {
+          DisplayType(e, 3)
+        }}>
+          Books
+        </div>
       </div>
       <div className="container-fluid upload-area">
         <div className="row">
           <div className="col-md-5 col-10 mx-auto text-center">
-            <h1 className="upload-page-label">Write Your {type}</h1>
+            <h1 className="upload-page-label">Write Your {select}</h1>
             <form className="upload">
               <div className="input-group">
                 <input
@@ -86,7 +122,7 @@ const Upload = () => {
                 type="submit"
                 className="upload-submit mx-auto"
                 value="Submit"
-                onClick={(e) => { uploadContent(e, `${url}/${type}`) }}
+                onClick={(e) => { uploadContent(e, `${url}/${select}`) }}
               />
             </form>
             <form action="" className="cover-image-upload" method="post">

@@ -190,6 +190,7 @@ body {}
 .show-type {
     display: flex;
     width: 100%;
+    cursor: pointer;
 }
 
 .show-type-btn {
@@ -294,7 +295,26 @@ body {}
     min-height: 0;
 }
 
+.follow-each-person {
+    text-decoration: none;
+}
 
+.follow-show-btn {
+    padding: 0.6rem;
+    min-width: 5rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: none;
+    box-shadow: 1px 1px 2px var(--main-contrast);
+}
+
+.follow-show {
+    background-color: white;
+}
+
+.following-show {
+    background-color: var(--main-purple);
+}
 
 
 

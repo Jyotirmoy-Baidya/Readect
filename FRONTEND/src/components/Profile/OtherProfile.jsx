@@ -1,3 +1,4 @@
+//  import React from 'react'
 import React, { useEffect, useState } from 'react'
 import { BsPeopleFill } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
@@ -7,7 +8,7 @@ import { BiGroup, BiLogOut } from 'react-icons/bi';
 import { IoChevronBack } from 'react-icons/io5';
 
 import { toast } from 'react-hot-toast';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import MyUploads from './MyUploads';
 import MyLiked from './MyLiked';
 
@@ -17,19 +18,26 @@ const ShowFollowAPI = "/api/v1/reader"
 const LogoutAPI = "/api/v1/reader/logout";
 const LoggedCheckAPI = "/api/v1/reader/ifLoggedIn";
 
-function Profile() {
+function OtherProfile() {
+    const { id } = useParams();
     const Navigate = useNavigate();
     const { logout, checkLogin, profile, followData, getFollowData } = useProfileContext();
     const [postsCount, setPostCount] = useState(profile?.poems?.length + profile?.articles?.length + profile?.books?.length + profile?.shortStories?.length);
 
+    const [follow, setFollow] = useState(false);
 
-    const DoLogout = async (e) => {
+    const DoFollow = async (e) => {
         e.preventDefault();
-        const check = await logout(LogoutAPI);
-        await checkLogin(LoggedCheckAPI);
-        toast.success("Logout Succesfully");
-        Navigate("/");
-    };
+    }
+
+    const CheckFollow = () => {
+        // profile?.followings.includes(id);
+        setFollow(profile?.followings?.includes(id));
+    }
+
+    useEffect(() => {
+        CheckFollow();
+    }, [])
 
     console.log(profile);
     const [showType, setShowType] = useState("");
@@ -57,8 +65,14 @@ function Profile() {
         <>
             <div className='my-profile-label'>
                 <div className='label-back-btn' onClick={() => { Navigate(-1) }}><IoChevronBack /></div>
-                <div className='label'>My Profile</div>
-                <div className='ms-auto' onClick={(e) => DoLogout(e)}><BiLogOut /></div>
+                <div className='label'>Profile</div>
+                {/* <button className='ms-auto' onClick={(e) => DoFollow(e)}> */}
+                {
+                    follow ?
+                        <button className='follow-show-btn following-show ms-auto'>Following</button> :
+                        <button className='follow-show-btn follow-show ms-auto'>Follow</button>
+                }
+                {/* </button> */}
             </div>
             <div className='all-profile'>
                 <div className='profile-area'>
@@ -132,6 +146,7 @@ function Profile() {
 
         </>
     )
+
 }
 
-export default Profile;
+export default OtherProfile

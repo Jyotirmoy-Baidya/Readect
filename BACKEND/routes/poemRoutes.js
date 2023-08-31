@@ -26,13 +26,13 @@ const {
 const reviewRouter = require("./reviewRouter");
 
 router.route("/").get(getAllPoems).post(protect, uploadPoem, createReview);
-router.route("/:poemId").get(protect, getPoem);
+router.route("/single/:poemId").get(protect, getPoem);
 router.use("/reviews/:genreId", reviewRouter);
 
 // router.route("/").post(protect, uploadPoem, createReview);
 //genreId
 router
-  .route("/:genreId")
+  .route("/update/:genreId")
   .patch(protect, updatePoem, updateReviewGenreName)
   .delete(protect, deletePoem, deleteReview);
 

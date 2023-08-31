@@ -25,8 +25,8 @@ const {
 const reviewRouter = require("./reviewRouter");
 
 router.route("/").get(getAllBooks).post(protect, uploadBook, createReview);
-router.route("/:bookId").get(protect, getBook);
-router.route("/:genreId").delete(protect, deleteBook, deleteReview);
+router.route("/single/:bookId").get(protect, getBook);
+router.route("/update/:genreId").delete(protect, deleteBook, deleteReview);
 
 router.route("/search/:title").get(searchBook);
 

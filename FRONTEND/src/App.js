@@ -13,6 +13,7 @@ import RequestLogin from "./components/RequestLogin";
 import { Toaster } from "react-hot-toast";
 import Navs from "./components/HomePage/Navs";
 import ReadLate from "./pages/ReadLate";
+import OtherProfile from "./components/Profile/OtherProfile";
 
 const LoggedCheckAPI = "/api/v1/reader/ifLoggedIn";
 const MyProfileApi = "/api/v1/reader/"
@@ -41,6 +42,7 @@ const App = () => {
             />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/profile/library" element={<ReadLate />} />
+            <Route path="/otherprofile/:id" element={<OtherProfile />} />
             <Route path='*' element={<>Error</>} />
           </> :
           <>
