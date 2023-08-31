@@ -10,7 +10,7 @@
 }
 
 .light-theme {
-    --main-bg: white;
+    --main-bg: rgb(255, 255, 255);
     --main-contrast: #1b1b1b;
     --contrast: #1b1b1b9e;
     --main-purple: #743ad5;
@@ -112,7 +112,7 @@ body {}
     padding: 1rem;
     z-index: 9999;
     position: absolute;
-    background-color: rgb(166, 215, 190);
+    background-color: var(--main-purple);
     top: 40%;
     left: 50%;
     transform: translate(-50%, 0%);
@@ -214,9 +214,16 @@ body {}
 
 .my-all-uploads {
     min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
     width: 100%;
     background-image: linear-gradient(to bottom, var(--main-bg) 10%, var(--main-purple) 150%);
     border-radius: 0.2rem;
+}
+
+.my-all-uploads::-webkit-scrollbar {
+    display: none;
 }
 
 .upload-element {
@@ -276,6 +283,17 @@ body {}
 }
 
 
+/* Bookmarks  */
+.read-late-uploads-area {
+    width: 100%;
+    height: 100vh;
+}
+
+.read-late-uploads-all {
+    /* min-height: 80vh; */
+    min-height: 0;
+}
+
 
 
 
@@ -287,4 +305,22 @@ body {}
 }
 
 
-@media (max-width: 980px) {}
+@media (max-width: 980px) {
+    .all-profile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-area {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .my-uploads-area {
+        width: 100%;
+    }
+
+    .my-liked-area {
+        width: 100%;
+    }
+}

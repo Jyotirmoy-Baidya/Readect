@@ -44,7 +44,6 @@ function Profile() {
 
     //DISPLAY POP
     const displayPop = (e) => {
-        // const
         const pop = document.querySelector(".follow-pop-up");
         if (pop.classList.contains("hidden")) {
             pop.classList.remove("hidden");
@@ -115,22 +114,21 @@ function Profile() {
                         </div>
                     </div>
 
-                </div>
-                <div className='follow-pop-up hidden'>
-                    <div className='follow-label'>
-                        <h2>My {showType}</h2>
-                        <RxCross1 onClick={() => displayPop()} />
-                    </div>
-                    <div className='people-list'>{
-                        followData?.map((ele, i) => {
-                            return <div className="each-person" key={i}>
-                                <div>{ele.name}</div>
-                                <div><BiGroup /></div>
-                            </div>
-                        })
-                    }</div>
-                </div>
             </div> */}
+            <div className='follow-pop-up hidden'>
+                <div className='follow-label'>
+                    <h2>My {showType}</h2>
+                    <RxCross1 onClick={() => displayPop()} />
+                </div>
+                <div className='people-list'>{
+                    followData?.map((ele, i) => {
+                        return <div className="each-person" key={i}>
+                            <div>{ele.name}</div>
+                            <div><BiGroup /></div>
+                        </div>
+                    })
+                }</div>
+            </div>
 
         </>
     )
