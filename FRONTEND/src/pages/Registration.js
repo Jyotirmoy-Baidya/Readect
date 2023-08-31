@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "../style/LoginRegis.css";
 import { useProfileContext } from "../context/ProfileContext";
 import toast from "react-hot-toast";
+import { BsFillPersonFill, BsPerson } from "react-icons/bs";
+import { BiSolidLockAlt } from "react-icons/bi";
+import { IoIosPerson } from "react-icons/io";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 const RegisterAPI = "/api/v1/reader/signup";
 const LoggedCheckAPI = "/api/v1/reader/ifLoggedIn";
@@ -49,74 +53,26 @@ function Registration() {
     <>
       <div className="regis-page">
         <div className="registration-cont">
-          <form className="py-3 form-floating registration-form">
-            <h1 className="display-6 text-center">registration</h1>
-            <hr className="w-100" />
-            <div className="form-floating mb-3 mx-5">
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                id="name"
-                placeholder="Username"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-              <label htmlFor="Username">UserName</label>
+          <div className="profile-logo"><BsPerson /></div>
+          <form action="">
+            <div className="data-enter UserEmail">
+              <div className="logo"><IoIosPerson /></div>
+              <input className="input" type="text" placeholder="Username" onChange={(e) => setName(e.target.value)} />
             </div>
-            <div className="form-floating mb-3 mx-5">
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                id="email"
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              <label htmlFor="email">UserEmail</label>
+            <div className="data-enter UserEmail-regis">
+              <div className="logo"><BsFillPersonFill /></div>
+              <input className="input" type="text" placeholder="Email ID" onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div className="form-floating mb-3 mx-5">
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <label htmlFor="password">Password</label>
+            <div className="data-enter Password">
+              <div className="logo"><BiSolidLockAlt /></div>
+              <input className="input" type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
             </div>
-            <div className="form-floating mx-5">
-              <input
-                type="password"
-                name="cpassword"
-                className="form-control"
-                id="cpassword"
-                placeholder="ConfirmPassword"
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                }}
-              />
-              <label htmlFor="cpassword">ConfirmPassword</label>
-            </div>
-            <div className="text-center my-3">
-              <input
-                className="registration-submit-btn w-50"
-                type="submit"
-                value="Submit"
-                onClick={(e) => registrationUser(e)}
-              />
+            <div className="data-enter Password">
+              <div className="logo"><RiLockPasswordFill /></div>
+              <input className="input" type="password" placeholder="Confirm Password" onChange={(e) => { setConfirmPassword(e.target.value) }} />
             </div>
           </form>
+          <button className="regis-btn" onClick={(e) => registrationUser(e)}>Register</button>
         </div>
       </div>
     </>

@@ -79,7 +79,7 @@ const Contents = () => {
       <div className="container-fluid all-contents-area">
         <div className="row">
           <div className="col-md-6 col-10 text-center mx-auto">
-            <h1 className="display-2 text-uppercase mt-4">{contents}</h1>
+            <h1 className="display-2 text-uppercase mt-4 contents-title">{contents}</h1>
             <SearchBox searchBox={search} searchFunc={searchFunc} />
           </div>
         </div>

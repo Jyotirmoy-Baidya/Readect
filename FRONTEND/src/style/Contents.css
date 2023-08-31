@@ -1,17 +1,30 @@
-:root {
-    --main-bg: #962fbf;
-    --bg-pink: #d62976;
-    --bg-blue: #4f5bd5;
-    --main-color: #feda75;
-    --main-orange: #fa7e1e;
+.dark-theme {
+    --main-bg: #1b1b1b;
+    --main-contrast: white;
+    --contrast: #ffffff9e;
+    --main-purple: #743ad5;
+    --main-pink: #d53a9d;
+    --main-blue: #4f5bd5;
+    --main-yellow: #feda75;
+    --main-yellow: #fa7e1e;
+}
+
+.light-theme {
+    --main-bg: white;
+    --main-contrast: #1b1b1b;
+    --contrast: #1b1b1b9e;
+    --main-purple: #743ad5;
+    --main-pink: #d53a9d;
+    --main-blue: #4f5bd5;
+    --main-yellow: #feda75;
+    --main-yellow: #fa7e1e;
 }
 
 .all-contents-area {
-    /* font-family: 'Inter', sans-serif; */
+    font-family: 'Inter', sans-serif;
     /* font-family: cursive; */
-    font-family: 'Comic Neue', cursive;
     min-height: 100vh;
-    background-color: rgba(178, 225, 38, 0.201);
+    background-color: var(--main-bg);
 }
 
 
@@ -21,6 +34,12 @@
     gap: 1rem;
 }
 
+.contents-title {
+    color: var(--main-contrast);
+    font-family: cursive;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
 
 
 /* Search Area  */
@@ -33,15 +52,14 @@
     outline: none;
     border: none;
     box-shadow: 1px 1px 2px black;
-    background-image: linear-gradient(270deg,
-            hsla(161, 100%, 42%, 0.447) 0%,
-            hsla(145, 73%, 56%, 0.491) 30%,
-            hsla(124, 75%, 65%, 0.477) 50%,
-            hsla(99, 84%, 63%, 0.427) 70%,
-            hsla(82, 91%, 56%, 0.445) 90%,
-            hsla(74, 100%, 48%, 0.45) 100%);
-    color: black;
+    background-image: linear-gradient(to right, var(--main-purple), var(--main-pink));
+    color: white;
+    letter-spacing: 0.7px;
     margin-bottom: 2rem
+}
+
+.search-area::placeholder {
+    color: white;
 }
 
 .search-area:focus {
@@ -68,12 +86,11 @@
     display: none;
 }
 
-
 /* poem  */
 .content-item figure img {
     height: 15rem;
     width: 10rem;
-    box-shadow: 4px 4px 3px rgba(5, 54, 1, 0.479);
+    box-shadow: 2px 2px 3px 1px var(--main-contrast);
     border-radius: 0.1rem;
 }
 
@@ -82,7 +99,7 @@
     font-weight: 500;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
-    color: black;
+    color: var(--main-contrast);
     text-align: center;
 
 }

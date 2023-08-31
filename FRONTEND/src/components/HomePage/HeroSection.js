@@ -5,6 +5,9 @@ import { NavLink } from 'react-router-dom';
 function HeroSection() {
     return (
         <div className='main-part'>
+            {/* <div className="nav-mobile-title">
+                Readect
+            </div> */}
             <div className='container herosection'>
                 <div className='row'>
                     <div className='col-md-6 col-10 order-md-0 order-1 hero-text mx-auto'>

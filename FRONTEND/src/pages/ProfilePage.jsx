@@ -16,8 +16,6 @@ function ProfilePage() {
         isProfileLoading ? <Loading /> :
             <>
                 <Profile />
-                <UploadArea />
-                <MyUploads />
             </>
     )
 }

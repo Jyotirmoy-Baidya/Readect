@@ -1,101 +1,109 @@
-:root {
-    --main-bg: #962fbf;
-    --bg-pink: #d62976;
-    --bg-blue: #4f5bd5;
-    --main-color: #feda75;
-    --main-orange: #fa7e1e;
+.dark-theme {
+    --main-bg: #1b1b1b;
+    --main-contrast: white;
+    --contrast: #ffffff9e;
+    --main-purple: #743ad5;
+    --main-pink: #d53a9d;
+    --main-blue: #4f5bd5;
+    --main-yellow: #feda75;
+    --main-yellow: #fa7e1e;
 }
 
+.light-theme {
+    --main-bg: white;
+    --main-contrast: #1b1b1b;
+    --contrast: #1b1b1b9e;
+    --main-purple: #743ad5;
+    --main-pink: #d53a9d;
+    --main-blue: #4f5bd5;
+    --main-yellow: #feda75;
+    --main-yellow: #fa7e1e;
+}
 
-body {
-    background-color: white;
-    font-family: 'Inter', sans-serif;
+body {}
+
+.all-profile {
+    display: flex;
 }
 
 .profile-area {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-right: 1px solid var(--main-contrast);
+    font-family: 'Inter', sans-serif;
+    height: 75vh;
+    width: 30%;
     gap: 1rem;
+    background-color: var(--main-bg);
+    /* border-radius: 0rem 0rem 1.5rem 1.5rem; */
+}
+
+.my-profile-label {
+    color: var(--main-contrast);
+    background-color: var(--main-bg);
+    border-bottom: 1px solid var(--main-contrast);
+    height: 15vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem;
+    font-size: 2rem;
+}
+
+.my-profile-label .label {
+    font-family: 'Rubik', sans-serif;
+    letter-spacing: 1.2px;
+    margin-left: 1rem;
+}
+
+.profile-details {
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-img-area {
-    height: 8rem;
-    width: 100vw;
-    position: relative;
-}
-
-.profile-img {
-    height: 10rem;
-    width: 10rem;
-    border: 2px solid black;
-    border-radius: 100%;
-    position: absolute;
-    right: 50%;
-    bottom: 0%;
-    transform: translate(50%, 50%);
-}
-
-.logout-btn {
-    position: absolute;
-    right: 5%;
-}
-
-.logout-btn button {
-    border: none;
+    height: 15rem;
+    width: 18rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0.3rem;
-    border-radius: 0.3rem;
+    justify-content: center;
+
+}
+
+.profile-img img {
+    height: 12rem;
+    border-radius: 6rem;
+    border: 1px solid var(--main-contrast);
+}
+
+.profile-name {
+    color: var(--main-contrast);
+    text-transform: capitalize;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .profile-data-area {
-    position: relative;
-    width: 20rem;
-    border-radius: 0.2rem;
-    margin-top: 6rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.771);
-    /* background-image: linear-gradient(180deg,
-            hsl(161deg 100% 42%) 0%,
-            hsl(153deg 73% 51%) 20%,
-            hsl(145deg 73% 56%) 30%,
-            hsl(135deg 74% 61%) 40%,
-            hsl(124deg 75% 65%) 50%,
-            hsl(110deg 79% 65%) 60%,
-            hsl(99deg 84% 63%) 70%,
-            hsl(90deg 88% 60%) 80%,
-            hsl(82deg 91% 56%) 90%,
-            hsl(74deg 100% 48%) 100%); */
-    background-color: rgba(35, 183, 99, 0.575);
-    /* font-family: cursive;
-    ; */
-}
-
-.username {
-    font-size: 2.5rem;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-
-/* Followers */
-.my-follow {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+    letter-spacing: 0.7px;
+    gap: 2rem;
+    height: 7rem;
     padding: 1rem;
     border-radius: 1rem;
-    background-color: rgba(35, 183, 99, 0.275);
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.553);
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px black;
+    color: var(--main-contrast);
 }
 
-.my-follow div {
-    text-align: center;
+.my-data-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -153,53 +161,122 @@ body {
 
 /* MY UPLOADS  */
 .my-uploads-area {
-    margin-bottom: 2rem;
-    /* font-family: cursive; */
+    padding: 1rem 2rem;
+    background-color: var(--main-bg);
+    width: 40%;
+}
+
+.my-uploads-head {
+    display: flex;
+    gap: 1rem;
+    color: var(--main-contrast);
 }
 
 .my-uploads-label {
-    text-transform: uppercase;
+    text-transform: capitalize;
+    color: var(--main-contrast);
     font-size: 2rem;
-    letter-spacing: 1px;
-    text-shadow: 1px 1.2px 1px rgba(0, 0, 0, 0.42);
+    letter-spacing: 2px;
+    text-shadow: 1px 1.2px 1px var(--main-contrast);
     margin-bottom: 1rem;
+}
+
+.upload-btn svg {
+    color: var(--main-contrast);
+    margin-top: 2px;
+    font-size: 2rem;
 }
 
 .show-type {
     display: flex;
+    width: 100%;
 }
 
 .show-type-btn {
-    background-color: darkslategray;
-    color: white;
+    background-color: var(--main-bg);
+    color: var(--main-contrast);
     padding: 0.3rem;
-    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.313);
+    border-top: 3px solid var(--main-purple);
+    border-bottom: 3px solid var(--main-purple);
+    width: 100%;
+    text-align: center;
 }
 
 .type-active {
-    background-color: rgba(35, 183, 99, 0.275);
-    color: black;
-    box-shadow: 0px 0px 0px black;
-    transform: translate(0px, 3px);
+    color: var(--main-contrast);
+    /* background-image: linear-gradient(to right, var(--main-purple), var(--main-pink)); */
+    border-left: 3px solid var(--main-purple);
+    border-right: 3px solid var(--main-purple);
+    border-top: 0px;
+    border-bottom: 0px;
 }
+
 
 .my-all-uploads {
     min-height: 10rem;
-    background-color: rgba(35, 183, 99, 0.275);
-    box-shadow: inset 2px 2px 7px 0px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    background-image: linear-gradient(to bottom, var(--main-bg) 10%, var(--main-purple) 150%);
     border-radius: 0.2rem;
 }
 
 .upload-element {
     display: flex;
     text-decoration: none;
-    color: black;
+    color: var(--main-contrast);
     text-transform: uppercase;
     padding: 1rem;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid darkslategray;
+    border-bottom: 3px solid var(--main-purple);
+    border-left: 3px solid var(--main-purple);
+    border-right: 3px solid var(--main-purple);
 }
+
+
+/* My Liked  */
+.my-liked-area {
+    width: 30%;
+    padding: 2rem;
+    background-color: var(--main-bg);
+}
+
+/* .my-liked {
+    box-shadow: inset 2px 2px 4px black;
+} */
+
+.my-liked-label {
+    color: var(--main-contrast);
+    font-size: 2rem;
+}
+
+.liked-type {
+    color: var(--main-contrast);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.liked-elements {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.4rem;
+}
+
+.arrow {
+    font-size: 1rem;
+    margin-right: 0.3rem;
+}
+
+.liked-element {
+    text-decoration: none;
+    color: var(--main-contrast);
+    font-size: 0.7rem;
+    padding-top: 0.2rem;
+    text-transform: capitalize;
+}
+
+
+
 
 
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiFillFileAdd, AiOutlineUserAdd } from "react-icons/ai";
+
+import { MdAdd } from 'react-icons/md';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import { useProfileContext } from "../../context/ProfileContext";
@@ -25,7 +27,63 @@ const MyUploads = () => {
 
     return (
         <>
-            <div className="container my-uploads-area">
+            <div className="my-uploads-area">
+                <div className="my-uploads-head">
+                    <h3 className="my-uploads-label">My Uploads</h3>
+                    <NavLink to="/upload" className=" upload-btn"><MdAdd /> </NavLink>
+                </div>
+                <div className="show-type">
+                    <div className="show-type-btn type-active" onClick={(e) => DisplayType(e, 0)}>
+                        Poems
+                    </div>
+                    <div className="show-type-btn" onClick={(e) => {
+                        DisplayType(e, 1)
+                    }}>
+                        Articles
+                    </div>
+                    <div className="show-type-btn" onClick={(e) => {
+                        DisplayType(e, 2)
+                    }}>
+                        Stories
+                    </div>
+                    <div className="show-type-btn" onClick={(e) => {
+                        DisplayType(e, 3)
+                    }}>
+                        Books
+                    </div>
+                </div>
+                <div className="my-all-uploads">
+                    {
+                        type === 0 ?
+                            myPoems?.map((ele, i) => {
+                                return (
+                                    <UploadEle key={i} title={ele.title} id={ele.id} type={"poem"} />
+                                )
+                            })
+                            : type === 1 ?
+                                myArticles?.map((ele, i) => {
+                                    return (
+                                        <UploadEle key={i} title={ele.title} id={ele.id} type={"article"} />
+                                    )
+
+                                })
+                                : type === 2 ?
+                                    myShortStories?.map((ele, i) => {
+                                        return (
+                                            <UploadEle key={i} title={ele.title} id={ele.id} type={"shortstory"} />
+                                        )
+
+                                    })
+                                    : type === 3 ?
+                                        myBooks?.map((ele, i) => {
+                                            return (
+                                                <UploadEle key={i} title={ele.title} id={ele.id} type={"book"} />
+                                            )
+                                        }) : <></>
+                    }
+                </div>
+            </div >
+            {/* <div className="container my-uploads-area">
                 <div className="row">
                     <div className="col-md-6 col-11 mx-auto">
                         <div className="row">
@@ -73,7 +131,7 @@ const MyUploads = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 };
